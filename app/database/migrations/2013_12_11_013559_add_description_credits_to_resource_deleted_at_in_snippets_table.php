@@ -13,9 +13,9 @@ class AddDescriptionCreditsToResourceDeletedAtInSnippetsTable extends Migration 
 	{
 		Schema::table('snippets', function($table)
 		{
-			$table->text('description');
-			$table->string('credits_to');
-			$table->string('resource');
+			$table->text('description')->nullable();
+			$table->string('credits_to')->nullable();
+			$table->string('resource')->nullable();
 			$table->softDeletes();
 		});
 	}
