@@ -1,0 +1,21 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+.DS_Store
+Thumbs.db
+
+# OSX
+.DS_Store
+
+# Project specific
+.sass-cache
+/public/uploads
+
+# local settings
+/app/config/local
+
+# production settings
+/app/config/production
+
+# test site basic auth
+public/.htpasswd

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://laravelsnippets.com/</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/auth/login?next=snippets%2Fcreate</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/auth/login</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/go-back</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/john-borisov</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/handle-date-formats-on-model</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/pedro-maia</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/quickly-commit-changes-to-git</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/mike-erickson</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/managing-timestamps</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/gradually-migrating-passwords-from-md5-to-laravels-hash</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/antonio-carlos-ribeiro</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/get-all-columns-names-from-a-eloquent-model</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/crud-controller</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/zenry-the-bear</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/bootstrap-3-form-macros</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/john-kevin-basco</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/authentication</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/eloquent</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/version-3.x</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/version-4.x</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/database</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/macros</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/blade</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/requests</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/forms</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/filters</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/caching</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/mail</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/passing-route-parameters-to-any-view</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/blessing-osakue</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/using-mail-in-laravel-and-the-python-smtp-debugging-server</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/hitting-the-database-while-testing-a-package-developed-in-workbench</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets?page=2</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/auth/register</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/john-borisov/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/pedro-maia/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/mike-erickson/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/antonio-carlos-ribeiro/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/zenry-the-bear/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/john-kevin-basco/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/sentry-route-filters</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/get-the-full-name-of-a-user-instance-using-eloquent-accessors</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/display-php-loaded-image-with-browser-cache-support</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/philo-hermans</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/blade-forms</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/version-4.x?page=2</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/changing-angularjs-templating-brackets-in-order-to-be-mixed-with-blade-templating</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/israel-ortuno</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/blade-template-skeleton</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/passing-the-original-clients-ip-from-haproxy-to-laravel</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets/force-ssl-request-on-production</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/zaher-g</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/blessing-osakue/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/snippets?page=1</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/philo-hermans/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/tags/version-4.x?page=1</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/israel-ortuno/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://laravelsnippets.com/profile/zaher-g/snippets</loc>
+  <changefreq>always</changefreq>
+</url>
+</urlset>
