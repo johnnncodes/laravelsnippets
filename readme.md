@@ -1,6 +1,12 @@
 ## LaravelSnippets.com website
 
-## NOTE: not yet done migrating all the features from the old code base & README is not yet complete.
+Live site - http://laravelsnippets.com/
+
+Twitter Page - https://twitter.com/laravelsnippets
+
+Facebook Page - https://www.facebook.com/LaravelSnippets
+
+### NOTE: Not yet done migrating all the features from the old code base & README is not yet complete.
 
 ### Requirements
 
@@ -11,7 +17,7 @@
 
 1. Clone Repo
 
-2. Add hostname in bootstrap/start.php for environment detection
+2. Add hostname in bootstrap/start.php for environment detection:
 
 ```PHP
 <?php
@@ -22,7 +28,7 @@ $env = $app->detectEnvironment(array(
 ));
 ```
 
-3. Create config/local/database.php and configure Mysql and Redis in database.php
+3. Create config/local/database.php and configure Mysql and Redis in database.php:
 
 ```PHP
 <?php
@@ -60,7 +66,7 @@ return array(
 );
 ```
 
-4. (OPTIONAL) Create config/local/app.php if you want to turn on the Profiler.
+4. (OPTIONAL) Create config/local/app.php if you want to turn on the Profiler:
 
 ```PHP
 <?php
@@ -193,12 +199,12 @@ return array(
 );
 ```
 
-4. Run composer install to install dependencies
+6. Run composer install to install dependencies
         - php composer.phar update --dev
         OR
         - composer update --dev
 
-5. Migrate and Seed database
+7. Migrate and Seed database
         - php artisan migrate
         - php artisan db:seed
 
