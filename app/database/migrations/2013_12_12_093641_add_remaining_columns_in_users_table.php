@@ -13,12 +13,12 @@ class AddRemainingColumnsInUsersTable extends Migration {
 	{
         Schema::table('users', function($table)
         {
-            $table->string('twitter_url');
-            $table->string('facebook_url');
-            $table->string('github_url');
-            $table->string('website_url');
-            $table->string('photo_url');
-            $table->text('about_me');
+            $table->string('twitter_url')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('github_url')->nullable();
+            $table->string('website_url')->nullable();
+            $table->string('photo_url')->nullable();
+            $table->text('about_me')->nullable();
         });
 	}
 
