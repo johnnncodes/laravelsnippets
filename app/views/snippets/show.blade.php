@@ -8,7 +8,7 @@
 
 @if($snippet->author)
   @section('meta_author')
-    <meta name="author" content="{{ e($snippet->author->fullName) }}">
+    <meta name="author" content="{{ nl2br(e($snippet->author->fullName)) }}">
   @stop
 @endif
 
