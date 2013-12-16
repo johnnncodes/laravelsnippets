@@ -63,8 +63,12 @@
 
           <p>
             Submitted by:
-            <a href="#">
+            <a href="{{ route('user.getProfile', $snippet->author->slug) }}">
               {{ e($snippet->author->full_name) }}
+            </a>
+            
+            <a href="{{ route('user.getSnippets', $snippet->author->slug) }}">
+              ({{ $user->snippets_count }} snippets)
             </a>
           </p>
 
