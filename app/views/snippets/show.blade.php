@@ -66,9 +66,9 @@
             <a href="{{ route('user.getProfile', $snippet->author->slug) }}">
               {{ e($snippet->author->full_name) }}
             </a>
-            
+
             <a href="{{ route('user.getSnippets', $snippet->author->slug) }}">
-              ({{ $user->snippets_count }} snippets)
+              ({{ $snippet->author->snippets_count }} {{ Str::plural('snippet', $snippet->author->snippets_count) }})
             </a>
           </p>
 
