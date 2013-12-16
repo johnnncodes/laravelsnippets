@@ -55,8 +55,7 @@ class SnippetController extends BaseController {
         }
 
         # increment hit count
-        $redis = App::make('redis');
-        $redis->zIncrBy('hits', 1, $snippet->id);
+        $snippet->incrementHits();
 
         return View::make('snippets.show', compact('snippet'));
     }

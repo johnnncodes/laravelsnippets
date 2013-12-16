@@ -65,4 +65,13 @@ class Snippet extends Eloquent {
         return $this->author_id === $user->id ? true : false;
     }
 
+    /**
+     * Increment hits count
+     */
+    public function incrementHits()
+    {
+        $redis = App::make('redis');
+        $redis->zIncrBy('hits', 1, $this->id);
+    }
+
 }
