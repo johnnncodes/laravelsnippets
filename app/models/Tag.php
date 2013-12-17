@@ -21,7 +21,7 @@ class Tag extends Eloquent {
      */
     public function hasSnippets()
     {
-        return $this->snippets()->count() ? true : false;
+        return $this->snippets()->where('approved', 1)->count() ? true : false;
     }
 
 }
