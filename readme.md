@@ -6,7 +6,22 @@ Twitter Page - https://twitter.com/laravelsnippets
 
 Facebook Page - https://www.facebook.com/LaravelSnippets
 
+Don't forget to star this repository :) And feel free to fork it.
+
 ### NOTE: Not yet done migrating all the features from the old code base & README is not yet complete.
+
+### How to contribute?
+
+#### Bug fixes
+- Just fork the repository, apply your bug fix and send a pull request.
+
+#### Features
+- File an issue on this repo with a title that looks like this: [Proposal] Admin Dashboard.
+- Once the proposal is approved you can go ahead and implement your proposal and send a pull request.
+
+You can also contribute features by visiting the issues page on the repository, you'll see issues
+tagged with "request", if you want to implement it, just leave a comment that you will implement it and
+just send a pull request.
 
 ### Requirements
 
