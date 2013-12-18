@@ -13,7 +13,10 @@ Thumbs.db
 /public/uploads
 
 # local settings
-/app/config/local
+/app/config/dev
+
+# testing settings
+/app/config/testing
 
 # production settings
 /app/config/production
