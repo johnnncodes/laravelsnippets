@@ -15,11 +15,5 @@ Thumbs.db
 # local settings
 /app/config/dev
 
-# testing settings
-/app/config/testing
-
-# production settings
-/app/config/production
-
 # test site basic auth
 public/.htpasswd
