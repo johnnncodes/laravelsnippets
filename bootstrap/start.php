@@ -28,8 +28,8 @@ $app->redirectIfTrailingSlash();
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('JOHNs-MacBook-Pro.local'),
-    'production' => array('mayonvolcanosoftware.com'),
+	'local' => array('laravelsnippets.dev'),
+    'testing' => array('laravelsnippets.testing'),
 
 ));
 
