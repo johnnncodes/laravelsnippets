@@ -38,6 +38,12 @@ Route::get('snippets/{slug}', array('uses' => 'SnippetController@getShow',
 Route::get('tags/{slug}', array('uses' => 'TagController@getShow',
     'as' => 'tag.getShow'));
 
+// Password Resets
+Route::get('password_resets/reset/{token}', 'PasswordResetsController@reset');
+Route::post('password_resets/reset/{token}', 'PasswordResetsController@postReset');
+
+Route::resource('password_resets', 'PasswordResetsController', ['only' => ['create', 'store']]);
+
 // profile
 Route::get('profiles', array('uses' => 'UserController@getIndex',
     'as' => 'user.getIndex'));

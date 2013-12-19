@@ -36,7 +36,7 @@ return array(
         'mysql' => array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'larasnippets.testing',
+            'database'  => 'laravelsnippets.testing',
             'username'  => 'root',
             'password'  => '',
             'charset'   => 'utf8',
