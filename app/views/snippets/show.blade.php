@@ -23,7 +23,7 @@
       <h3>{{ e($snippet->title) }}</h3>
 
       @if($snippet->description)
-        <p>Description: {{ nl2br(e($snippet->description)) }}</p>
+        <p>Description: {{ Parsedown::instance()->parse(e($snippet->description)) }}</p>
       @endif
 
       @if($snippet->credits_to)
