@@ -61,19 +61,13 @@
             </div>
           @endif
 
-          <p>
-            Submitted by:
-            <a href="{{ route('user.getProfile', $snippet->author->slug) }}">
-              {{ e($snippet->author->full_name) }}
-            </a>
+        <p>
+          Submitted {{ $snippet->humanCreatedAt }} by
+          <a href="{{ route('user.getProfile', $snippet->author->slug) }}">{{ e($snippet->author->full_name) }}</a>
 
-            <a href="{{ route('user.getSnippets', $snippet->author->slug) }}">
-              ({{ $snippet->author->snippets_count }} {{ Str::plural('snippet', $snippet->author->snippets_count) }})
-            </a>
-          </p>
-
-        <p>Submitted on: {{ $snippet->created_at }}</p>
-        <p>Last updated: {{ $snippet->updated_at }}</p>
+          (<a href="{{ route('user.getSnippets', $snippet->author->slug) }}">{{ $snippet->author->snippets_count }} {{ Str::plural('snippet', $snippet->author->snippets_count) }}</a>).
+        </p>
+        <p>Updated {{ $snippet->humanUpdatedAt }}.</p>
         <p>
           Views:
           @if($snippet->hasHits())
