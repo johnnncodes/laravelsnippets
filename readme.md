@@ -30,6 +30,7 @@ just send a pull request.
 - Ionut Tanasa
 - Martin Dilling-Hansen
 - Sercan Çakır
+- Nico Romero Peñaredondo
 
 ### Requirements
 
