@@ -1,20 +1,21 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
-	"license": "MIT",
-	"require": {
-		"laravel/framework": "4.0.*",
-		"cviebrock/eloquent-sluggable": "1.0.*"
+	"name"        : "laravel/laravel",
+	"description" : "The Laravel Framework.",
+	"keywords"    : ["framework", "laravel"],
+	"license"     : "MIT",
+	"require"     : {
+		"laravel/framework"            : "4.0.*",
+		"cviebrock/eloquent-sluggable" : "1.0.*",
+		"erusev/parsedown"             : "dev-master"
 	},
-	"require-dev": {
-		"phpunit/phpunit": "3.7.*",
-		"mockery/mockery": "dev-master",
-		"way/laravel-test-helpers": "dev-master",
-		"loic-sharma/profiler": "1.1.*"
+	"require-dev" : {
+		"phpunit/phpunit"          : "3.7.*",
+		"mockery/mockery"          : "dev-master",
+		"way/laravel-test-helpers" : "dev-master",
+		"loic-sharma/profiler"     : "1.1.*"
 	},
-	"autoload": {
-		"classmap": [
+	"autoload" : {
+		"classmap" : [
 			"app/commands",
 			"app/controllers",
 			"app/models",
@@ -22,24 +23,24 @@
 			"app/database/seeds",
 			"app/tests/TestCase.php"
 		],
-		"psr-0": {
-		                "LaraSnipp": "app"
+		"psr-0" : {
+		    "LaraSnipp": "app"
 		}
 	},
-	"scripts": {
-		"post-install-cmd": [
+	"scripts" : {
+		"post-install-cmd" : [
 			"php artisan optimize"
 		],
-		"post-update-cmd": [
+		"post-update-cmd" : [
 			"php artisan clear-compiled",
 			"php artisan optimize"
 		],
-		"post-create-project-cmd": [
+		"post-create-project-cmd" : [
 			"php artisan key:generate"
 		]
 	},
-	"config": {
-		"preferred-install": "dist"
+	"config" : {
+		"preferred-install" : "dist"
 	},
-	"minimum-stability": "dev"
+	"minimum-stability" : "dev"
 }
