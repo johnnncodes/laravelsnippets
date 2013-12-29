@@ -101,12 +101,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     public function getAbsPhotoUrlAttribute()
     {
         if ( ! $this->photo_url) {
-        	
+
             $hash = md5(trim(strtolower($this->attributes["email"])));
             return "http://www.gravatar.com/avatar/" . $hash . "?s=120";
-
-            // return asset('/assets/images/default-user-avatar.jpeg');
-            
         }
 
         $assetsDir = asset('/');

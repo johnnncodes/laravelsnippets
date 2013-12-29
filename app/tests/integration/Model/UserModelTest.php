@@ -27,7 +27,9 @@ class UserModelTest extends TestCase {
     {
         $user = new User;
 
-        $this->assertEquals(asset('/assets/images/default-user-avatar.jpeg'), $user->abs_photo_url);
+        $user->email = 'johndoe@gmail.com';
+
+        $this->assertNotEquals(asset('photo.png'), $user->abs_photo_url);
 
         $user->photo_url = 'photo.png';
 
