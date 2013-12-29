@@ -24,6 +24,7 @@
 
           <div class="form-group">
             {{ Form::textarea('description', $value = '', array('placeholder' => 'Description (optional)', 'class'=> 'form-control')) }}
+            <p class="help-block"><a href="https://help.github.com/articles/github-flavored-markdown">GitHub-flavoured Markdown</a> is supported.</p>
           </div>
 
           <div class="form-group">
