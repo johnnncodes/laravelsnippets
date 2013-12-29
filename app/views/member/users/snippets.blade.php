@@ -37,7 +37,7 @@
           {{ $snippets->links() }}
 
         @else
-          <p>No snippets available.</p>
+          <p>No snippets yet. <a href="{{ route('member.snippet.getCreate') }}">Why not add one?</a></p>
         @endif
       </div>
 
