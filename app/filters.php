@@ -13,7 +13,16 @@
 
 App::before(function($request)
 {
-	//
+    if (App::environment() === 'production') {
+
+        $client = new Raven_Client(Config::get('app.sentryDsn'));
+
+        $error_handler = new Raven_ErrorHandler($client);
+
+        // Register error handler callbacks
+        set_error_handler(array($error_handler, 'handleError'));
+        set_exception_handler(array($error_handler, 'handleException'));
+    }
 });
 
 
