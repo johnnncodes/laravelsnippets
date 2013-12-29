@@ -23,6 +23,14 @@ You can also contribute features by visiting the issues page on the repository, 
 tagged with "request", if you want to implement it, just leave a comment that you will implement it and
 just send a pull request.
 
+### Contributors
+
+#### A huge thanks to these developers who contributed to the development of the site:
+- Christopher Pitt
+- Ionut Tanasa
+- Martin Dilling-Hansen
+- Sercan Çakır
+
 ### Requirements
 
 1. PHP 5.4
