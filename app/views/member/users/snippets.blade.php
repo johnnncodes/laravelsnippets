@@ -17,7 +17,8 @@
                 <a href="{{ route('member.snippet.getShow', $snippet->slug) }}">{{ e($snippet->title) }}</a>
                 |
                 <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
-
+                |
+                <span class="approved">@if($snippet->approved) Approved @else Pending @endif</span>
                 |
                 <span>Actions: </span>
                 <span class="controls">
