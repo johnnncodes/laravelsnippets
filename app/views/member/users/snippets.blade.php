@@ -12,7 +12,7 @@
           <ul class="snippets-list">
             @foreach ($snippets as $snippet)
               <li class="snippet">
-                <span class="date">{{ $snippet->created_at }}</span>
+                <span class="date">{{ $snippet->humanCreatedAt }}</span>
                 -
                 <a href="{{ route('member.snippet.getShow', $snippet->slug) }}">{{ e($snippet->title) }}</a>
                 |
