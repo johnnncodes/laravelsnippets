@@ -27,7 +27,13 @@
       @endif
 
       @if($snippet->credits_to)
-        <p>Credits to: {{ e($snippet->credits_to) }}</p>
+        @if($snippet->creditsToLink)
+          <p>
+            Credits to: <a href="{{ $snippet->creditsToLink }}">{{ e($snippet->credits_to) }}</a>
+          </p>
+        @else
+          <p>Credits to: {{ e($snippet->credits_to) }}</p>
+        @endif
       @endif
 
       @if($snippet->resource)

@@ -74,4 +74,73 @@ class Snippet extends BaseModel {
         $redis->zIncrBy('hits', 1, $this->id);
     }
 
+    /**
+     * Gets links for twitter/url
+     */
+    public function getCreditsToLinkAttribute()
+    {
+        $creditsTo     = $this->attributes["credits_to"];
+        $twitterHandle = str_replace("@", "", $creditsTo);
+
+        stream_context_set_default(
+            [
+                "http" => [
+                    "method" => "HEAD"
+                ]
+            ]
+        );
+
+        $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function() use ($twitterHandle)
+        {
+            $url     = "http://twitter.com/" . $twitterHandle;
+            $headers = get_headers($url);
+
+            foreach ($headers as $header)
+            {
+                if (stristr($header, "404 Not Found"))
+                {
+                    return false;
+                }
+            }
+
+            return $url;
+
+        });
+
+        if ($twitterLink)
+        {
+            return $twitterLink;
+        }
+
+        $normalLink = Cache::remember("credits_to_link_normal_" . $creditsTo, 60, function() use ($creditsTo)
+        {
+            try
+            {
+                $headers = get_headers($creditsTo);
+            }
+            catch (Exception $e)
+            {
+                return false;
+            }
+
+            foreach ($headers as $header)
+            {
+                if (stristr($header, "404 Not Found"))
+                {
+                    return false;
+                }
+            }
+
+            return $creditsTo;
+
+        });
+
+        if ($normalLink)
+        {
+            return $normalLink;
+        }
+
+        return null;
+    }
+
 }
