@@ -26,13 +26,15 @@ $app->redirectIfTrailingSlash();
 |
 */
 
-$env = $app->detectEnvironment(array(
+$env = $app->detectEnvironment(function()
+{
+    if (!empty($_SERVER["APPLICATION_ENVIRONMENT"]))
+    {
+        return $_SERVER["APPLICATION_ENVIRONMENT"];
+    }
 
-	'local' => array('laravelsnippets.dev', 'JOHNs-MacBook-Pro.local'),
-    'testing' => array('laravelsnippets.testing'),
-    'production' => array('mayonvolcanosoftware.com'),
-
-));
+    return "production";
+});
 
 /*
 |--------------------------------------------------------------------------
