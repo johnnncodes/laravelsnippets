@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e9eabb0d6b6213238ce671d2bedb4cec",
+    "hash": "0d862c082a17f62d716916539e2da71c",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -873,6 +873,51 @@
                 "laravel"
             ],
             "time": "2013-12-06 01:42:26"
+        },
+        {
+            "name": "mews/purifier",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/Purifier.git",
+                "reference": "b2b31e323c9474b56e1aa7a214217132aa21330d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/b2b31e323c9474b56e1aa7a214217132aa21330d",
+                "reference": "b2b31e323c9474b56e1aa7a214217132aa21330d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mews\\Purifier": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERIN",
+                    "email": "me@mewebstudio.com"
+                }
+            ],
+            "description": "HTMLPurifier Package for Laravel 4",
+            "homepage": "http://github.com/mewebstudio/Purifier",
+            "keywords": [
+                "L4",
+                "Laravel 4",
+                "Purifier",
+                "htmlpurifier",
+                "laravel"
+            ],
+            "time": "2013-11-18 22:35:43"
         },
         {
             "name": "monolog/monolog",
@@ -2538,6 +2583,7 @@
     "stability-flags": {
         "erusev/parsedown": 20,
         "raven/raven": 20,
+        "mews/purifier": 20,
         "mockery/mockery": 20,
         "way/laravel-test-helpers": 20
     },
