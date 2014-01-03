@@ -13,8 +13,6 @@
 
 $app = new Illuminate\Foundation\Application;
 
-$app->redirectIfTrailingSlash();
-
 /*
 |--------------------------------------------------------------------------
 | Detect The Application Environment
@@ -27,11 +25,9 @@ $app->redirectIfTrailingSlash();
 */
 
 $env = $app->detectEnvironment(array(
-
-	'local' => array('laravelsnippets.dev', 'JOHNs-MacBook-Pro.local'),
-    'testing' => array('laravelsnippets.testing'),
-    'production' => array('mayonvolcanosoftware.com'),
-
+  'local' => array('laravelsnippets.dev', 'JOHNs-MacBook-Pro.local'),
+  'testing' => array('laravelsnippets.testing'),
+  'production' => array('mayonvolcanosoftware.com'),
 ));
 
 /*

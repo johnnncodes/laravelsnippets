@@ -7,6 +7,8 @@ use Tag;
 
 class LaraSnippServiceProvider extends ServiceProvider {
 
+    protected $deferred = true;
+
     public function register() {}
 
     /**
@@ -18,10 +20,10 @@ class LaraSnippServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $app->singleton('redis', function()
-        {
-            return Redis::connection();
-        });
+        // $app->singleton('redis', function()
+        // {
+        //     return Redis::connection();
+        // });
 
         $this->_bootComposers();
     }
