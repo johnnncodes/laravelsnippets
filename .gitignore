@@ -22,3 +22,6 @@ public/.htpasswd
 
 # Vagrant
 .vagrant
+
+# Apache
+/index.html
