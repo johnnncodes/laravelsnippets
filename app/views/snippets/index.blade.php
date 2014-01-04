@@ -18,6 +18,8 @@
                 <span class="author">by (<a href="#">{{ e($snippet->author->full_name) }}</a>)</span>
                 |
                 <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
+                |
+                <span class="hits">Comments: @if($snippet->comments) {{ $snippet->comments }} @else 0 @endif</span>
               </li>
             @endforeach
           </ul>

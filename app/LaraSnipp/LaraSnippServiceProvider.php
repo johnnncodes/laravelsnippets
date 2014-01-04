@@ -1,13 +1,26 @@
 <?php namespace LaraSnipp;
 
+use App;
 use Illuminate\Support\ServiceProvider;
-use Redis;
+// use Redis;
 use View;
-use Tag;
+// use Tag;
 
 class LaraSnippServiceProvider extends ServiceProvider {
 
-    public function register() {}
+    protected $deferred = true;
+
+    public function register()
+    {
+        App::bind("larasnipp.command.comments", function()
+        {
+            return new Command\CommentsCommand();
+        });
+
+        $this->commands(
+            "larasnipp.command.comments"
+        );
+    }
 
     /**
      * Bootstrap the application
@@ -18,10 +31,10 @@ class LaraSnippServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $app->singleton('redis', function()
-        {
-            return Redis::connection();
-        });
+        // $app->singleton('redis', function()
+        // {
+        //     return Redis::connection();
+        // });
 
         $this->_bootComposers();
     }
@@ -29,6 +42,13 @@ class LaraSnippServiceProvider extends ServiceProvider {
     private function _bootComposers()
     {
         View::composer('layouts.master', 'LaraSnipp\Composer\LayoutMasterComposer');
+    }
+
+    public function provides()
+    {
+        return [
+            "larasnipp.command.comments"
+        ];
     }
 
 }
