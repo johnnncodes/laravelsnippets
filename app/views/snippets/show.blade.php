@@ -76,14 +76,6 @@
             0
           @endif
         </p>
-        <p>
-          Comments:
-          @if($snippet->comments)
-            {{ $snippet->comments }}
-          @else
-            0
-          @endif
-        </p>
       </div>
 
       @if(App::environment() === 'production')
