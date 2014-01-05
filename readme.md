@@ -2,13 +2,16 @@
 
 Live site - http://laravelsnippets.com/
 
-Twitter Page - https://twitter.com/laravelsnippets
+Twitter - https://twitter.com/laravelsnippets
 
 Facebook Page - https://www.facebook.com/LaravelSnippets
 
 Don't forget to star this repository :) And feel free to fork it.
 
-### NOTE: Not yet done migrating all the features from the old code base & README is not yet complete.
+### Core Developers
+- John Kevin M. Basco - https://twitter.com/johnkevinmbasco
+- Christopher Pitt - https://twitter.com/followchrisp
+- Ionut Tanasa - https://twitter.com/ionutz2k
 
 ### How to contribute?
 
@@ -26,8 +29,6 @@ just send a pull request.
 ### Contributors
 
 #### A huge thanks to these developers who contributed to the development of the site:
-- Christopher Pitt
-- Ionut Tanasa
 - Martin Dilling-Hansen
 - Sercan Çakır
 - Nico Romero Peñaredondo
@@ -37,7 +38,7 @@ just send a pull request.
 1. PHP 5.4
 2. Redis
 
-### Local Installation
+### Local Installation (Warning: Outdated)
 
 1. Clone Repo
 
