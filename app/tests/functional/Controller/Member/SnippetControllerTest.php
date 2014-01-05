@@ -86,7 +86,7 @@ class SnippetControllerTest extends TestCase {
             'tags' => array('12345') // <-- invalid tag id since no tags are on the db yet
         );
 
-        $response = $this->call('POST', route('member.snippet.postStore', $inputs));
+        $response = $this->call('POST', route('member.snippet.postStore'), $inputs);
     }
 
     public function testPostStoreSavesSnippetOnValidInput()
@@ -104,7 +104,7 @@ class SnippetControllerTest extends TestCase {
             'tags' => array($tag->id, $secondTag->id)
         );
 
-        $response = $this->call('POST', route('member.snippet.postStore', $input));
+        $response = $this->call('POST', route('member.snippet.postStore'), $input);
         $this->assertRedirectedToRoute('member.snippet.getCreate');
         $this->assertSessionHas('message', "Your snippet is now submitted and waiting for admin's approval");
     }

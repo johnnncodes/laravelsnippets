@@ -1,48 +1,49 @@
 {
-	"name"        : "laravel/laravel",
-	"description" : "The Laravel Framework.",
-	"keywords"    : ["framework", "laravel"],
-	"license"     : "MIT",
-	"require"     : {
-		"laravel/framework"            : "4.0.*",
-		"cviebrock/eloquent-sluggable" : "1.0.*",
-		"erusev/parsedown"             : "dev-master",
-		"raven/raven"				   : "0.7.*@dev",
-		"mews/purifier"				   : "dev-master"
-	},
-	"require-dev" : {
-		"phpunit/phpunit"          : "3.7.*",
-		"mockery/mockery"          : "dev-master",
-		"way/laravel-test-helpers" : "dev-master",
-		"loic-sharma/profiler"     : "1.1.*"
-	},
-	"autoload" : {
-		"classmap" : [
-			"app/commands",
-			"app/controllers",
-			"app/models",
-			"app/database/migrations",
-			"app/database/seeds",
-			"app/tests/TestCase.php"
-		],
-		"psr-0" : {
-		    "LaraSnipp": "app"
-		}
-	},
-	"scripts" : {
-		"post-install-cmd" : [
-			"php artisan optimize"
-		],
-		"post-update-cmd" : [
-			"php artisan clear-compiled",
-			"php artisan optimize"
-		],
-		"post-create-project-cmd" : [
-			"php artisan key:generate"
-		]
-	},
-	"config" : {
-		"preferred-install" : "dist"
-	},
-	"minimum-stability" : "dev"
+  "name"        : "laravel/laravel",
+  "description" : "The Laravel Framework.",
+  "keywords"    : ["framework", "laravel"],
+  "license"     : "MIT",
+  "require"     : {
+    "laravel/framework"            : "4.1.*",
+    "cviebrock/eloquent-sluggable" : "1.0.*",
+    "erusev/parsedown"             : "dev-master",
+    "raven/raven"                  : "0.7.*@dev",
+    "mews/purifier"                : "dev-master",
+    "doctrine/dbal"                : "2.4.*@dev"
+  },
+  "require-dev" : {
+    "phpunit/phpunit"          : "3.7.*",
+    "mockery/mockery"          : "dev-master",
+    "way/laravel-test-helpers" : "dev-master",
+    "loic-sharma/profiler"     : "1.1.*"
+  },
+  "autoload" : {
+    "classmap" : [
+      "app/commands",
+      "app/controllers",
+      "app/models",
+      "app/database/migrations",
+      "app/database/seeds",
+      "app/tests/TestCase.php"
+    ],
+    "psr-0" : {
+        "LaraSnipp": "app"
+    }
+  },
+  "scripts" : {
+    "post-install-cmd" : [
+      "php artisan optimize"
+    ],
+    "post-update-cmd" : [
+      "php artisan clear-compiled",
+      "php artisan optimize"
+    ],
+    "post-create-project-cmd" : [
+      "php artisan key:generate"
+    ]
+  },
+  "config" : {
+    "preferred-install" : "dist"
+  },
+  "minimum-stability" : "dev"
 }
