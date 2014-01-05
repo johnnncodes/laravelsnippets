@@ -92,18 +92,26 @@ class Snippet extends BaseModel {
 
         $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function() use ($twitterHandle)
         {
-            $url     = "http://twitter.com/" . $twitterHandle;
-            $headers = get_headers($url);
+            $url = "http://twitter.com/" . $twitterHandle;
+            
+            try
+            {
+                $headers = get_headers($url);
+            }
+            catch (Exception $e)
+            {
+                return false;
+            }
 
             foreach ($headers as $header)
             {
-                if (stristr($header, "404 Not Found"))
+                if (stristr($header, "200 OK"))
                 {
-                    return false;
+                    return $url;
                 }
             }
 
-            return $url;
+            return false;
 
         });
 
@@ -125,14 +133,13 @@ class Snippet extends BaseModel {
 
             foreach ($headers as $header)
             {
-                if (stristr($header, "404 Not Found"))
+                if (stristr($header, "200 OK"))
                 {
-                    return false;
+                    return $creditsTo;
                 }
             }
 
-            return $creditsTo;
-
+            return false;
         });
 
         if ($normalLink)
