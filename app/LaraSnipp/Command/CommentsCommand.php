@@ -33,20 +33,17 @@ class CommentsCommand extends Command {
   {
     $this->info("Getting comment counts...");
 
-    $key    = "0mFcWkCCymiSfXfrPDtUNX7RxMpLwFYcZCFwdrJxIjyOXiEBHoMiqd7XY18M6GlD";
-    $forum  = "laravel-snippets";
-    $domain = $this->option("domain");
+    $key      = Config::get("disqus.key");
+    $forum    = Config::get("disqus.shortname");
+    $endpoint = Config::get("disqus.endpoint");
+    $domain   = $this->option("domain");
 
     $snippets = Snippet::orderBy("updated_comments_at", "asc")->take(50)->get();
 
     foreach ($snippets as $snippet)
     {
-      $thread = URL::route("snippet.getShow", $snippet->slug);
-      $thread = str_replace(Config::get("app.url"), $domain, $thread);
-
-      $endpoint = "http://disqus.com/api/3.0/threads/details.json?api_key=".urlencode($key)."&forum=".$forum."&thread:link=".urlencode($thread);
-
-      $session = curl_init($endpoint);
+      $link    = str_replace(Config::get("app.url"), $domain, URL::route("snippet.getShow", $snippet->slug));
+      $session = curl_init(sprintf($endpoint, $key, $forum, $link));
 
       curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
       $response = curl_exec($session);
