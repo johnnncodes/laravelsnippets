@@ -62,7 +62,7 @@ class Snippet extends BaseModel {
      */
     public function isTheAuthor($user)
     {
-        return $this->author_id === $user->id ? true : false;
+        return $this->author_id == $user->id;
     }
 
     /**
