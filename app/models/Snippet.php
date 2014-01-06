@@ -75,13 +75,10 @@ class Snippet extends BaseModel {
     }
 
     /**
-     * Gets links for twitter/url
+     * Tests links for twitter/url
      */
-    public function getCreditsToLinkAttribute()
+    protected function testLink($url)
     {
-        $creditsTo     = $this->attributes["credits_to"];
-        $twitterHandle = str_replace("@", "", $creditsTo);
-
         stream_context_set_default(
             [
                 "http" => [
@@ -90,29 +87,38 @@ class Snippet extends BaseModel {
             ]
         );
 
+        try
+        {
+            $headers = get_headers($url);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+
+        foreach ($headers as $header)
+        {
+            if (stristr($header, "200 OK"))
+            {
+                return $url;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Gets links for twitter/url
+     */
+    public function getCreditsToLinkAttribute()
+    {
+        $creditsTo     = $this->attributes["credits_to"];
+        $twitterHandle = str_replace("@", "", $creditsTo);
+
         $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function() use ($twitterHandle)
         {
             $url = "http://twitter.com/" . $twitterHandle;
-            
-            try
-            {
-                $headers = get_headers($url);
-            }
-            catch (Exception $e)
-            {
-                return false;
-            }
-
-            foreach ($headers as $header)
-            {
-                if (stristr($header, "200 OK"))
-                {
-                    return $url;
-                }
-            }
-
-            return false;
-
+            return $this->testLink($url);
         });
 
         if ($twitterLink)
@@ -122,24 +128,7 @@ class Snippet extends BaseModel {
 
         $normalLink = Cache::remember("credits_to_link_normal_" . $creditsTo, 60, function() use ($creditsTo)
         {
-            try
-            {
-                $headers = get_headers($creditsTo);
-            }
-            catch (Exception $e)
-            {
-                return false;
-            }
-
-            foreach ($headers as $header)
-            {
-                if (stristr($header, "200 OK"))
-                {
-                    return $creditsTo;
-                }
-            }
-
-            return false;
+            return $this->testLink($creditsTo);
         });
 
         if ($normalLink)
