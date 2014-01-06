@@ -50,6 +50,7 @@ class CommentsCommand extends Command {
       curl_close($session);
 
       $data = json_decode($response);
+      dd($data);
 
       if ($data->code == 0)
       {
