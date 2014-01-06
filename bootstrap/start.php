@@ -27,7 +27,7 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
     'local' => array('laravelsnippets.dev', 'JOHNs-MacBook-Pro.local'),
     'testing' => array('laravelsnippets.testing'),
-    'production' => array('mayonvolcanosoftware.com'),
+    'production' => array('laravelsnippets.com'),
 ));
 
 /*
