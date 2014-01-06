@@ -230,15 +230,17 @@ return array(
         - composer update --dev
 
 7. Migrate and Seed database
-        - php artisan migrate
-        - php artisan db:seed
+        - php artisan migrate --seed
 
 
 ### Running the tests
 
 1. Create a test database and configure config/testing/database.php
 
-2. Run php vendor/bin/phpunit in the console
+2. Migrate and Seed database for testing
+        - php artisan migrate --seed --env=testing
+
+3. Run php vendor/bin/phpunit in the console
 
 
 
