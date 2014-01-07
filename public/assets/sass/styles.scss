@@ -1,11 +1,12 @@
-/*
-  Mixins
-*/
-@mixin primary_font_styles(){
-  font-family: Ubuntu, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
+@charset "utf-8";
+
+// Setup
+@import "compass/css3";
+
+// Mixins
+@import "mixins/primary-font-styles";
+@import "mixins/min-screen-width";
+@import "mixins/clearfix";
 
 /*
   Helpers
@@ -277,6 +278,42 @@ p {
   .links {
     a {
       display: block;
+    }
+  }
+}
+
+/**
+ * Snippet Page: Snippet Starred
+ */
+.snippet-detail-wrapper {
+  .snippet-starred {
+    margin: 0 0 20px;
+
+    @include min-screen-width(md) {
+      float: right;
+      margin: 15px 0 10px;
+    }
+
+    &.snippet-starred-active a {
+      background-color: #f7f7f7;
+      color: #888;
+    }
+
+    .btn {
+      font: {
+        size: 13px;
+        weight: bold;
+      }
+    }
+  }
+  .snippet-starred-count {
+    cursor: default;
+
+    &:hover,
+    &:active {
+      @include box-shadow(none);
+      background-color: #FFF;
+      border-color: #ccc;
     }
   }
 }

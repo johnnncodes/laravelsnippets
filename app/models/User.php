@@ -58,6 +58,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         return $this->belongsTo('Role');
     }
 
+    public function starred()
+    {
+        return $this->hasMany('Starred');
+    }
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -165,6 +170,48 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
     public function isAdmin()
     {
         return $this->role->name === 'admin';
+    }
+
+    /**
+     * Checks if a user has starred a snippet
+     *
+     * @param integer $snippet_id
+     * @return bool
+     */
+    public function hasStarred( $snippet_id )
+    {
+        return $this->starred()->whereSnippetId( $snippet_id )->count() ? true : false;
+    }
+
+    /**
+     * Stars a snippet
+     *
+     * @param integer $snippet_id
+     * @return bool
+     */
+    public function starSnippet( $snippet_id )
+    {
+        if ( $this->hasStarred( $snippet_id ) ) {
+            return;
+        }
+
+        $this->starred()->create( array( 'snippet_id' => $snippet_id ) );
+    }
+
+    /**
+     * Unstars a snippet
+     *
+     * @param integer $snippet_id
+     * @return bool
+     */
+    public function unstarSnippet( $snippet_id )
+    {
+        if ( ! $this->hasStarred( $snippet_id ) ) {
+            return;
+        }
+
+        $this->starred()->whereSnippetId( $snippet_id )->delete();
+        Redirect::back();
     }
 
 }

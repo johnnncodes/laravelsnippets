@@ -20,7 +20,22 @@
 
   <div class="row snippet-detail-wrapper">
     <div class="col-md-12">
-      <h3>{{ e($snippet->title) }}</h3>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h3>{{ e($snippet->title) }}</h3>
+        </div>
+        <div class="col-md-6">
+          <div class="btn-group snippet-starred {{ $has_starred ? 'snippet-starred-active' : '' }}">
+            @if ($has_starred)
+              <a href="{{ URL::route( 'snippet.unStar', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Unstar</a>
+            @else
+              <a href="{{ URL::route( 'snippet.star', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Star</a>
+            @endif
+            <div class="btn btn-default snippet-starred-count">{{ $snippet->starred->count() }}</div>
+          </div>
+        </div>
+      </div>
 
       @if($snippet->description)
         <p>Description: {{ Purifier::clean(Parsedown::instance()->parse($snippet->description)) }}</p>

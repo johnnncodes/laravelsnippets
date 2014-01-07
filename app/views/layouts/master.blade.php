@@ -33,6 +33,9 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('packages/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 
+    <!-- FontAwesome core CSS -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- Code mirror css -->
     <link rel="stylesheet" href="{{ asset('packages/codemirror-3.19/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('packages/codemirror-3.19/theme/monokai.css') }}">
@@ -101,7 +104,7 @@
                   <a href="#">Profile</a>
                 </li> -->
                 <li>
-                  <a href="{{ route('member.user.getMySnippets') }}">My Snippets</a>
+                  <a href="{{ route('member.user.dashboard') }}">Dashboard</a>
                 </li>
               @endif
 
