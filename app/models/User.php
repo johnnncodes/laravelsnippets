@@ -211,7 +211,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
         }
 
         $this->starred()->whereSnippetId( $snippet_id )->delete();
-        Redirect::back();
     }
 
 }
