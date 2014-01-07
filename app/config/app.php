@@ -124,6 +124,7 @@ return array(
     // 3rd party
     'Cviebrock\EloquentSluggable\SluggableServiceProvider',
     'Mews\Purifier\PurifierServiceProvider',
+    'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider'
 
   ),
 
@@ -194,6 +195,7 @@ return array(
     // 3rd party
     'Sluggable' => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
     'Purifier' => 'Mews\Purifier\Facades\Purifier',
+    'Bugsnag' => 'Bugsnag\BugsnagLaravel\BugsnagFacade'
   ),
 
 );

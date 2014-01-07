@@ -5,7 +5,6 @@ namespace LaraSnipp\Command;
 use Config;
 use Illuminate\Console\Command;
 use Snippet;
-use Symfony\Component\Console\Input\InputOption;
 use URL;
 
 class CommentsCommand extends Command {
@@ -36,14 +35,13 @@ class CommentsCommand extends Command {
     $key      = Config::get("disqus.key");
     $forum    = Config::get("disqus.shortname");
     $endpoint = Config::get("disqus.endpoint");
-    $domain   = $this->option("domain");
 
     $snippets = Snippet::orderBy("updated_comments_at", "asc")->take(50)->get();
 
     foreach ($snippets as $snippet)
     {
-      $link    = str_replace(Config::get("app.url"), $domain, URL::route("snippet.getShow", $snippet->slug));
-      $session = curl_init(sprintf($endpoint, $key, $forum, $link));
+      $link = sprintf($endpoint, $key, $forum, "snippet-" . $snippet->slug);
+      $session = curl_init($link);
 
       curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
       $response = curl_exec($session);
@@ -57,7 +55,7 @@ class CommentsCommand extends Command {
         $snippet->updated_comments_at = date("Y-m-d H:i:s");
         $snippet->save();
 
-        $this->info($thread);
+        $this->info($link);
       }
     }
   }
@@ -79,9 +77,7 @@ class CommentsCommand extends Command {
    */
   protected function getOptions()
   {
-    return [
-      ["domain", null, InputOption::VALUE_REQUIRED, "Domain against which to draw comment counts.", Config::get("app.url")]
-    ];
+    return [];
   }
 
 }
