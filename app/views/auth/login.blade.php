@@ -16,7 +16,7 @@
       <div class="col-sm-6 col-md-6 col-md-offset-3">
         <h1 class="text-center login-title">Fill in the fields to sign in</h1>
         <div class="account-wall">
-          <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+          <img class="profile-img" src="{{ asset('assets/images/login-avatar.png') }}" alt="Avatar">
           {{ Form::open(array('route' => 'auth.postLogin', 'class'=>'form-signin')) }}
             {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
             {{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'required' => 'required')) }}
