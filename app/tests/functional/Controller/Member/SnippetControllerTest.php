@@ -112,6 +112,8 @@ class SnippetControllerTest extends TestCase {
     public function testGetEdit()
     {
         $user = Factory::create('User');
+        $user->id = (string) $user->id;
+
         $this->be($user);
 
         $snippet = Factory::create('Snippet', array(
@@ -129,6 +131,8 @@ class SnippetControllerTest extends TestCase {
     public function testPostUpdateUpdatesSnippetOnValidInput()
     {
         $user = Factory::create('User');
+        $user->id = (string) $user->id;
+
         $this->be($user);
 
         $tag = Factory::create('Tag');
