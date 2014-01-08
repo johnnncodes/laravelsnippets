@@ -24,7 +24,7 @@
       </ul>
 
     @else
-      <p>No snippets yet. <a href="{{ route('member.snippet.getCreate') }}">Why not add one?</a></p>
+      <p>No starred snippets yet. <a href="{{ route('snippet.getIndex') }}">Why not add one?</a></p>
     @endif
   </div>
 
