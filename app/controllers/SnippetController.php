@@ -54,10 +54,65 @@ class SnippetController extends BaseController {
             return App::abort(404);
         }
 
+        $user = Auth::user();
+        $has_starred = ! empty( $user ) ? $user->hasStarred( $snippet->id ) : false;
+
         # increment hit count
         $snippet->incrementHits();
 
-        return View::make('snippets.show', compact('snippet'));
+        return View::make('snippets.show', compact('snippet', 'has_starred'));
+    }
+
+    /**
+     * Stars a snippet
+     * GET /snippets/{slug}/star
+     */
+    public function starSnippet($slug)
+    {
+        $snippet = $this->snippet->bySlug($slug);
+        $user = Auth::user();
+
+        if ( empty( $user ) ) {
+            return Redirect::route('snippet.getShow', array($slug))
+                ->with(
+                    'message',
+                    sprintf(
+                        'Only logged in users can star snippets. Please %s or %s.',
+                        link_to_route( 'auth.getLogin', 'login' ),
+                        link_to_route( 'auth.getSignup', 'signup' )
+                    )
+                );
+        }
+
+        $user->starSnippet( $snippet->id );
+
+        return Redirect::route('snippet.getShow', array($slug));
+    }
+
+    /**
+     * Unstars a snippet
+     * GET /snippets/{slug}/unstar
+     */
+    public function unstarSnippet($slug)
+    {
+        $snippet = $this->snippet->bySlug($slug);
+        $user = Auth::user();
+
+        if ( empty( $user ) ) {
+            return Redirect::route('snippet.getShow', array($slug))
+                ->with(
+                    'message',
+                    sprintf(
+                        'Only logged in users can unstar snippets. Please %s or %s.',
+                        link_to_route( 'auth.getLogin', 'login' ),
+                        link_to_route( 'auth.getSignup', 'signup' )
+                    )
+                );
+        }
+
+        $user->unStarSnippet( $snippet->id );
+
+        return Redirect::route('snippet.getShow', array($slug));
     }
 
 }
