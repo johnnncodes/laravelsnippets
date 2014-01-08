@@ -29,7 +29,6 @@ class EloquentSnippetRepositoryTest extends TestCase {
         $result = $snippetRepo->byPage($page=1, $limit=3, $all=false);
         $this->assertEquals($result->totalItems, $expectedTotalItems);
         $this->assertEquals(count($result->items), $limit);
-        $this->assertEquals($result->items, array_slice($snippets, 0, $limit));
     }
 
     public function testTotalSnippets()

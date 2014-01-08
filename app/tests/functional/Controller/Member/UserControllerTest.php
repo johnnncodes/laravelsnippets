@@ -25,7 +25,7 @@ class UserControllerTest extends TestCase {
 
         $response = $this->call('GET', route('member.user.dashboard'));
         $view = $response->original;
-        $this->assertEquals(count($view['snippets']), 2);
+        $this->assertEquals(count($view['my_snippets']), 2);
     }
 
 }
