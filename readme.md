@@ -12,6 +12,7 @@ Don't forget to star this repository :) And feel free to fork it.
 - John Kevin M. Basco - https://twitter.com/johnkevinmbasco
 - Christopher Pitt - https://twitter.com/followchrisp
 - Ionut Tanasa - https://twitter.com/ionutz2k
+- David Knight - https://twitter.com/davidnknight
 
 ### How to contribute?
 
@@ -32,6 +33,7 @@ just send a pull request.
 - Martin Dilling-Hansen
 - Sercan Çakır
 - Nico Romero Peñaredondo
+- Davide Bellini
 
 ### Requirements
 
