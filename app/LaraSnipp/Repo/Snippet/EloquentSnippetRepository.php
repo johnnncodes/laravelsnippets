@@ -43,7 +43,7 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
         $result->totalItems = 0;
         $result->items = array();
 
-        $query = $this->snippet->orderBy('created_at', 'desc');
+        $query = $this->snippet->orderBy('created_at', 'desc')->with('Starred');
 
         if( ! $all )
         {

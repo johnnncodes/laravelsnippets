@@ -23,7 +23,7 @@ class UserControllerTest extends TestCase {
             'approved' => 1,
             'deleted_at' => null));
 
-        $response = $this->call('GET', route('member.user.getMySnippets'));
+        $response = $this->call('GET', route('member.user.dashboard'));
         $view = $response->original;
         $this->assertEquals(count($view['snippets']), 2);
     }
