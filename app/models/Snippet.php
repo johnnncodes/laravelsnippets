@@ -139,4 +139,9 @@ class Snippet extends BaseModel {
         return null;
     }
 
+    public function starred()
+    {
+        return $this->hasMany('Starred');
+    }
+
 }

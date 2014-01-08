@@ -28,6 +28,8 @@
                   <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
                   |
                   <span class="hits">Comments: @if($snippet->comments) {{ $snippet->comments }} @else 0 @endif</span>
+                  |
+                  <span class="hits">Starred: {{ $snippet->starred->count() }}</span>
                 </li>
               @endforeach
             </ul>
@@ -54,6 +56,8 @@
                   <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
                   |
                   <span class="hits">Comments: @if($snippet->comments) {{ $snippet->comments }} @else 0 @endif</span>
+                  |
+                  <span class="hits">Starred: {{ $snippet->starred->count() }}</span>
                 </li>
               @endforeach
             </ul>

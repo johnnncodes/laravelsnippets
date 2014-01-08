@@ -1,0 +1,21 @@
+@mixin min-screen-width( $media ) {
+
+    @if $media == sm {
+        @media only screen and (min-width:768px) {
+            @content;
+        }
+    }
+
+    @else if $media == md {
+        @media only screen and (min-width:992px) {
+            @content;
+        }
+    }
+
+    @else if $media == lg {
+        @media only screen and (min-width:1200px) {
+            @content;
+        }
+    }
+
+}
