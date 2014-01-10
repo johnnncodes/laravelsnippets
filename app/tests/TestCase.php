@@ -1,7 +1,7 @@
 <?php
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase {
-
+class TestCase extends Illuminate\Foundation\Testing\TestCase
+{
     /**
      * Prepare for tests
      *
@@ -13,28 +13,28 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
         $this->prepareForTests();
     }
 
-	/**
-	 * Creates the application.
-	 *
-	 * @return \Symfony\Component\HttpKernel\HttpKernelInterface
-	 */
-	public function createApplication()
-	{
-		$unitTesting = true;
+    /**
+     * Creates the application.
+     *
+     * @return \Symfony\Component\HttpKernel\HttpKernelInterface
+     */
+    public function createApplication()
+    {
+        $unitTesting = true;
 
-		$testEnvironment = 'testing';
+        $testEnvironment = 'testing';
 
-		return require __DIR__.'/../../bootstrap/start.php';
-	}
+        return require __DIR__.'/../../bootstrap/start.php';
+    }
 
-	/**
-	 * Migrates the database.
-	 *
-	 */
-	private function prepareForTests()
-	{
+    /**
+     * Migrates the database.
+     *
+     */
+    private function prepareForTests()
+    {
         Artisan::call('migrate:reset');
-	    Artisan::call('migrate');
+        Artisan::call('migrate');
 
         Eloquent::unguard();
 
@@ -45,7 +45,7 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
         // reset redis db
         App::make('redis')->flushAll();
-	}
+    }
 
     public function generateRoles()
     {

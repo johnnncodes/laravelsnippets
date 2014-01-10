@@ -2,8 +2,8 @@
 
 use LaraSnipp\Repo\Tag\TagRepositoryInterface;
 
-class LayoutMasterComposer {
-
+class LayoutMasterComposer
+{
     protected $tag;
 
     public function __construct(TagRepositoryInterface $tag)

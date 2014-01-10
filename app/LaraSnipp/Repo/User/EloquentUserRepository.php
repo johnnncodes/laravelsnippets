@@ -5,8 +5,8 @@ use LaraSnipp\Repo\EloquentBaseRepository;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class EloquentUserRepository extends EloquentBaseRepository implements UserRepositoryInterface {
-
+class EloquentUserRepository extends EloquentBaseRepository implements UserRepositoryInterface
+{
     protected $user;
 
     public function __construct(Model $user)
@@ -18,7 +18,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
     /**
      * Get top snippets contributors
      *
-     * @param int $limit Results per page
+     * @param  int                                     $limit Results per page
      * @return Illuminate\Database\Eloquent\Collection
      */
     public function getTopSnippetContributors($limit = 5)
@@ -38,9 +38,9 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
     /**
      * Get paginated users
      *
-     * @param int $page Number of snippet per page
-     * @param int $limit Results per page
-     * @param boolean $all Show only active users or all
+     * @param  int      $page  Number of snippet per page
+     * @param  int      $limit Results per page
+     * @param  boolean  $all   Show only active users or all
      * @return StdClass Object with $items and $totalItems for pagination
      */
     public function byPage($page = 1, $limit = 10, $all = false)
@@ -53,8 +53,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 
         $query = $this->user->orderBy('created_at', 'desc');
 
-        if( ! $all )
-        {
+        if (! $all) {
             $query->where('active', 1);
         }
 
@@ -77,8 +76,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
      */
     protected function totalUsers($all = false)
     {
-        if( ! $all )
-        {
+        if (! $all) {
             return $this->user->where('active', 1)->count();
         }
 

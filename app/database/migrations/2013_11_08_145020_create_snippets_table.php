@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSnippetsTable extends Migration {
-
+class CreateSnippetsTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -11,8 +11,7 @@ class CreateSnippetsTable extends Migration {
      */
     public function up()
     {
-        Schema::create('snippets', function($table)
-        {
+        Schema::create('snippets', function ($table) {
             $table->increments('id');
             $table->string('title');
             $table->text('body');

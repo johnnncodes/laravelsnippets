@@ -5,10 +5,9 @@ namespace LaraSnipp\Command;
 use Config;
 use Illuminate\Console\Command;
 use Snippet;
-use URL;
 
-class CommentsCommand extends Command {
-
+class CommentsCommand extends Command
+{
   /**
    * The console command name.
    *
@@ -38,8 +37,7 @@ class CommentsCommand extends Command {
 
     $snippets = Snippet::orderBy("updated_comments_at", "asc")->take(50)->get();
 
-    foreach ($snippets as $snippet)
-    {
+    foreach ($snippets as $snippet) {
       $link = sprintf($endpoint, $key, $forum, "snippet-" . $snippet->slug);
       $session = curl_init($link);
 
@@ -49,8 +47,7 @@ class CommentsCommand extends Command {
 
       $data = json_decode($response);
 
-      if ($data->code == 0)
-      {
+      if ($data->code == 0) {
         $snippet->comments = $data->response->posts;
         $snippet->updated_comments_at = date("Y-m-d H:i:s");
         $snippet->save();

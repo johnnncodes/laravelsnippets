@@ -12,8 +12,7 @@ extends Migration
    */
   public function up()
   {
-    Schema::table("snippets", function($table)
-    {
+    Schema::table("snippets", function ($table) {
       $table->timestamp("updated_comments_at");
       $table->integer("comments");
     });
@@ -26,8 +25,7 @@ extends Migration
    */
   public function down()
   {
-    Schema::table("snippets", function($table)
-    {
+    Schema::table("snippets", function ($table) {
       $table->dropColumn("updated_comments_at");
       $table->dropColumn("comments");
     });

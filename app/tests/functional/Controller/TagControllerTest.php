@@ -2,11 +2,10 @@
 
 use TestCase;
 use User;
-use Hash;
 use Way\Tests\Factory;
 
-class TagControllerTest extends TestCase {
-
+class TagControllerTest extends TestCase
+{
     public function testGetShowOnlyRendersApprovedSnippets()
     {
         $user = Factory::create('User');

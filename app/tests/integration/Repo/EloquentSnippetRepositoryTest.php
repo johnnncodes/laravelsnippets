@@ -6,8 +6,8 @@ use Snippet;
 use App;
 use LaraSnipp\Repo\Snippet\EloquentSnippetRepository;
 
-class EloquentSnippetRepositoryTest extends TestCase {
-
+class EloquentSnippetRepositoryTest extends TestCase
+{
     public function testByPage()
     {
         $user = Factory::create('User');
@@ -15,8 +15,7 @@ class EloquentSnippetRepositoryTest extends TestCase {
         $expectedTotalItems = 4;
         $snippets = array();
 
-        for ($i=0; $i < $expectedTotalItems; $i++)
-        {
+        for ($i=0; $i < $expectedTotalItems; $i++) {
             $snippets[] = Factory::create('Snippet', array('author_id' => $user->id, 'approved' => 1, 'deleted_at' => null));
         }
 
@@ -37,8 +36,7 @@ class EloquentSnippetRepositoryTest extends TestCase {
         $this->be($user);
 
         // create 3 approved snippets
-        for ($i=0; $i < 3; $i++)
-        {
+        for ($i=0; $i < 3; $i++) {
             $snippets[] = Factory::create('Snippet', array('author_id' => $user->id, 'approved' => 1, 'deleted_at' => null));
         }
 
@@ -69,8 +67,7 @@ class EloquentSnippetRepositoryTest extends TestCase {
         $tag = Factory::create('Tag');
 
         # create 4 approved snippets that is linked to $tag
-        for ($i=0; $i < 4; $i++)
-        {
+        for ($i=0; $i < 4; $i++) {
             $snippet = Factory::create('Snippet', array(
                 'author_id' => $user->id,
                 'approved' => 1,
@@ -133,8 +130,7 @@ class EloquentSnippetRepositoryTest extends TestCase {
         $tag = Factory::create('Tag');
 
         // create 3 approved snippets
-        for ($i=0; $i < 3; $i++)
-        {
+        for ($i=0; $i < 3; $i++) {
             $snippets[] = Factory::create('Snippet', array(
                 'author_id' => $user->id,
                 'approved' => 1,

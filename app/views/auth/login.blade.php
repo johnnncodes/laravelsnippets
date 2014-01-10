@@ -23,8 +23,7 @@
             {{ Form::submit('Sign in', array('class' => 'btn btn-lg btn-primary btn-block')) }}
 
             <!-- next url to redirect to after logging in -->
-            @if(isset($next))
-              {{ Form::hidden('next', $value = 'snippets/create') }}
+            @if (isset($next)) {{ Form::hidden('next', $value = 'snippets/create') }}
             @endif
 
 <!--             <label class="checkbox pull-left">

@@ -4,8 +4,8 @@ use TestCase;
 use User;
 use Way\Tests\Factory;
 
-class UserControllerTest extends TestCase {
-
+class UserControllerTest extends TestCase
+{
     public function testGetIndex()
     {
         $user = Factory::create('User', array('active' => 1));

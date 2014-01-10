@@ -3,11 +3,10 @@
 use TestCase;
 use User;
 use Snippet;
-use Hash;
 use Way\Tests\Factory;
 
-class UserControllerTest extends TestCase {
-
+class UserControllerTest extends TestCase
+{
     public function testGetMySnippetsRendersApprovedAndNotYetApprovedSnippets()
     {
         $user = Factory::create('User');

@@ -6,14 +6,13 @@ use Illuminate\Support\ServiceProvider;
 use View;
 // use Tag;
 
-class LaraSnippServiceProvider extends ServiceProvider {
-
+class LaraSnippServiceProvider extends ServiceProvider
+{
     protected $deferred = true;
 
     public function register()
     {
-        App::bind("larasnipp.command.comments", function()
-        {
+        App::bind("larasnipp.command.comments", function () {
             return new Command\CommentsCommand();
         });
 

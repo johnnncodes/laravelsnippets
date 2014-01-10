@@ -3,16 +3,12 @@
 use BaseController;
 use View;
 use Input;
-use Redirect;
 use Paginator;
 use Auth;
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
-use LaraSnipp\Repo\User\UserRepositoryInterface;
-use LaraSnipp\Repo\Tag\TagRepositoryInterface;
-use LaraSnipp\Service\Form\Snippet\SnippetForm;
 
-class UserController extends BaseController {
-
+class UserController extends BaseController
+{
     /**
      * Snippet repository
      *

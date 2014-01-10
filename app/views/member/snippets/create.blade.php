@@ -28,7 +28,7 @@
           </div>
 
           <div class="form-group">
-            {{ Form::textarea('body', $value = 'public static function() { echo "Hello World!"; }', array('placeholder' => 'Snippet', 'id' => 'code', 'class'=> 'form-control', 'required' => 'required')) }}
+            {{ Form::textarea('body', $value = 'public static function () { echo "Hello World!"; }', array('placeholder' => 'Snippet', 'id' => 'code', 'class'=> 'form-control', 'required' => 'required')) }}
           </div>
 
           <div class="form-group">
@@ -54,4 +54,3 @@
   </div>
 
 @stop
-

@@ -5,8 +5,8 @@ use User;
 use Hash;
 use Way\Tests\Factory;
 
-class AuthControllerTest extends TestCase {
-
+class AuthControllerTest extends TestCase
+{
     public function testGetSignup()
     {
         $crawler = $this->client->request('GET', route('auth.getSignup'));

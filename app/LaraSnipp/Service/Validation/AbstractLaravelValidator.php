@@ -2,8 +2,8 @@
 
 use Illuminate\Validation\Factory;
 
-abstract class AbstractLaravelValidator implements ValidableInterface {
-
+abstract class AbstractLaravelValidator implements ValidableInterface
+{
     /**
      * Validator
      *
@@ -58,9 +58,9 @@ abstract class AbstractLaravelValidator implements ValidableInterface {
     {
         $validator = $this->validator->make($this->data, $this->rules);
 
-        if( $validator->fails() )
-        {
+        if ( $validator->fails() ) {
             $this->errors = $validator->messages();
+
             return false;
         }
 

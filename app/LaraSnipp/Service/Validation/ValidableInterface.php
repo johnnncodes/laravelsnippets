@@ -1,12 +1,12 @@
 <?php namespace LaraSnipp\Service\Validation;
 
-interface ValidableInterface {
-
+interface ValidableInterface
+{
     /**
      * Add data to validation against
      *
      * @param array
-     * @return \LaraSnipp\Service\Validation\ValidableInterface  $this
+     * @return \LaraSnipp\Service\Validation\ValidableInterface $this
      */
     public function with(array $input);
 

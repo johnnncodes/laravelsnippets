@@ -2,11 +2,9 @@
 
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
-use LaraSnipp\Repo\Tag\TagRepositoryInterface;
-use LaraSnipp\Service\Form\Snippet\SnippetForm;
 
-class UserController extends BaseController {
-
+class UserController extends BaseController
+{
     /**
      * Snippet repository
      *
@@ -40,6 +38,7 @@ class UserController extends BaseController {
 
         $pagiData = $this->user->byPage($page, $perPage);
         $users = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+
         return View::make('users.index', compact('users'));
     }
 
@@ -51,8 +50,7 @@ class UserController extends BaseController {
     {
         $user = $this->user->bySlug($slug);
 
-        if ( ! $user)
-        {
+        if (! $user) {
             return App::abort(404);
         }
 
@@ -73,6 +71,7 @@ class UserController extends BaseController {
         $pagiData = $this->snippet->byAuthor($slug, $page, $perPage);
         $user = $pagiData->user;
         $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+
         return View::make('users.snippets', compact('snippets', 'user'));
     }
 

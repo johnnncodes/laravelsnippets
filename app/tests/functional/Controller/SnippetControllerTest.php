@@ -2,11 +2,10 @@
 
 use TestCase;
 use User;
-use Hash;
 use Way\Tests\Factory;
 
-class SnippetControllerTest extends TestCase {
-
+class SnippetControllerTest extends TestCase
+{
     public function testGetIndexOnlyShowsApprovedSnippets()
     {
         $user = Factory::create('User');
