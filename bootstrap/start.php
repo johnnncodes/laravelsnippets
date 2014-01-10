@@ -24,11 +24,15 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-    'local' => array('laravelsnippets.dev', 'JOHNs-MacBook-Pro.local'),
-    'testing' => array('laravelsnippets.testing'),
-    'production' => array('laravelsnippets.com'),
-));
+$env = $app->detectEnvironment(function()
+{
+    if (!empty($_SERVER["APPLICATION_ENVIRONMENT"]))
+    {
+        return $_SERVER["APPLICATION_ENVIRONMENT"];
+    }
+
+    return "production";
+});
 
 /*
 |--------------------------------------------------------------------------
