@@ -14,9 +14,9 @@
             -
             <a href="{{ route('member.snippet.getShow', $snippet->snippet->slug) }}">{{ e($snippet->snippet->title) }}</a>
             |
-            <span class="hits">Views: @if($snippet->snippet->hasHits()) {{ $snippet->snippet->hits }} @else 0 @endif</span>
+            <span class="hits">Views: @if ($snippet->snippet->hasHits()) {{ $snippet->snippet->hits }} @else 0 @endif</span>
             |
-            <span class="hits">Comments: @if($snippet->snippet->comments) {{ $snippet->snippet->comments }} @else 0 @endif</span>
+            <span class="hits">Comments: @if ($snippet->snippet->comments) {{ $snippet->snippet->comments }} @else 0 @endif</span>
             |
             <span class="hits">Starred: {{ $snippet->snippet->starred->count() }}</span>
           </li>
@@ -40,9 +40,9 @@
             -
             <a href="{{ route('member.snippet.getShow', $snippet->slug) }}">{{ e($snippet->title) }}</a>
             |
-            <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
+            <span class="hits">Views: @if ($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
             |
-            <span class="hits">Comments: @if($snippet->comments) {{ $snippet->comments }} @else 0 @endif</span>
+            <span class="hits">Comments: @if ($snippet->comments) {{ $snippet->comments }} @else 0 @endif</span>
             |
             <span class="hits">Starred: {{ $snippet->starred->count() }}</span>
             |
@@ -71,4 +71,3 @@
   </div>
 
 @stop
-

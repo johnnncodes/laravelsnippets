@@ -17,7 +17,7 @@
                 <a href="{{ route('snippet.getShow', $snippet->slug) }}">{{ e($snippet->title) }}</a>
                 <span class="author">by (<a href="{{ route('user.getProfile', $snippet->author->slug) }}">{{ e($snippet->author->full_name) }}</a>)</span>
                 |
-                <span class="hits">Views: @if($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
+                <span class="hits">Views: @if ($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
               </li>
             @endforeach
           </ul>
@@ -32,4 +32,3 @@
     </div>
   </div>
 @stop
-

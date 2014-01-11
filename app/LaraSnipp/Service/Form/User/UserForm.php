@@ -3,8 +3,8 @@
 use LaraSnipp\Service\Validation\ValidableInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
 
-class UserForm {
-
+class UserForm
+{
     /**
      * Form Data
      *
@@ -39,8 +39,7 @@ class UserForm {
      */
     public function create(array $input)
     {
-        if( ! $this->valid($input))
-        {
+        if ( ! $this->valid($input)) {
             return false;
         }
 

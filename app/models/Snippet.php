@@ -1,7 +1,7 @@
 <?php
 
-class Snippet extends BaseModel {
-
+class Snippet extends BaseModel
+{
     protected $fillable = array(
         'title',
         'body',
@@ -41,6 +41,7 @@ class Snippet extends BaseModel {
     public function getHitsAttribute()
     {
         $redis = App::make('redis');
+
         return $redis->zScore('hits', $this->id);
     }
 
@@ -57,7 +58,7 @@ class Snippet extends BaseModel {
     /**
      * Determine if the passed User is the Snippet author
      *
-     * @param User $user User instance
+     * @param  User    $user User instance
      * @return boolean
      */
     public function isTheAuthor($user)
@@ -87,19 +88,14 @@ class Snippet extends BaseModel {
             ]
         );
 
-        try
-        {
+        try {
             $headers = get_headers($url);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             return false;
         }
 
-        foreach ($headers as $header)
-        {
-            if (stristr($header, "200 OK"))
-            {
+        foreach ($headers as $header) {
+            if (stristr($header, "200 OK")) {
                 return $url;
             }
         }
@@ -115,24 +111,21 @@ class Snippet extends BaseModel {
         $creditsTo     = $this->attributes["credits_to"];
         $twitterHandle = str_replace("@", "", $creditsTo);
 
-        $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function() use ($twitterHandle)
-        {
+        $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function () use ($twitterHandle) {
             $url = "http://twitter.com/" . $twitterHandle;
+
             return $this->testLink($url);
         });
 
-        if ($twitterLink)
-        {
+        if ($twitterLink) {
             return $twitterLink;
         }
 
-        $normalLink = Cache::remember("credits_to_link_normal_" . $creditsTo, 60, function() use ($creditsTo)
-        {
+        $normalLink = Cache::remember("credits_to_link_normal_" . $creditsTo, 60, function () use ($creditsTo) {
             return $this->testLink($creditsTo);
         });
 
-        if ($normalLink)
-        {
+        if ($normalLink) {
             return $normalLink;
         }
 

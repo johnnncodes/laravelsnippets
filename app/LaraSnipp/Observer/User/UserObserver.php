@@ -1,7 +1,7 @@
 <?php namespace LaraSnipp\Observer\User;
 
-class UserObserver {
-
+class UserObserver
+{
     public function creating($user)
     {
         // generate activation key for the user being created
@@ -25,8 +25,7 @@ class UserObserver {
             'activationUrl' => route('auth.getActivateAccount', array($user->slug, $user->activation_key))
         );
 
-        return \Mail::send('emails.auth.activate', $data, function($message) use ($user)
-        {
+        return \Mail::send('emails.auth.activate', $data, function ($message) use ($user) {
             $message->from('basco.johnkevin@gmail.com', 'Laravel Snippets');
             $message->to($user->email, $user->full_name)->subject('Activate your account!');
         });

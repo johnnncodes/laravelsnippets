@@ -6,8 +6,8 @@ use LaraSnipp\Service\Validation\ValidableInterface;
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\Tag\TagRepositoryInterface;
 
-class SnippetForm {
-
+class SnippetForm
+{
     /**
      * Form Data
      *
@@ -48,8 +48,7 @@ class SnippetForm {
      */
     public function create(array $input)
     {
-        if( ! $this->valid($input))
-        {
+        if ( ! $this->valid($input)) {
             return false;
         }
 
@@ -57,12 +56,9 @@ class SnippetForm {
         // @TODO: move this into a helper so we can re-use this one
         $tagIds = $this->tag->all()->lists('id');
 
-        if (isset($input['tags']) && count($input['tags']) > 0)
-        {
-            foreach ($input['tags'] as $id)
-            {
-                if ( ! in_array($id, $tagIds))
-                {
+        if (isset($input['tags']) && count($input['tags']) > 0) {
+            foreach ($input['tags'] as $id) {
+                if ( ! in_array($id, $tagIds)) {
                     return App::abort(404);
                 }
             }
@@ -77,8 +73,7 @@ class SnippetForm {
 
         if ( ! $snippet->isTheAuthor(Auth::user())) return App::abort(404);
 
-        if ( ! $this->valid($input) )
-        {
+        if ( ! $this->valid($input) ) {
             return false;
         }
 
@@ -86,19 +81,15 @@ class SnippetForm {
         // @TODO: move this into a helper so we can re-use this one
         $tagIds = $this->tag->all()->lists('id');
 
-        if (isset($input['tags']) && count($input['tags']) > 0)
-        {
-            foreach ($input['tags'] as $id)
-            {
-                if ( ! in_array($id, $tagIds))
-                {
+        if (isset($input['tags']) && count($input['tags']) > 0) {
+            foreach ($input['tags'] as $id) {
+                if ( ! in_array($id, $tagIds)) {
                     return App::abort(404);
                 }
             }
         }
 
         if ( ! $this->snippet->update($snippet, $input)) return false;
-
         return $snippet;
     }
 

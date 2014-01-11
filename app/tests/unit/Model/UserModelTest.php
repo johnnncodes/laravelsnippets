@@ -3,8 +3,8 @@
 use TestCase;
 use User;
 
-class UserModelTest extends TestCase {
-
+class UserModelTest extends TestCase
+{
     public function testIsActive()
     {
         $user = new User;

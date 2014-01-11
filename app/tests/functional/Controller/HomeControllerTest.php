@@ -4,8 +4,8 @@ use TestCase;
 use Way\Tests\Factory;
 use Snippet;
 
-class HomeControllerTest extends TestCase {
-
+class HomeControllerTest extends TestCase
+{
     public function testHomePageOnlyShowsApprovedSnippets()
     {
         $user = Factory::create('User');

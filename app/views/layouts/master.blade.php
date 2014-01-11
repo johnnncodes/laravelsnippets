@@ -62,7 +62,7 @@
 
     <!-- Google analytics script -->
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (function (i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function () {
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -76,7 +76,6 @@
   <body>
 
     <div class="wrap">
-
 
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -136,7 +135,6 @@
         </div>
       </div>
 
-
       <div class="container">
 
         @if(Session::has('message'))
@@ -183,7 +181,6 @@
       </div>
     </div>
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -205,7 +202,6 @@
     <script src="{{ asset('assets/js/vendors/json2/json2.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/underscore/1.5.2/underscore.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/backbone/1.1.0/backbone.js') }}"></script>
-
 
     <!-- jquery file upload -->
     <script src="{{ asset('packages/jquery-file-upload-8.9.0/js/vendor/jquery.ui.widget.js') }}"></script>

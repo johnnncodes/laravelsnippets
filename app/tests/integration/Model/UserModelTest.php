@@ -4,8 +4,8 @@ use TestCase;
 use User;
 use Hash;
 
-class UserModelTest extends TestCase {
-
+class UserModelTest extends TestCase
+{
     public function testGetFullNameAttribute()
     {
         $user = new User;

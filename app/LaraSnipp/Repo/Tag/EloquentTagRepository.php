@@ -4,8 +4,8 @@ use LaraSnipp\Repo\EloquentBaseRepository;
 use LaraSnipp\Repo\Tag\TagRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class EloquentTagRepository extends EloquentBaseRepository implements TagRepositoryInterface {
-
+class EloquentTagRepository extends EloquentBaseRepository implements TagRepositoryInterface
+{
     protected $tag;
 
     // Class expects an Eloquent model

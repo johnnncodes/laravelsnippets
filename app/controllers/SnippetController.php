@@ -3,8 +3,8 @@
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
 
-class SnippetController extends BaseController {
-
+class SnippetController extends BaseController
+{
     /**
      * Snippet repository
      *
@@ -38,6 +38,7 @@ class SnippetController extends BaseController {
 
         $pagiData = $this->snippet->byPage($page, $perPage);
         $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+
         return View::make('snippets.index', compact('snippets'));
     }
 
@@ -49,8 +50,7 @@ class SnippetController extends BaseController {
     {
         $snippet = $this->snippet->bySlug($slug);
 
-        if ( ! $snippet)
-        {
+        if (! $snippet) {
             return App::abort(404);
         }
 

@@ -3,8 +3,8 @@
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\Tag\TagRepositoryInterface;
 
-class TagController extends BaseController {
-
+class TagController extends BaseController
+{
     /**
      * Tag repository
      *
@@ -38,12 +38,13 @@ class TagController extends BaseController {
 
         $pagiData = $this->snippet->byTag($slug, $page, $perPage);
 
-        if ( ! $pagiData->tag) {
+        if (! $pagiData->tag) {
             return App::abort(404);
         }
 
         $tag = $pagiData->tag;
         $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+
         return View::make('tags.snippets', compact('snippets', 'tag'));
     }
 

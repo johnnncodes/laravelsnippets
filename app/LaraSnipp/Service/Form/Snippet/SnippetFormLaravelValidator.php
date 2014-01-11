@@ -2,8 +2,8 @@
 
 use LaraSnipp\Service\Validation\AbstractLaravelValidator;
 
-class SnippetFormLaravelValidator extends AbstractLaravelValidator {
-
+class SnippetFormLaravelValidator extends AbstractLaravelValidator
+{
     /**
      * Validation rules
      *

@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserStarredTable extends Migration {
-
+class CreateUserStarredTable extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -11,8 +11,7 @@ class CreateUserStarredTable extends Migration {
      */
     public function up()
     {
-        Schema::create('user_starred', function($table)
-        {
+        Schema::create('user_starred', function ($table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('snippet_id');

@@ -3,8 +3,8 @@
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
 
-class HomeController extends BaseController {
-
+class HomeController extends BaseController
+{
     /**
      * Snippet repository
      *
@@ -21,7 +21,7 @@ class HomeController extends BaseController {
 
     public function __construct(SnippetRepositoryInterface $snippet, UserRepositoryInterface $user)
     {
-		$this->snippet = $snippet;
+        $this->snippet = $snippet;
         $this->user = $user;
     }
 
@@ -40,6 +40,7 @@ class HomeController extends BaseController {
         $data['snippets'] = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
         $data['topSnippetContributors'] = $this->user->getTopSnippetContributors();
         $data['mostViewedSnippets'] = $this->snippet->getMostViewed();
+
         return View::make('home.index', $data);
     }
 

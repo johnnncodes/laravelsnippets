@@ -1,7 +1,7 @@
 <?php
 
-class Tag extends Eloquent {
-
+class Tag extends Eloquent
+{
     public $timestamps = false;
 
     public static $sluggable = array(

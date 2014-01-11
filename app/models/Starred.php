@@ -1,7 +1,7 @@
 <?php
 
-class Starred extends BaseModel {
-
+class Starred extends BaseModel
+{
     protected $table = 'user_starred';
 
     public $timestamps = false;

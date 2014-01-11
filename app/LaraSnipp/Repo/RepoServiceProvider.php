@@ -8,8 +8,8 @@ use LaraSnipp\Repo\User\EloquentUserRepository;
 use LaraSnipp\Repo\Tag\EloquentTagRepository;
 use Illuminate\Support\ServiceProvider;
 
-class RepoServiceProvider extends ServiceProvider {
-
+class RepoServiceProvider extends ServiceProvider
+{
     /**
      * Register the service provider.
      *
@@ -19,8 +19,7 @@ class RepoServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $app->bind('LaraSnipp\Repo\Snippet\SnippetRepositoryInterface', function($app)
-        {
+        $app->bind('LaraSnipp\Repo\Snippet\SnippetRepositoryInterface', function ($app) {
             return new EloquentSnippetRepository(
                 new Snippet,
                 $app->make('LaraSnipp\Repo\Tag\TagRepositoryInterface'),
@@ -28,13 +27,11 @@ class RepoServiceProvider extends ServiceProvider {
             );
         });
 
-        $app->bind('LaraSnipp\Repo\User\UserRepositoryInterface', function($app)
-        {
+        $app->bind('LaraSnipp\Repo\User\UserRepositoryInterface', function ($app) {
             return new EloquentUserRepository(new User);
         });
 
-        $app->bind('LaraSnipp\Repo\Tag\TagRepositoryInterface', function($app)
-        {
+        $app->bind('LaraSnipp\Repo\Tag\TagRepositoryInterface', function ($app) {
             return new EloquentTagRepository(new Tag);
         });
     }

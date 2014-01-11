@@ -31,8 +31,7 @@ abstract class EloquentBaseRepository
     {
         $model = $this->model->create($data);
 
-        if( ! $model )
-        {
+        if (! $model) {
             return false;
         }
 
@@ -53,6 +52,7 @@ abstract class EloquentBaseRepository
     public function update($model, array $input)
     {
         $model->fill($input);
+
         return $model->save();
     }
 

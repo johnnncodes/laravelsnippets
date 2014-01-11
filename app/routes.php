@@ -57,8 +57,7 @@ Route::get('profiles/{slug}/snippets', array('uses' => 'UserController@getSnippe
     'as' => 'user.getSnippets'));
 
 // members
-Route::group(array('prefix' => 'members', 'before' => array('auth')), function()
-{
+Route::group(array('prefix' => 'members', 'before' => array('auth')), function () {
     Route::get('snippets/{slug}', array('uses' => 'Member\SnippetController@getShow',
         'as' => 'member.snippet.getShow'));
     Route::get('snippets/{slug}/edit', array('uses' => 'Member\SnippetController@getEdit',
@@ -74,4 +73,3 @@ Route::group(array('prefix' => 'members', 'before' => array('auth')), function()
     Route::get('dashboard', array('uses' => 'Member\UserController@dashboard',
         'as' => 'member.user.dashboard'));
 });
-

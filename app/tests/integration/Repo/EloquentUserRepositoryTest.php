@@ -5,8 +5,8 @@ use Way\Tests\Factory;
 use User;
 use LaraSnipp\Repo\User\EloquentUserRepository;
 
-class EloquentUserRepositoryTest extends TestCase {
-
+class EloquentUserRepositoryTest extends TestCase
+{
     public function testGetTopSnippetContributors()
     {
         $user = Factory::create('User', array('active' => 1));

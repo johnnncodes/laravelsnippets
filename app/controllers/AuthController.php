@@ -3,8 +3,8 @@
 use LaraSnipp\Repo\User\UserRepositoryInterface;
 use LaraSnipp\Service\Form\User\UserForm;
 
-class AuthController extends BaseController {
-
+class AuthController extends BaseController
+{
     /**
      * User repository
      *
@@ -40,8 +40,7 @@ class AuthController extends BaseController {
      */
     public function postSignup()
     {
-        if($this->userForm->create(Input::all()))
-        {
+        if ($this->userForm->create(Input::all())) {
             return Redirect::route('auth.getSignup')
                 ->with('message', 'Successfully registered. Please check your email and activate your account.')
                 ->with('messageType', "success");
@@ -60,21 +59,18 @@ class AuthController extends BaseController {
     {
         $user = $this->user->bySlug($userSlug);
 
-        if ($user->isActive())
-        {
+        if ($user->isActive()) {
             return Redirect::route('home')
                 ->with('message', 'This user account is already active.');
         }
 
-        if ($user->activate($activationKey))
-        {
+        if ($user->activate($activationKey)) {
             Auth::login($user);
+
             return Redirect::route('home')
                 ->with('message', 'Your account is now activated.')
                 ->with('messageType', "success");
-        }
-        else
-        {
+        } else {
             return Redirect::route('home')
                 ->with('message', 'Invalid activation key.');
         }
@@ -102,12 +98,10 @@ class AuthController extends BaseController {
             'active' => 1
         );
 
-        if (Auth::attempt($params))
-        {
+        if (Auth::attempt($params)) {
             // if next is present, redirect to that url
             $next = Input::get('next');
             if ($next) return Redirect::to($next);
-
             return Redirect::route('home');
         }
 
@@ -122,6 +116,7 @@ class AuthController extends BaseController {
     public function getLogout()
     {
         Auth::logout();
+
         return Redirect::route('auth.getLogin');
     }
 
