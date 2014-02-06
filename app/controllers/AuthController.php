@@ -88,28 +88,29 @@ class AuthController extends BaseController
 
     /**
      * HybridAuth
-     * GET /login/{process?}
+     * GET /login/{provide}/{process?}
      */
-    public function getHybridAuth($process = null)
+    public function getHybridAuth($provider, $process = null)
     {
         if ($process) {
             try {
                 return Hybrid_Endpoint::process();
             } catch (Exception $e) {
-                return Redirect::route('hybridauth');
+                return Redirect::route('hybridauth', array('provider' => $provider));
             }
         }
 
         try {
+            $config = Config::get('hybridauth');
+            $config['base_url']  = URL::route('hybridauth', array('provider' => $provider, 'process' => true)) . '/';
+            $oauth = new Hybrid_Auth($config);
 
-            $oauth = new Hybrid_Auth(Config::get('hybridauth'));
-
-            $provider = $oauth->authenticate('facebook');
-            $userProfile = $provider->getUserProfile();
+            $hybridauth_provider = $oauth->authenticate($provider);
+            $userProfile = $hybridauth_provider->getUserProfile();
 
             //$provider->logout();
 
-            $user = User::where('provider', '=', 'facebook')->where('identifier', '=', $userProfile->identifier)->first();;
+            $user = User::where('provider', '=', $provider)->where('identifier', '=', $userProfile->identifier)->first();;
 
             if (!$user) {
                 $this->userForm->create_by_hybridauth(
@@ -117,13 +118,13 @@ class AuthController extends BaseController
                             'email' => $userProfile->email,
                             'first_name' => $userProfile->firstName,
                             'last_name' => $userProfile->lastName,
-                            'provider' => 'facebook',
+                            'provider' => $provider,
                             'identifier' => $userProfile->identifier
                         )
                     );
             } else {
                 if (!$user->identifier) {
-                    $user->provider = 'facebook';
+                    $user->provider = $provider;
                     $user->identifier = $userProfile->identifier;
                     $user->save();
                 }
@@ -137,7 +138,6 @@ class AuthController extends BaseController
             ->with('message', 'Authentication failed');
         }
     }
-
 
     /**
      * Process login

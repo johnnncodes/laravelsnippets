@@ -61,7 +61,7 @@ Route::get('signup', array('uses' => 'AuthController@getSignup',
 Route::post('signup', array('uses' => 'AuthController@postSignup',
     'as' => 'auth.postSignup'));
 
-Route::get('login/facebook/{process?}', array('uses' => 'AuthController@getHybridAuth',
+Route::get('login/{provider}/{process?}', array('uses' => 'AuthController@getHybridAuth',
     'as' => 'hybridauth'));
 Route::get('login', array('uses' => 'AuthController@getLogin',
     'as' => 'auth.getLogin'));
