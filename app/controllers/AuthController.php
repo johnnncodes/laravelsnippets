@@ -88,7 +88,7 @@ class AuthController extends BaseController
 
     /**
      * HybridAuth
-     * GET /login/{provide}/{process?}
+     * GET /login/{provider}/{process?}
      */
     public function getHybridAuth($provider, $process = null)
     {
