@@ -47,6 +47,15 @@ class UserForm
     }
 
     /**
+     * Create a new user through hybridauth
+     *
+     * @return boolean
+     */
+    public function create_by_hybridauth(array $input)
+    {
+        return $this->user->create($input);
+    }
+    /**
      * Return any validation errors
      *
      * @return array
