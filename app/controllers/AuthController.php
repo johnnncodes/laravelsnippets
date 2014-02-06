@@ -87,6 +87,59 @@ class AuthController extends BaseController
     }
 
     /**
+     * HybridAuth
+     * GET /login/{process?}
+     */
+    public function getHybridAuth($process = null)
+    {
+        if ($process) {
+            try {
+                return Hybrid_Endpoint::process();
+            } catch (Exception $e) {
+                return Redirect::route('hybridauth');
+            }
+        }
+
+        try {
+
+            $oauth = new Hybrid_Auth(Config::get('hybridauth'));
+
+            $provider = $oauth->authenticate('facebook');
+            $userProfile = $provider->getUserProfile();
+
+            //$provider->logout();
+
+            $user = User::where('provider', '=', 'facebook')->where('identifier', '=', $userProfile->identifier)->first();;
+
+            if (!$user) {
+                $this->userForm->create_by_hybridauth(
+                        array(
+                            'email' => $userProfile->email,
+                            'first_name' => $userProfile->firstName,
+                            'last_name' => $userProfile->lastName,
+                            'provider' => 'facebook',
+                            'identifier' => $userProfile->identifier
+                        )
+                    );
+            } else {
+                if (!$user->identifier) {
+                    $user->provider = 'facebook';
+                    $user->identifier = $userProfile->identifier;
+                    $user->save();
+                }
+            }
+
+            Auth::login($user);
+
+            return Redirect::route('home');
+        } catch (Exception $e) {
+            return Redirect::route('auth.getLogin')
+            ->with('message', 'Authentication failed');
+        }
+    }
+
+
+    /**
      * Process login
      * POST /login
      */
