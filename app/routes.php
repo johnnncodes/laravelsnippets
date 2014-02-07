@@ -14,48 +14,6 @@
 Route::get('/', array('uses' => 'HomeController@getIndex',
     'as' => 'home'));
 
-// Route::get('auth/facebook/{process?}',
-//     array('as' => 'hybridauth', 'before' => 'guest', function($process = null)
-//     {
-//         if ($process)
-//         {
-//             try
-//             {
-//                 return Hybrid_Endpoint::process();
-//             }
-//             catch (Exception $e)
-//             {
-//                 return Redirect::route('hybridauth');
-//             }
-//         }
-
-//         try
-//         {
-//             $oauth = new Hybrid_Auth(Config::get('hybridauth'));
-
-//             $provider = $oauth->authenticate('facebook');
-//             $userProfile = $provider->getUserProfile();
-
-//             $provider->logout();
-
-//             $user = User::where('email', '=', $userProfile->email)->first();;
-// print_r($userProfile->email); exit;
-//             Auth::login($user);
-
-
-
-//             return 'You are now logged in.';
-//         }
-//         catch (Exception $e)
-//         {
-//             // http://hybridauth.sourceforge.net/userguide/Errors_and_Exceptions_Handling.html
-//             Log::notice($e);
-
-//             return 'Authentication Failed.';
-//         }
-//     })
-// );
-
 Route::get('signup', array('uses' => 'AuthController@getSignup',
     'as' => 'auth.getSignup'));
 Route::post('signup', array('uses' => 'AuthController@postSignup',
