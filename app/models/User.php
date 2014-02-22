@@ -22,7 +22,9 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         'password',
         'first_name',
         'last_name',
-        'email'
+        'email',
+        'provider',
+        'identifier'
     );
 
     /**

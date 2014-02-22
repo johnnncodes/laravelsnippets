@@ -33,6 +33,8 @@
             <span class="clearfix"></span>
           {{ Form::close() }}
         </div>
+        <a href="{{ url('login/facebook') }}" class="text-center new-account">Login with Facebook </a>
+        <a href="{{ url('login/google') }}" class="text-center new-account">Login with Google </a>
         <a href="{{ route('auth.getSignup') }}" class="text-center new-account">Create an account </a>
         <a href="{{ route('password.remind') }}" class="text-center new-account">Forgot your password? </a>
       </div>

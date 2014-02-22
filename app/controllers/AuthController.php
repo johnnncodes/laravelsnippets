@@ -87,6 +87,59 @@ class AuthController extends BaseController
     }
 
     /**
+     * HybridAuth
+     * GET /login/{provider}/{process?}
+     */
+    public function getHybridAuth($provider, $process = null)
+    {
+        if ($process) {
+            try {
+                return Hybrid_Endpoint::process();
+            } catch (Exception $e) {
+                return Redirect::route('hybridauth', array('provider' => $provider));
+            }
+        }
+
+        try {
+            $config = Config::get('hybridauth');
+            $config['base_url']  = URL::route('hybridauth', array('provider' => $provider, 'process' => true)) . '/';
+            $oauth = new Hybrid_Auth($config);
+
+            $hybridauth_provider = $oauth->authenticate($provider);
+            $userProfile = $hybridauth_provider->getUserProfile();
+
+            //$provider->logout();
+
+            $user = User::where('provider', '=', $provider)->where('identifier', '=', $userProfile->identifier)->first();;
+
+            if (!$user) {
+                $this->userForm->create_by_hybridauth(
+                        array(
+                            'email' => $userProfile->email,
+                            'first_name' => $userProfile->firstName,
+                            'last_name' => $userProfile->lastName,
+                            'provider' => $provider,
+                            'identifier' => $userProfile->identifier
+                        )
+                    );
+            } else {
+                if (!$user->identifier) {
+                    $user->provider = $provider;
+                    $user->identifier = $userProfile->identifier;
+                    $user->save();
+                }
+            }
+
+            Auth::login($user);
+
+            return Redirect::route('home');
+        } catch (Exception $e) {
+            return Redirect::route('auth.getLogin')
+            ->with('message', 'Authentication failed');
+        }
+    }
+
+    /**
      * Process login
      * POST /login
      */
