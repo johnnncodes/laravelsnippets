@@ -43,8 +43,6 @@ Route::get('tags/{slug}', array('uses' => 'TagController@getShow',
     'as' => 'tag.getShow'));
 
 // Password Resets
-Route::controller('password', 'RemindersController');
-
 Route::get('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@getRemind'));
 Route::post('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@postRemind'));
 Route::get('password/reset', array('as' => 'password.reset', 'uses' => 'RemindersController@getReset'));
