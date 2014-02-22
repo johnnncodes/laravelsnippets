@@ -17,7 +17,7 @@ Don't forget to star this repository :) And feel free to fork it.
 ### How to contribute?
 
 #### Bug fixes
-- Just fork the repository, apply your bug fix and send a pull request on the .
+- Just fork the repository, apply your bug fix and send a pull request on the **development** branch.
 
 #### Features
 - File an issue on this repo with a title that looks like this: [Proposal] Admin Dashboard.
@@ -234,7 +234,3 @@ return array(
         - php artisan migrate --seed --env=testing
 
 3. Run php vendor/bin/phpunit in the console
-
-
-
-
