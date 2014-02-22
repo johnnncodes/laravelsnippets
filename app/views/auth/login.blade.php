@@ -34,7 +34,7 @@
           {{ Form::close() }}
         </div>
         <a href="{{ route('auth.getSignup') }}" class="text-center new-account">Create an account </a>
-        <a href="{{ route('password_resets.create') }}" class="text-center new-account">Forgot your password? </a>
+        <a href="{{ route('password.remind') }}" class="text-center new-account">Forgot your password? </a>
       </div>
     </div>
 

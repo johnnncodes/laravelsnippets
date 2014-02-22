@@ -43,10 +43,12 @@ Route::get('tags/{slug}', array('uses' => 'TagController@getShow',
     'as' => 'tag.getShow'));
 
 // Password Resets
-Route::get('password_resets/reset/{token}', 'PasswordResetsController@reset');
-Route::post('password_resets/reset/{token}', 'PasswordResetsController@postReset');
+Route::controller('password', 'RemindersController');
 
-Route::resource('password_resets', 'PasswordResetsController', ['only' => ['create', 'store']]);
+Route::get('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@getRemind'));
+Route::post('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@postRemind'));
+Route::get('password/reset', array('as' => 'password.reset', 'uses' => 'RemindersController@getReset'));
+Route::post('password/reset/{token}', array('as' => 'password.reset', 'uses' => 'RemindersController@postReset'));
 
 // profile
 Route::get('profiles', array('uses' => 'UserController@getIndex',
