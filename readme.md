@@ -234,7 +234,3 @@ return array(
         - php artisan migrate --seed --env=testing
 
 3. Run php vendor/bin/phpunit in the console
-
-
-
-
