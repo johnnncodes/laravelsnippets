@@ -30,10 +30,10 @@ just send a pull request.
 ### Contributors
 
 #### A huge thanks to these developers who contributed to the development of the site:
-- Martin Dilling-Hansen
-- Sercan Çakır
+- Martin Dilling-Hansen [@dillinghansen](https://twitter.com/dillinghansen)
+- Sercan Çakır [/mayoz](https://github.com/mayoz)
 - Nico Romero Peñaredondo
-- Davide Bellini
+- Davide Bellini [@billmn](https://twitter.com/billmn)
 
 ### Requirements
 
@@ -45,9 +45,8 @@ See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Instalat
 
 ### Running the tests
 
-1. Create a test database and configure config/testing/database.php
+1. Create a test database and configure ```config/testing/database.php```
 
-2. Migrate and Seed database for testing
-        - php artisan migrate --seed --env=testing
+2. Migrate and Seed database for testing ```php artisan migrate --seed --env=testing```
 
-3. Run php vendor/bin/phpunit in the console
+3. Run ```php vendor/bin/phpunit``` in the console
