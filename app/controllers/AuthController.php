@@ -106,7 +106,8 @@ class AuthController extends BaseController
         }
 
         return Redirect::route('auth.getLogin')
-            ->with('message', 'Wrong username or password');
+            ->with('message', 'Wrong username or password')
+            ->withInput();
     }
 
     /**
