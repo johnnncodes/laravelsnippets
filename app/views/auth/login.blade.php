@@ -18,7 +18,7 @@
         <div class="account-wall">
           <img class="profile-img" src="{{ asset('assets/images/login-avatar.png') }}" alt="Avatar">
           {{ Form::open(array('route' => 'auth.postLogin', 'class'=>'form-signin')) }}
-            {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+            {{ Form::text('username', Input::old('username'), array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
             {{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'required' => 'required')) }}
             {{ Form::submit('Sign in', array('class' => 'btn btn-lg btn-primary btn-block')) }}
 
