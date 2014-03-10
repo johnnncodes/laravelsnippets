@@ -38,7 +38,7 @@
       </div>
 
       @if($snippet->description)
-        <p>Description: {{ Purifier::clean(Parsedown::instance()->parse($snippet->description)) }}</p>
+        <p>Description: {{ Purifier::clean(Parsedown::instance()->parse($snippet->description), array('HTML.Nofollow' => true)) }}</p>
       @endif
 
       @if($snippet->credits_to)
