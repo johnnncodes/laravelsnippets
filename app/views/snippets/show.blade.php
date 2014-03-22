@@ -13,7 +13,7 @@
 @endif
 
 @section('title')
-  <title>{{ e($snippet->title) }} | LaravelSnippets.com</title>
+  <title>{{ e($snippet->title) }} | {{ Config::get('site.title') }}</title>
 @stop
 
 @section('content')
@@ -60,11 +60,11 @@
       </pre>
 
       <div class="meta">
-        <span class='st_facebook_hcount' displayText='Facebook'></span>
-        <span class='st_twitter_hcount' displayText='Tweet' st_via='LaravelSnippets #Laravel #snippet'></span>
-        <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-        <span class='st_googleplus_hcount' displayText='Google +'></span>
-        <span class='st_tumblr_hcount' displayText='Tumblr'></span>
+        <span class="st_facebook_hcount" displayText="Facebook"></span>
+        <span class="st_twitter_hcount" displayText="Tweet" st_via="{{ Config::get('site.twitter_via') }}"></span>
+        <span class="st_linkedin_hcount" displayText="LinkedIn"></span>
+        <span class="st_googleplus_hcount" displayText="Google +"></span>
+        <span class="st_tumblr_hcount" displayText="Tumblr"></span>
 
           @if (count($snippet->tags) > 0)
             <div class="tags">

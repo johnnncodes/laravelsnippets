@@ -1,6 +1,7 @@
 <?php namespace Tests\Functional\Controller\Member;
 
 use TestCase;
+use Config;
 use User;
 use Snippet;
 use Way\Tests\Factory;
@@ -99,7 +100,7 @@ class SnippetControllerTest extends TestCase
         $input = array(
             'title' => 'dummy title',
             'body' => 'dummy body',
-            'resource' => 'http://laravelsnippets.com/',
+            'resource' => Config::get('site.url'),
             'tags' => array($tag->id, $secondTag->id)
         );
 
@@ -144,7 +145,7 @@ class SnippetControllerTest extends TestCase
         $input = array(
             'title' => 'dummy title',
             'body' => 'dummy body',
-            'resource' => 'http://laravelsnippets.com/',
+            'resource' => Config::get('site.url'),
             'tags' => array($tag->id, $secondTag->id)
         );
 

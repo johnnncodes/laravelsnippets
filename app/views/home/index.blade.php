@@ -5,13 +5,7 @@
 
       <div class="col-md-12">
 
-        <h3>Welcome to laravelsnippets.com</h3>
-        <p>
-          A repository of useful code snippets for Laravel PHP framework. <a href="{{ route('member.snippet.getCreate') }}">Submit</a>, grab and share!
-        </p>
-        <p>
-          Source code of the site - <a href="https://github.com/basco-johnkevin/laravelsnippets" target="_blank">Github link</a> . We accept pull requests! =)
-        </p>
+        {{ Config::get('site.welcome_message') }}
 
         <div class="recent-snippets">
           <h4 class="heading">Recent Snippets</h4>

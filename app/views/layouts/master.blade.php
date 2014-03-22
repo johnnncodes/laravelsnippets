@@ -27,7 +27,7 @@
     <!-- <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png"> -->
 
     @section('title')
-      <title>LaravelSnippets.com</title>
+      <title>{{ Config::get('site.title') }}</title>
     @show
 
     <!-- Bootstrap core CSS -->
@@ -67,7 +67,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-45609720-1', 'laravelsnippets.com');
+      ga('create', '{{ Config::get('site.ga_code') }}', '{{ Config::get('site.url_short') }}');
       ga('send', 'pageview');
     </script>
 
@@ -164,9 +164,9 @@
             </div>
 
             <h4>Get connected:</h4>
-            <a href="https://twitter.com/laravelsnippets" target="_blank">@laravelsnippets on Twitter</a>
+            <a href="{{ Config::get('site.twitter_url') }}" target="_blank">{{ '@' . Config::get('site.twitter_username') }} on Twitter</a>
             <br>
-            <a href="https://www.facebook.com/LaravelSnippets" target="_blank">laravelsnippets on Facebook</a>
+            <a href="{{ Config::get('site.facebook_url') }}" target="_blank">{{ Config::get('site.facebook_username') }} on Facebook</a>
 
           </div>
 
@@ -177,7 +177,7 @@
 
     <div class="footer">
       <div class="container">
-        <p class="text-muted credit">&copy; <a href="{{ route('home') }}">laravelsnippets.com</a> by <a href="https://twitter.com/johnkevinmbasco" target="_blank">John Kevin M. Basco</a> | <a href="http://mayonvolcanosoftware.com/" target="_blank">Mayon Volcano Software Ltd.</a></p>
+        <p class="text-muted credit">{{ Config::get('site.footer_message') }}</p>
       </div>
     </div>
 
