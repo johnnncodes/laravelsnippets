@@ -41,7 +41,7 @@ just send a pull request.
 2. Redis
 
 ### Local Installation
-See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Instalation)
+See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Local-Installation)
 
 ### Running the tests
 
