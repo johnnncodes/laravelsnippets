@@ -46,7 +46,7 @@
 			@if($snippet->description)
 				<div class="snippet-description">
 					<h2 class="h5"><strong>Description:</strong></h2>
-					<p>{{ Purifier::clean( Parsedown::instance()->parse( $snippet->description ) ) }}</p>
+					<p>{{ Purifier::clean( Parsedown::instance()->parse( $snippet->description ), array('HTML.Nofollow' => true) ) }}</p>
 				</div>
 			@endif
 
