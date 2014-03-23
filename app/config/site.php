@@ -64,5 +64,6 @@ return array(
     'name' => 'Laravel Snippets',
     'welcome_message' => '<h1>Welcome to laravelsnippets.com</h1><p>A repository of useful code snippets for Laravel PHP framework. <a href="' . route('member.snippet.getCreate') . '">Submit</a>, grab and share!</p><p>Source code of the site - <a href="https://github.com/basco-johnkevin/laravelsnippets" target="_blank">Github link</a> . We accept pull requests! =)</p>',
     'repo_url' => '//github.com/basco-johnkevin/laravelsnippets',
+    'mail_from' => 'basco.johnkevin@gmail.com',
 
 );

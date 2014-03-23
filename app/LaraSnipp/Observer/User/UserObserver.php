@@ -26,7 +26,7 @@ class UserObserver
         );
 
         return \Mail::send('emails.auth.activate', $data, function ($message) use ($user) {
-            $message->from('basco.johnkevin@gmail.com', 'Laravel Snippets');
+            $message->from( Config::get('site.mail_from'), Config::get('site.name') );
             $message->to($user->email, $user->full_name)->subject('Activate your account!');
         });
     }
