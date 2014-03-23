@@ -2,33 +2,35 @@
 
 @section('content')
 
-    <div class="row registration-page-wrapper">
+	@if($errors->has())
+		<p>We encountered the following errors:</p>
+		<ul>
+			@foreach($errors->all() as $message)
+				<li>{{ $message }}</li>
+			@endforeach
+		</ul>
+	@endif
 
-      @if($errors->has())
-        <p>We encountered the following errors:</p>
-        <ul>
-          @foreach($errors->all() as $message)
-            <li>{{ $message }}</li>
-          @endforeach
-        </ul>
-      @endif
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3">
 
-      <div class="col-sm-6 col-md-6 col-md-offset-3">
-        <h1 class="text-center login-title">Fill in the fields to register</h1>
-        <div class="account-wall">
-          {{ Form::open(array('route' => 'auth.postSignup', 'class'=>'form-signin form-register')) }}
-            {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
-            {{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control middle', 'required' => 'required')) }}
-            {{ Form::password('password_confirmation', array('placeholder' => 'Password confirmation', 'class' => 'form-control middle', 'required' => 'required')) }}
-            {{ Form::text('first_name', $value = null, array('placeholder' => 'First name', 'class'=> 'form-control middle', 'required' => 'required' )) }}
-            {{ Form::text('last_name', $value = null, array('placeholder' => 'Last name', 'class'=> 'form-control middle', 'required' => 'required' )) }}
-            {{ Form::text('email', $value = null, array('placeholder' => 'Email', 'class'=> 'form-control bottom', 'required' => 'required' )) }}
-            {{ Form::submit('Register', array('class' => 'btn btn-lg btn-primary btn-block')) }}
-            <span class="clearfix"></span>
-          {{ Form::close() }}
-        </div>
-        <a href="{{ route('auth.getLogin') }}" class="text-center new-account">Already have an account? Sign In</a>
-      </div>
-    </div>
+			<h1 class="text-center">Fill in the fields to register</h1>
+
+			{{ Form::open(array('route' => 'auth.postSignup', 'class'=>'form-signin form-register')) }}
+
+				{{ Form::field(['name' => 'username', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Username', 'parameters' => ['required', 'autofocus']]) }}
+				{{ Form::field(['name' => 'password', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Password', 'parameters' => ['required'], 'type' => 'password']) }}
+				{{ Form::field(['name' => 'password_confirmation', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Password confirmation', 'parameters' => ['required'], 'type' => 'password']) }}
+				{{ Form::field(['name' => 'first_name', 'error' => $errors, 'no_label' => true, 'placeholder' => 'First name', 'parameters' => ['required']]) }}
+				{{ Form::field(['name' => 'last_name', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Last name', 'parameters' => ['required']]) }}
+				{{ Form::field(['name' => 'email', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Email Address', 'parameters' => ['required']]) }}
+				<p>{{ HTML::submit('Register', array('class' => 'btn btn-lg btn-primary btn-block')) }}</p>
+
+			{{ Form::close() }}
+
+			<p><a href="{{ route('auth.getLogin') }}" class="text-center new-account">Already have an account? Sign In</a></p>
+
+		</div>
+	</div>
 
 @stop

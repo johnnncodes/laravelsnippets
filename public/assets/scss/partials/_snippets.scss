@@ -1,0 +1,9 @@
+.snippets-table {
+	th, td {
+		text-align: center;
+
+		&.textleft {
+			text-align: left;
+		}
+	}
+}

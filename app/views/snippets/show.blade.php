@@ -1,137 +1,130 @@
 @extends('layouts.master')
 
-@if($snippet->description)
-  @section('meta_description')
-    <meta name="description" content="{{ e($snippet->description) }}">
-  @stop
+@if ($snippet->description)
+	@section('meta_description')
+		<meta name="description" content="{{ e($snippet->description) }}">
+	@stop
 @endif
 
-@if($snippet->author)
-  @section('meta_author')
-    <meta name="author" content="{{ e($snippet->author->fullName) }}">
-  @stop
+@if ($snippet->author)
+	@section('meta_author')
+		<meta name="author" content="{{ e($snippet->author->fullName) }}">
+	@stop
 @endif
 
 @section('title')
-  <title>{{ e($snippet->title) }} | {{ Config::get('site.title') }}</title>
+	<title>{{ e($snippet->title) }} | {{ Config::get('site.title') }}</title>
 @stop
 
 @section('content')
 
-  <div class="row snippet-detail-wrapper">
-    <div class="col-md-12">
+	<div class="row">
 
-      <div class="row">
-        <div class="col-md-6">
-          <h3>{{ e($snippet->title) }}</h3>
-        </div>
-        <div class="col-md-6">
-          <div class="btn-group snippet-starred {{ $has_starred ? 'snippet-starred-active' : '' }}">
-            @if ($has_starred)
-              <a href="{{ URL::route( 'snippet.unStar', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Unstar</a>
-            @else
-              <a href="{{ URL::route( 'snippet.star', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Star</a>
-            @endif
-            <div class="btn btn-default snippet-starred-count">{{ $snippet->starred->count() }}</div>
-          </div>
-        </div>
-      </div>
+		<div class="col-md-9">
 
-      @if($snippet->description)
-        <p>Description: {{ Purifier::clean(Parsedown::instance()->parse($snippet->description)) }}</p>
-      @endif
+			<div class="row">
+				<div class="col-md-8">
+					<h1>{{ e($snippet->title) }}</h1>
+				</div>
+				<div class="col-md-4">
+					<div class="snippet-stats">
+						<div class="snippet-stats-views"><i class="fa fa-eye"></i> {{ $snippet->hasHits() ? $snippet->hits : '0' }} views</div>
+						<div class="snippet-stats-stars btn-group snippet-starred {{ $has_starred ? 'snippet-stats-stars-active' : '' }}">
+							@if ($has_starred)
+								<a href="{{ URL::route( 'snippet.unStar', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Unstar</a>
+							@else
+								<a href="{{ URL::route( 'snippet.star', array( $snippet->slug ) ) }}" class="btn btn-default"><i class="fa fa-star"></i> Star</a>
+							@endif
+							<div class="btn btn-default snippet-stats-stars-count">{{ $snippet->starred->count() }}</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      @if($snippet->credits_to)
-        @if($snippet->creditsToLink)
-          <p>
-            Credits to: <a href="{{ $snippet->creditsToLink }}">{{ e($snippet->credits_to) }}</a>
-          </p>
-        @else
-          <p>Credits to: {{ e($snippet->credits_to) }}</p>
-        @endif
-      @endif
+			<hr>
 
-      @if($snippet->resource)
-        <p>Resource: <a href="{{ e($snippet->resource) }}" target="_blank">{{ e($snippet->resource) }}</a></p>
-      @endif
+			@if($snippet->description)
+				<div class="snippet-description">
+					<h2 class="h5"><strong>Description:</strong></h2>
+					<p>{{ Purifier::clean( Parsedown::instance()->parse( $snippet->description ) ) }}</p>
+				</div>
+			@endif
 
-      <pre>
-        <code class="prettyprint linenums js-prettyprint">{{ e($snippet->body) }}</code>
-      </pre>
+			@if($snippet->credits_to)
+				@if ( $snippet->creditsToLink )
+					<p>Credits to: <a href="{{ $snippet->creditsToLink }}">{{ e($snippet->credits_to) }}</a></p>
+				@else
+					<p>Credits to: {{ e($snippet->credits_to) }}</p>
+				@endif
+			@endif
 
-      <div class="meta">
-        <span class="st_facebook_hcount" displayText="Facebook"></span>
-        <span class="st_twitter_hcount" displayText="Tweet" st_via="{{ Config::get('site.twitter_via') }}"></span>
-        <span class="st_linkedin_hcount" displayText="LinkedIn"></span>
-        <span class="st_googleplus_hcount" displayText="Google +"></span>
-        <span class="st_tumblr_hcount" displayText="Tumblr"></span>
+			@if($snippet->resource)
+				<p>Resource: <a href="{{ e($snippet->resource) }}" target="_blank">{{ e($snippet->resource) }}</a></p>
+			@endif
 
-          @if (count($snippet->tags) > 0)
-            <div class="tags">
-              <p class="pull-left">Tags:</p>
-              <ul class="tags-list">
-                @foreach ($snippet->tags as $tag)
-                  <li class="tag">
-                    <a href="{{ route('tag.getShow', $tag->slug) }}">
-                      <span class="label label-primary">{{ e($tag->name) }}</span>
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-              <span class="clearfix"></span>
-            </div>
-          @endif
+			<pre><code class="prettyprint linenums js-prettyprint">{{ e($snippet->body) }}</code></pre>
 
-        <p>
-          Submitted {{ $snippet->humanCreatedAt }} by
-          <a href="{{ route('user.getProfile', $snippet->author->slug) }}">{{ e($snippet->author->full_name) }}</a>
+			<div class="snippet-share-links"
+				<span class="st_facebook_hcount" displayText="Facebook"></span>
+				<span class="st_twitter_hcount" displayText="Tweet" st_via="{{ Config::get('site.twitter_via') }}"></span>
+				<span class="st_linkedin_hcount" displayText="LinkedIn"></span>
+				<span class="st_googleplus_hcount" displayText="Google +"></span>
+				<span class="st_tumblr_hcount" displayText="Tumblr"></span>
+			</div>
 
-          (<a href="{{ route('user.getSnippets', $snippet->author->slug) }}">{{ $snippet->author->snippets_count }} {{ Str::plural('snippet', $snippet->author->snippets_count) }}</a>).
-        </p>
-        <p>Updated {{ $snippet->humanUpdatedAt }}.</p>
-        <p>
-          Views:
-          @if ($snippet->hasHits()) {{ $snippet->hits }}
-          @else
-            0
-          @endif
-        </p>
-      </div>
+			<div class="snippet-meta">
 
-      @if(App::environment() === 'production')
+				@if ( count( $snippet->tags ) > 0 )
 
-        <div class="disqus">
-          <div id="disqus_thread"></div>
-          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </div>
+					<ul class="snippet-categories list-inline">
+						<li>Categories:</li>
+						@foreach ($snippet->tags as $tag)
+							<li><a href="{{ route('tag.getShow', $tag->slug) }}">{{ e($tag->name) }}</a></li>
+						@endforeach
+					</ul>
 
-      @endif
+				@endif
 
-    </div>
+				<p>Submitted {{ $snippet->humanCreatedAt }}.<br>Updated {{ $snippet->humanUpdatedAt }}.</p>
 
-  </div>
+			</div>
+
+			@if ( App::environment() === 'production' )
+
+				<div class="disqus">
+					<div id="disqus_thread"></div>
+					<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+					<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+
+			@endif
+
+		</div>
+
+		@include('partials/sidebars/snippet')
+
+	</div>
 
 @stop
 
 @section('scripts')
 
-  @if(App::environment() === 'production')
+	@if ( App::environment() === 'production' )
 
-    <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-      var disqus_shortname = 'laravel-snippets'; // required: replace example with your forum shortname
-      var disqus_identifier = 'snippet-' + '{{ $snippet->slug }}';
-      var disqus_title = '{{ $snippet->title }}';
+		<script type="text/javascript">
+			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+			var disqus_shortname = 'laravel-snippets'; // required: replace example with your forum shortname
+			var disqus_identifier = 'snippet-' + '{{ $snippet->slug }}';
+			var disqus_title = '{{ $snippet->title }}';
 
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function () {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
+			/* * * DON'T EDIT BELOW THIS LINE * * */
+			(function () {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
 
-  @endif
+	@endif
 
 @stop

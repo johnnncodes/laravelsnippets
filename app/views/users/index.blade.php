@@ -9,7 +9,7 @@
         <h4 class="heading">Members:</h4>
 
         @if ($users)
-          <ul class="profiles-list">
+          <ul class="list-unstyled">
             @if(count($users))
               @foreach ($users as $user)
                 <li class="profile">

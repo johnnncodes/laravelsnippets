@@ -1,0 +1,30 @@
+.search-band {
+	@include box-shadow(0 2px 0 rgba(0,0,0,.1));
+	background-color: #6d9fbf;
+	color: #39515F;
+	font-size: 14px;
+	padding: 45px 0;
+
+	&.narrow {
+		height: 5px;
+		padding: 0;
+	}
+
+	h1 {
+		color: #fff;
+		font-size: 27px;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	a {
+		color: #FFF;
+	}
+
+	.btn {
+		background-color: #577D97;
+		color: #FFF;
+	}
+}

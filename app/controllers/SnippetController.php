@@ -2,6 +2,7 @@
 
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
+use LaraSnipp\Repo\Tag\TagRepositoryInterface;
 
 class SnippetController extends BaseController
 {
@@ -19,10 +20,21 @@ class SnippetController extends BaseController
      */
     protected $user;
 
-    public function __construct(SnippetRepositoryInterface $snippet, UserRepositoryInterface $user)
+    /**
+     * Tag repository
+     *
+     * @var \LaraSnipp\Repo\Snippet\TagRepositoryInterface
+     */
+    protected $tag;
+
+    public function __construct(
+        SnippetRepositoryInterface $snippet,
+        UserRepositoryInterface $user,
+        TagRepositoryInterface $tag)
     {
         $this->snippet = $snippet;
         $this->user = $user;
+        $this->tag = $tag;
     }
 
     /**
@@ -34,12 +46,15 @@ class SnippetController extends BaseController
         $page = Input::get('page', 1);
 
         // Candidate for config item
-        $perPage = 10;
+        $perPage = 30;
 
         $pagiData = $this->snippet->byPage($page, $perPage);
         $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
 
-        return View::make('snippets.index', compact('snippets'));
+        $tags = $this->tag->all();
+        $topSnippetContributors = $this->user->getTopSnippetContributors();
+
+        return View::make('snippets.index', compact('snippets', 'tags', 'topSnippetContributors'));
     }
 
     /**
@@ -60,7 +75,10 @@ class SnippetController extends BaseController
         # increment hit count
         $snippet->incrementHits();
 
-        return View::make('snippets.show', compact('snippet', 'has_starred'));
+        $tags = $this->tag->all();
+        $topSnippetContributors = $this->user->getTopSnippetContributors();
+
+        return View::make('snippets.show', compact('snippet', 'has_starred', 'tags', 'topSnippetContributors'));
     }
 
     /**

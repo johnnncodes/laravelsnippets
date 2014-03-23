@@ -1,34 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-  <div class="row">
-    <div class="col-md-12">
 
-      <div class="recent-snippets">
+	<div class="row">
 
-        <h4 class="heading">Snippets tagged with "{{ e($tag->name) }}"</h4>
+		<div class="col-md-9">
+			<h1>{{ substr( $tag->name, -1 ) === 's' ? e( substr( $tag->name, 0, -1 ) ) : e( $tag->name ) }} Snippets</h1>
+			{{ HTML::snippets($snippets) }}
+		</div>
 
-        @if ($tag->hasSnippets())
-          <ul class="snippets-list">
-            @foreach ($snippets as $snippet)
-              <li class="snippet">
-                <span class="date">{{ $snippet->created_at }}</span>
-                -
-                <a href="{{ route('snippet.getShow', $snippet->slug) }}">{{ e($snippet->title) }}</a>
-                <span class="author">by (<a href="{{ route('user.getProfile', $snippet->author->slug) }}">{{ e($snippet->author->full_name) }}</a>)</span>
-                |
-                <span class="hits">Views: @if ($snippet->hasHits()) {{ $snippet->hits }} @else 0 @endif</span>
-              </li>
-            @endforeach
-          </ul>
+		@include('partials/sidebars/default')
 
-          {{ $snippets->links() }}
+	</div>
 
-        @else
-          <p>No snippets available.</p>
-        @endif
-      </div>
-
-    </div>
-  </div>
 @stop

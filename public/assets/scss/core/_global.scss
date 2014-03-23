@@ -1,0 +1,267 @@
+/****************************************************
+* Global Tags
+****************************************************/
+* {
+	@include box-sizing( border-box );
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+}
+
+html {
+	overflow-x: hidden;
+	background-color: #333;
+}
+
+body {
+	color: $site-text-colour;
+	font: {
+		family: $copy-font, sans-serif;
+		size: $site-text-size;
+	}
+	line-height: $global-line-height;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+p,
+address,
+figure,
+pre,
+fieldset,
+table {
+	margin-bottom: $margin;
+}
+
+code {
+	background-color: darken( #FCFCFC, 2% );
+	color: $accent;
+}
+
+strong {
+	font-weight: 600;
+}
+
+::selection {
+	background-color: rgba( 0, 0, 0, .3 );
+	color: #FFF;
+}
+
+/****************************************************
+* Anchors
+****************************************************/
+a {
+	@include transition( all .25s );
+	color: $accent;
+	text-decoration: none;
+
+	&:hover {
+		color: darken( $accent, 10% );
+		text-decoration: none;
+	}
+}
+
+
+/****************************************************
+* Headings
+****************************************************/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #6e6e6e;
+	font: {
+		family: $detail-font, Arial, Helvetica, sans-serif;
+		weight: 300;
+	}
+	line-height: 1.3em;
+	margin-top: 0;
+}
+
+h1,
+.h1 {
+	font-size: 36px;
+}
+
+h2,
+.h2 {
+	font-size: 30px;
+}
+
+h3,
+.h3 {
+	font-size: 24px;
+}
+
+h4,
+.h4 {
+	font-size: 20px;
+}
+
+h5,
+.h5 {
+	font-size: 16px;
+}
+
+h6,
+.h6 {
+	font-size: 14px;
+}
+
+
+/****************************************************
+* Global Classes
+****************************************************/
+.clearfix {
+	@include clearfix;
+}
+
+.textleft	{
+	text-align: left;
+}
+
+.textright	{
+	text-align: right;
+}
+
+.textcenter	{
+	text-align: center;
+}
+
+.alignnone {
+	margin: 4px 0 $margin 0;
+}
+
+.alignleft {
+	float: left;
+	margin: 4px $margin $margin 0;
+}
+
+.alignright {
+	float: right;
+	margin: 4px 0 $margin $margin;
+}
+
+.aligncenter {
+	display: block;
+	margin: 4px auto $margin auto;
+}
+
+.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+.hide-text {
+	@include hide-text;
+}
+
+.widget {
+	margin-bottom: $gutter;
+	clear: both;
+}
+
+
+/****************************************************
+* Horizontal Rules
+****************************************************/
+hr {
+	height: 0;
+	max-height: 0;
+	background: none;
+	border: none;
+	border-top: 2px solid rgba( black, .05 );
+	margin: $gutter 0;
+	clear: both;
+}
+
+
+/****************************************************
+* Notices
+****************************************************/
+
+$notice-default-swatch: #F2F2F2;
+$notice-error-swatch: #F5DBDA;
+$notice-success-swatch: #D9F098;
+$notice-warning-swatch: #FDEFBE;
+
+.notice {
+	@include border-radius(5px);
+	margin-bottom: $margin;
+	padding: 10px;
+	border-width: 2px;
+	border-style: solid;
+	background: $notice-default-swatch;
+	color: darken( $notice-default-swatch, 40% );
+	border-color: darken( $notice-default-swatch, 10% );
+
+	&.error	{
+		background: $notice-error-swatch;
+		color: darken( $notice-error-swatch, 40% );
+		border-color: darken( $notice-error-swatch, 10% );
+	}
+
+	&.success {
+		background: $notice-success-swatch;
+		color: darken($notice-success-swatch, 40%);
+		border-color: darken($notice-success-swatch, 10% );
+	}
+
+	&.warning	{
+		background: $notice-warning-swatch;
+		color: darken( $notice-warning-swatch, 40% );
+		border-color: darken( $notice-warning-swatch, 10% );
+	}
+}
+
+
+/****************************************************
+* Tables
+****************************************************/
+.table {
+	width: 100%;
+
+	td,
+	th {
+		border-bottom: 1px solid #F2F2F2;
+		padding: 10px;
+		text-align: left;
+	}
+
+	th {
+		font-weight: 700;
+		color: #6e6e6e;
+	}
+
+	thead td,
+	thead th {
+		border-bottom: 3px solid #F2F2F2;
+	}
+
+	tbody > tr {
+		> td {
+			background-color: #FFF;
+			padding: 15px;
+		}
+
+		&:nth-child(odd) > td {
+			background-color: #FCFCFC;
+		}
+	}
+}
+
+
+/****************************************************
+* Content
+****************************************************/
+#content {
+	padding: 0 0 25px;
+}
