@@ -113,7 +113,7 @@
 
 		<script type="text/javascript">
 			/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-			var disqus_shortname = 'laravel-snippets'; // required: replace example with your forum shortname
+			var disqus_shortname = '{{ Config::get("disqus.shortname") }}'; // required: replace example with your forum shortname
 			var disqus_identifier = 'snippet-' + '{{ $snippet->slug }}';
 			var disqus_title = '{{ $snippet->title }}';
 
