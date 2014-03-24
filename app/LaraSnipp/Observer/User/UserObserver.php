@@ -1,5 +1,7 @@
 <?php namespace LaraSnipp\Observer\User;
 
+use Config;
+
 class UserObserver
 {
     public function creating($user)
