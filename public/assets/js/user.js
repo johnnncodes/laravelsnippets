@@ -47,7 +47,7 @@
   $(function() {
     "use strict";
     if ($('#update-profile-pic-span').length > 0) {
-      LaraSnipp.updateProfilePicView = new LaraSnipp.User.UpdateProfilePicView;
+      LaraSnipp.updateProfilePicView = new LaraSnipp.User.UpdateProfilePicView();
       return LaraSnipp.updateProfilePicView.render();
     }
   });
