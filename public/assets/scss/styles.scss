@@ -42,8 +42,10 @@
 // Will spend more time on buttons at some point ^davidnknight
 .btn-info {
 	background-color: $accent;
+	border-color: $accent;
 
 	&:hover {
 		background-color: darken( $accent, 10% );
+		border-color: darken( $accent, 10% );
 	}
 }
