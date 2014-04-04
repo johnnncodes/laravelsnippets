@@ -47,9 +47,6 @@
 		<!-- Chosen.js css -->
 		<link rel="stylesheet" href="{{ asset('packages/chosen_v1.0.0/chosen.min.css') }}">
 
-		<!-- jquery file upload -->
-		<link rel="stylesheet" href="{{ asset('packages/jquery-file-upload-8.9.0/css/jquery.fileupload.css') }}">
-
 		<!-- Custom styles for this template -->
 		<link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
 
@@ -109,19 +106,8 @@
 		<!-- Chosen.js javascript -->
 		<script src="{{ asset('packages/chosen_v1.0.0/chosen.jquery.min.js') }}"></script>
 
-		<!-- backbone -->
-		<script src="{{ asset('assets/js/vendors/json2/json2.js') }}"></script>
-		<script src="{{ asset('assets/js/vendors/underscore/1.5.2/underscore.js') }}"></script>
-		<script src="{{ asset('assets/js/vendors/backbone/1.1.0/backbone.js') }}"></script>
-
-		<!-- jquery file upload -->
-		<script src="{{ asset('packages/jquery-file-upload-8.9.0/js/vendor/jquery.ui.widget.js') }}"></script>
-		<script src="{{ asset('packages/jquery-file-upload-8.9.0/js/jquery.iframe-transport.js') }}"></script>
-		<script src="{{ asset('packages/jquery-file-upload-8.9.0/js/jquery.fileupload.js') }}"></script>
-
 		<!-- App specific javascript -->
 		<script src="{{ asset('assets/js/common.js') }}"></script>
-		<script src="{{ asset('assets/js/user.js') }}"></script>
 		<script src="{{ asset('assets/js/snippet.js') }}"></script>
 
 		<!--ShareThis Plugin-->
