@@ -23,3 +23,5 @@ public/.htpasswd
 # vagrant
 .vagrant
 /node_modules/
+
+/.idea/
