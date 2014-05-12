@@ -42,14 +42,9 @@
 .footer {
 	background-color: #333;
 	color: #c4c4c4;
-	font-size: 12px;
-	padding: 15px 0;
-
-	@include min-screen-width(tablet-portrait) {
-		height: 60px;
-		line-height: 60px;
-		padding: 0;
-	}
+	font-size: 14px;
+	padding: 20px 0;
+	text-align: center;
 
 	a {
 		color: #c4c4c4;
@@ -59,20 +54,25 @@
 			color: #FFF;
 		}
 	}
+	
+	.digitalocean {
+		margin-bottom: 25px;
+
+		a {
+			display: block;
+		}
+		
+		img {
+			max-width: 140px;
+		}
+	}
 }
 
 .footer-links {
-	margin: 0 0 10px;
-
-	@include min-screen-width(tablet-portrait) {
-		margin: 0;
-	}
+	margin: 0 auto 20px;
 }
 
 .footer-copyright {
+	font-size: 12px;
 	margin: 0;
-
-	@include min-screen-width(tablet-portrait) {
-		text-align: right;
-	}
 }
