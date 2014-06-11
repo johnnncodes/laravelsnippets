@@ -72,8 +72,21 @@ class SnippetController extends BaseController
         $user = Auth::user();
         $has_starred = !empty($user) ? $user->hasStarred($snippet->id) : false;
 
-        # increment hit count
-        $snippet->incrementHits();
+        # check cookie readlist
+        $cookieName = md5('snippet.readlist');
+        $cookieJson = Cookie::get($cookieName);
+        $cookieArray = json_decode($cookieJson);
+
+        if (is_null($cookieArray) or !in_array($snippet->id, $cookieArray)) {
+            # increment hit count if snippet id not exist cookie
+            $snippet->incrementHits();
+
+            # put cookie the snippet id
+            $cookieArray[] = $snippet->id;
+
+            # attached all cookies for one week.
+            Cookie::queue($cookieName, json_encode($cookieArray), 10080);
+        }
 
         $tags = $this->tag->all();
         $topSnippetContributors = $this->user->getTopSnippetContributors();
