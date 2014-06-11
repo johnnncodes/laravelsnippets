@@ -22,3 +22,7 @@ public/.htpasswd
 
 # vagrant
 .vagrant
+/node_modules/
+
+/.idea/
+composer.lock

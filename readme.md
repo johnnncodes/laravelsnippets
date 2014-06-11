@@ -40,8 +40,8 @@ just send a pull request.
 1. PHP 5.4
 2. Redis
 
-### Local Installation (Warning: Outdated)
-See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Instalation)
+### Local Installation
+See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Local-Installation)
 
 ### Running the tests
 

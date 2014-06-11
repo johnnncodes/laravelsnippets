@@ -1,0 +1,131 @@
+body.single-snippet {
+	h1 {
+		margin: 0 0 10px;
+
+		@include min-screen-width(tablet-portrait) {
+			margin: 0;
+		}
+	}
+
+	.snippet-stats {
+		@include min-screen-width(tablet-portrait) {
+			float: right;
+		}
+
+		.snippet-stats-views,
+		.snippet-stats-stars {
+			float: left;
+			font-size: 13px;
+			line-height: 32px;
+			margin: 7px 0 0 15px;
+
+		}
+
+		.snippet-stats-views {
+			color: #999;
+		}
+
+		.snippet-stats-stars {
+			.btn {
+				color: #F4AC5F;
+				font-size: 13px;
+
+				&:hover {
+					background-color: #FCFCFC;
+				}
+			}
+
+			.btn-default {
+				border-color: #F2F2F2;
+			}
+		}
+
+		.snippet-stats-stars-count {
+			color: #656565 !important;
+			font-weight: 600;
+
+			&:hover {
+				background-color: #FFF;
+				border-color: #F2F2F2;
+				cursor: default;
+			}
+		}
+
+		.snippet-stats-stars-active .btn-default {
+			color: #656565;
+		}
+	}
+
+	.snippet-description {
+		margin-bottom: 45px;
+	}
+
+	/*
+	Laravel syntax highlighting
+	*/
+	pre {
+		background-color: #333;
+		border: 0;
+		border: {
+			bottom: 1px solid #eee;
+			top: 1px solid #eee;
+		}
+		color: #e9e4e5;
+		font: {
+			family: Monaco, Consolas, "Lucida Console", monospace;
+			size: 12px;
+		}
+		line-height: 1.9em;
+		margin: 0 0 45px;
+		padding: 4px 0 2px;
+
+		.pln { color: #e9e4e5; }
+		.str { color: #bcd42a; }
+		.kwd { color: #4bb1b1; }
+		.com { color: #888888; }
+		.typ { color: #ef7c61; }
+		.lit { color: #bcd42a; }
+
+		.pun,
+		.opn,
+		.clo {
+			color: #ffffff;
+		}
+
+		.tag { color: #4bb1b1; }
+		.atn { color: #ef7c61; }
+		.atv { color: #bcd42a; }
+
+		.dec,
+		.var { color: #660066; }
+
+		.fun { color: #ff0000; }
+
+		code {
+			font-family: Monaco, Consolas, "Lucida Console", monospace;
+		}
+	}
+
+	/*
+	Prettify CSS Overrides
+	*/
+	li.L1, li.L3, li.L5, li.L7, li.L9 {
+		background-color: inherit; // force inherit background color
+	}
+
+	li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+		list-style-type: decimal; // show all line numbers
+	}
+
+	.snippet-share-links {
+		margin-bottom: 20px;
+	}
+
+	.snippet-categories ul {
+		margin-bottom: 20px;
+	}
+
+	.disqus {
+		margin-bottom: 20px;
+	}
+}

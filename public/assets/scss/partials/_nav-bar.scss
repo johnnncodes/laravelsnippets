@@ -1,0 +1,46 @@
+.navbar {
+	@include box-shadow(0 2px 0 rgba(0,0,0,.1));
+	background-color: #FFF;
+	border: none;
+	font-size: 15px;
+	margin: 0;
+	padding: 25px 0;
+}
+
+.navbar-default .navbar-nav > li {
+	&.active a {
+		color: $accent;
+	}
+
+	> a {
+		color: #AAAAAA;
+		display: block;
+		font-weight: 600;
+		height: 50px;
+
+		&:hover {
+			color: #666;
+		}
+
+		&.btn {
+			@include border-radius(5px);
+			@include background-clip(padding-box);
+			background-color: $accent;
+			border: none;
+			color: #FFF;
+			margin: 0 15px;
+
+			@include min-screen-width(tablet-portrait) {
+				margin-left: 15px;
+			}
+
+			&:hover {
+				background-color: darken( $accent, 10% );
+			}
+		}
+	}
+}
+
+.navbar-brand {
+	padding: 5px 0 0 15px;
+}

@@ -40,8 +40,8 @@
           </div>
 
           <div class="form-group">
-            <label>Tags:</label>
-            {{ Form::select('tags[]', $tags, 'S', array('multiple' => 'multiple', 'data-placeholder' => 'Choose tags', 'style' => 'width: 30%;')) }}
+            <label>Categories:</label>
+            {{ Form::select('tags[]', $tags, 'S', array('multiple' => 'multiple', 'data-placeholder' => 'Choose categories', 'style' => 'width: 30%;')) }}
           </div>
 
           <div class="form-group">

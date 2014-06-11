@@ -1,0 +1,24 @@
+.pagination-container {
+	text-align: center;
+}
+
+.pagination {
+	> li {
+		> a,
+		> span {
+			border: none;
+			color: #6d9fbf;
+			font-size: 18px;
+		}
+
+		&.active span,
+		&:hover a,
+		&:hover span {
+			background-color: #FFF;
+		}
+
+		&.active span {
+			color: #434343;
+		}
+	}
+}

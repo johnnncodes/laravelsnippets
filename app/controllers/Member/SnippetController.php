@@ -70,7 +70,10 @@ class SnippetController extends BaseController
         $user = Auth::user();
         $has_starred = ! empty( $user ) ? $user->hasStarred( $snippet->id ) : false;
 
-        return View::make('snippets.show', compact('snippet', 'has_starred'));
+        $tags = $this->tag->all();
+        $topSnippetContributors = $this->user->getTopSnippetContributors();
+
+        return View::make('snippets.show', compact('snippet', 'has_starred', 'tags', 'topSnippetContributors'));
     }
 
     /**
