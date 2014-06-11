@@ -50,7 +50,7 @@ class TagController extends BaseController
 
         $pagiData = $this->snippet->byTag($slug, $page, $perPage);
 
-        if (! $pagiData->tag) {
+        if (!$pagiData->tag) {
             return App::abort(404);
         }
 
@@ -62,5 +62,4 @@ class TagController extends BaseController
 
         return View::make('tags.snippets', compact('snippets', 'tag', 'tags', 'topSnippetContributors'));
     }
-
 }

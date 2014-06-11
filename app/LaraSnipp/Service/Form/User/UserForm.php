@@ -35,11 +35,12 @@ class UserForm
     /**
      * Create a new user
      *
+     * @param array $input
      * @return boolean
      */
     public function create(array $input)
     {
-        if ( ! $this->valid($input)) {
+        if (!$this->valid($input)) {
             return false;
         }
 
@@ -59,6 +60,7 @@ class UserForm
     /**
      * Test if form validator passes
      *
+     * @param array $input
      * @return boolean
      */
     protected function valid(array $input)

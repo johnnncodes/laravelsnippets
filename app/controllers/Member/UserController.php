@@ -40,5 +40,4 @@ class UserController extends BaseController
 
         return View::make('member.users.dashboard', compact('my_snippets', 'starred_snippets'));
     }
-
 }

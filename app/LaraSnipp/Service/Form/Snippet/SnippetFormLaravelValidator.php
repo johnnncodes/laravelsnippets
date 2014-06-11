@@ -14,5 +14,4 @@ class SnippetFormLaravelValidator extends AbstractLaravelValidator
         'body' => 'required',
         'resource' => 'url',
     );
-
 }

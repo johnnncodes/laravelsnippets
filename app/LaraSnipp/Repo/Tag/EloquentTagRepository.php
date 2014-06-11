@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class EloquentTagRepository extends EloquentBaseRepository implements TagRepositoryInterface
 {
+    /**
+     * Eloquent Tag Model
+     *
+     * @var $tag typeof \Illuminate\Database\Eloquent\Model
+     */
     protected $tag;
 
     // Class expects an Eloquent model
@@ -14,5 +19,4 @@ class EloquentTagRepository extends EloquentBaseRepository implements TagReposit
         parent::__construct($tag);
         $this->tag = $tag;
     }
-
 }

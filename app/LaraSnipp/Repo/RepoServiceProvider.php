@@ -35,5 +35,4 @@ class RepoServiceProvider extends ServiceProvider
             return new EloquentTagRepository(new Tag);
         });
     }
-
 }
