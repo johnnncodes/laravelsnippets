@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Snippet extends BaseModel
 {
     protected $fillable = array(
@@ -10,7 +12,8 @@ class Snippet extends BaseModel
         'resource'
     );
 
-    protected $softDelete = true;
+    use SoftDeletingTrait;
+    protected $dates = ['deleted_at'];
 
     /**
      * Config for eloquent sluggable package
