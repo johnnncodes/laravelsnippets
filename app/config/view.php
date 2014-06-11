@@ -27,6 +27,6 @@ return array(
     */
 
     // 'pagination' => 'pagination::bootstrap-3',
-    'pagination' => 'pagination::slider-3',
+    'pagination' => 'partials/pagination',
 
 );

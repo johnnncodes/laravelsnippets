@@ -1,0 +1,69 @@
+@mixin min-screen-width( $media ) {
+
+	@if $media == mobile-landscape {
+		@media only screen and (min-width:480px) {
+			@content;
+		}
+	}
+
+	@else if $media == tablet-portrait {
+		@media only screen and (min-width:768px) {
+			@content;
+		}
+	}
+
+	@else if $media == tablet-landscape {
+		@media only screen and (min-width:1024px) {
+			@content;
+		}
+	}
+
+	@else if $media == large-desktop {
+		@media only screen and (min-width:1200px) {
+			@content;
+		}
+	}
+
+}
+
+@mixin clearfix {
+	*zoom: 1;
+
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin hide-text {
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+@mixin inline-block {
+	display: inline-block;
+	vertical-align: baseline;
+	zoom: 1;
+	*display: inline;
+	*vertical-align: auto;
+}
+
+@mixin iconify( $width, $height: $width, $radius: 0 ) {
+
+	@if $radius != 0 {
+		@include border-radius( $radius )
+	}
+
+	display: block;
+	text-align: center;
+	width: $width;
+	line-height: $height;
+	min-height: 0;
+}

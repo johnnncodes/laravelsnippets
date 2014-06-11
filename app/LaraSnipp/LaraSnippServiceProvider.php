@@ -40,7 +40,6 @@ class LaraSnippServiceProvider extends ServiceProvider
 
     private function _bootComposers()
     {
-        View::composer('layouts.master', 'LaraSnipp\Composer\LayoutMasterComposer');
     }
 
     public function provides()

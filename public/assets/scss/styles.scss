@@ -1,0 +1,51 @@
+@charset "utf-8";
+@import "compass/css3";
+
+// Setup
+@import "core/variables";
+@import "core/mixins";
+
+// Core
+@import "core/global";
+
+// Partials
+@import "partials/nav-bar";
+@import "partials/search-band";
+@import "partials/breadcrumbs";
+@import "partials/pagination";
+@import "partials/sidebar";
+@import "partials/footer";
+@import "partials/snippets";
+
+// Pages
+@import "pages/snippet";
+@import "pages/profiles";
+
+
+// Snippet Share button overrides (Will be removed later when share buttons are replaced) ^davidnknight
+.stButton .stFb, .stButton .stTwbutton, .stButton .stMainServices,
+.stButton .stButton_gradient {
+	height: 22px !important;
+}
+
+// Will implement a more elegant way of handling this at some point ^davidnknight
+#homepage,
+#login,
+#profiles,
+#snippets,
+#signup {
+	#content {
+		padding: 45px 0 25px;
+	}
+}
+
+// Will spend more time on buttons at some point ^davidnknight
+.btn-info {
+	background-color: $accent;
+	border-color: $accent;
+
+	&:hover {
+		background-color: darken( $accent, 10% );
+		border-color: darken( $accent, 10% );
+	}
+}

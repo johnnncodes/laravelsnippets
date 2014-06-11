@@ -2,32 +2,31 @@
 
 @section('content')
 
-<div class="row login-page-wrapper">
+	<div class="row">
 
-  @if($errors->has())
-  <p>We encountered the following errors:</p>
-  <ul>
-    @foreach($errors->all() as $message)
-    <li>{{ $message }}</li>
-    @endforeach
-  </ul>
-  @endif
+		@if ($errors->has())
+			<p>We encountered the following errors:</p>
+			<ul>
+				@foreach($errors->all() as $message)
+					<li>{{ $message }}</li>
+				@endforeach
+			</ul>
+		@endif
 
-  <div class="col-sm-6 col-md-6 col-md-offset-3">
-    <h1 class="text-center login-title">Fill in the email to reset your password</h1>
-    <div class="account-wall">
+		<div class="col-sm-6 col-sm-offset-3">
 
-      {{ Form::open(array('class'=>'form-signin')) }}
+			<h1 class="text-center">Reset Your Password</h1>
 
-      {{ Form::text('email', $value = null, array('placeholder' => 'Email', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+			{{ Form::open() }}
 
-      {{ Form::submit('Reset password', array('class' => 'btn btn-lg btn-primary btn-block')) }}
+				{{ Form::field(['name' => 'email', 'error' => $errors, 'no_label' => true, 'placeholder' => 'Email Address', 'parameters' => ['required', 'autofocus']]) }}
 
+				<p>{{ HTML::submit('RESET PASSWORD', array('class' => 'btn-lg btn-primary btn-block')) }}</p>
 
-      <span class="clearfix"></span>
-      {{ Form::close() }}
+			{{ Form::close() }}
 
-    </div>
-  </div>
-</div>
+		</div>
+
+	</div>
+
 @stop
