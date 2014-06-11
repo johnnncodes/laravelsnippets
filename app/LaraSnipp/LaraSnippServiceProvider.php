@@ -4,6 +4,7 @@ use App;
 use Illuminate\Support\ServiceProvider;
 // use Redis;
 use View;
+
 // use Tag;
 
 class LaraSnippServiceProvider extends ServiceProvider

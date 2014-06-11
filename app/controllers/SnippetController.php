@@ -65,15 +65,28 @@ class SnippetController extends BaseController
     {
         $snippet = $this->snippet->bySlug($slug);
 
-        if (! $snippet) {
+        if (!$snippet) {
             return App::abort(404);
         }
 
         $user = Auth::user();
-        $has_starred = ! empty( $user ) ? $user->hasStarred( $snippet->id ) : false;
+        $has_starred = !empty($user) ? $user->hasStarred($snippet->id) : false;
 
-        # increment hit count
-        $snippet->incrementHits();
+        # check cookie readlist
+        $cookieName = md5('snippet.readlist');
+        $cookieJson = Cookie::get($cookieName);
+        $cookieArray = json_decode($cookieJson);
+
+        if (is_null($cookieArray) or !in_array($snippet->id, $cookieArray)) {
+            # increment hit count if snippet id not exist cookie
+            $snippet->incrementHits();
+
+            # put cookie the snippet id
+            $cookieArray[] = $snippet->id;
+
+            # attached all cookies for one week.
+            Cookie::queue($cookieName, json_encode($cookieArray), 10080);
+        }
 
         $tags = $this->tag->all();
         $topSnippetContributors = $this->user->getTopSnippetContributors();
@@ -90,19 +103,19 @@ class SnippetController extends BaseController
         $snippet = $this->snippet->bySlug($slug);
         $user = Auth::user();
 
-        if ( empty( $user ) ) {
+        if (empty($user)) {
             return Redirect::route('snippet.getShow', array($slug))
                 ->with(
                     'message',
                     sprintf(
                         'Only logged in users can star snippets. Please %s or %s.',
-                        link_to_route( 'auth.getLogin', 'login' ),
-                        link_to_route( 'auth.getSignup', 'signup' )
+                        link_to_route('auth.getLogin', 'login'),
+                        link_to_route('auth.getSignup', 'signup')
                     )
                 );
         }
 
-        $user->starSnippet( $snippet->id );
+        $user->starSnippet($snippet->id);
 
         return Redirect::route('snippet.getShow', array($slug));
     }
@@ -116,21 +129,20 @@ class SnippetController extends BaseController
         $snippet = $this->snippet->bySlug($slug);
         $user = Auth::user();
 
-        if ( empty( $user ) ) {
+        if (empty($user)) {
             return Redirect::route('snippet.getShow', array($slug))
                 ->with(
                     'message',
                     sprintf(
                         'Only logged in users can unstar snippets. Please %s or %s.',
-                        link_to_route( 'auth.getLogin', 'login' ),
-                        link_to_route( 'auth.getSignup', 'signup' )
+                        link_to_route('auth.getLogin', 'login'),
+                        link_to_route('auth.getSignup', 'signup')
                     )
                 );
         }
 
-        $user->unStarSnippet( $snippet->id );
+        $user->unStarSnippet($snippet->id);
 
         return Redirect::route('snippet.getShow', array($slug));
     }
-
 }

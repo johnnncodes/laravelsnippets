@@ -50,7 +50,7 @@ class UserController extends BaseController
     {
         $user = $this->user->bySlug($slug);
 
-        if (! $user) {
+        if (!$user) {
             return App::abort(404);
         }
 
@@ -74,5 +74,4 @@ class UserController extends BaseController
 
         return View::make('users.snippets', compact('snippets', 'user'));
     }
-
 }

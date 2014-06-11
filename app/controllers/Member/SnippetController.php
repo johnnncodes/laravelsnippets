@@ -63,12 +63,12 @@ class SnippetController extends BaseController
     {
         $snippet = $this->snippet->bySlug($slug, $all = true);
 
-        if (! $snippet) {
+        if (!$snippet) {
             return App::abort(404);
         }
 
         $user = Auth::user();
-        $has_starred = ! empty( $user ) ? $user->hasStarred( $snippet->id ) : false;
+        $has_starred = !empty($user) ? $user->hasStarred($snippet->id) : false;
 
         $tags = $this->tag->all();
         $topSnippetContributors = $this->user->getTopSnippetContributors();
@@ -100,8 +100,8 @@ class SnippetController extends BaseController
         }
 
         return Redirect::route('member.snippet.getCreate')
-                ->withInput()
-                ->withErrors($this->snippetForm->errors());
+            ->withInput()
+            ->withErrors($this->snippetForm->errors());
     }
 
     /**
@@ -113,7 +113,7 @@ class SnippetController extends BaseController
         $snippet = $this->snippet->bySlug($slug, $all = true);
 
         // validate that the user updating the snippet is the snippet author
-        if ( ! $snippet->isTheAuthor(Auth::user())) return App::abort(404);
+        if (!$snippet->isTheAuthor(Auth::user())) return App::abort(404);
 
         $tags = $this->tag->all()->lists('name', 'id');
 
@@ -133,8 +133,7 @@ class SnippetController extends BaseController
         }
 
         return Redirect::back()
-                ->withInput()
-                ->withErrors($this->snippetForm->errors());
+            ->withInput()
+            ->withErrors($this->snippetForm->errors());
     }
-
 }

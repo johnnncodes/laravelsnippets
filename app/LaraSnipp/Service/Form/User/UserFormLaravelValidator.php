@@ -17,5 +17,4 @@ class UserFormLaravelValidator extends AbstractLaravelValidator
         'first_name' => 'required',
         'last_name' => 'required',
     );
-
 }

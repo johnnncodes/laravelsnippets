@@ -40,6 +40,7 @@ abstract class AbstractLaravelValidator implements ValidableInterface
     /**
      * Set data to validate
      *
+     * @param array $data
      * @return \LaraSnipp\Service\Validation\AbstractLaravelValidator
      */
     public function with(array $data)
@@ -58,7 +59,7 @@ abstract class AbstractLaravelValidator implements ValidableInterface
     {
         $validator = $this->validator->make($this->data, $this->rules);
 
-        if ( $validator->fails() ) {
+        if ($validator->fails()) {
             $this->errors = $validator->messages();
 
             return false;

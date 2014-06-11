@@ -47,8 +47,8 @@ class AuthController extends BaseController
         }
 
         return Redirect::route('auth.getSignup')
-                ->withInput()
-                ->withErrors($this->userForm->errors());
+            ->withInput()
+            ->withErrors($this->userForm->errors());
     }
 
     /**
@@ -120,5 +120,4 @@ class AuthController extends BaseController
 
         return Redirect::route('auth.getLogin');
     }
-
 }
