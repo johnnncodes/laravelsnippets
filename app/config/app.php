@@ -198,4 +198,6 @@ return array(
     'Bugsnag' => 'Bugsnag\BugsnagLaravel\BugsnagFacade'
   ),
 
+    'cipher' => MCRYPT_RIJNDAEL_256
+
 );
