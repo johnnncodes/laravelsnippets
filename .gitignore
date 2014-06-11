@@ -25,3 +25,4 @@ public/.htpasswd
 /node_modules/
 
 /.idea/
+composer.lock

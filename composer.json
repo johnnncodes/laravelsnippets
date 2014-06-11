@@ -4,7 +4,7 @@
   "keywords"    : ["framework", "laravel"],
   "license"     : "MIT",
   "require"     : {
-    "laravel/framework"            : "4.1.*",
+    "laravel/framework"            : "4.2.*",
     "cviebrock/eloquent-sluggable" : "1.0.*",
     "erusev/parsedown"             : "dev-master",
     "raven/raven"                  : "0.7.*@dev",
