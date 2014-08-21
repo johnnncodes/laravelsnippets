@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<base href="/">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,31 +30,31 @@
 		@show
 
 		<!-- Google Web Fonts -->
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700">
+		{{ HTML::style('//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700') }}
 
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
 
 		<!-- FontAwesome core CSS -->
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+		{{ HTML::style('//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css') }}
 
 		<!-- Code mirror css -->
-		<link rel="stylesheet" href="{{ asset('packages/codemirror-3.19/lib/codemirror.css') }}">
-		<link rel="stylesheet" href="{{ asset('packages/codemirror-3.19/theme/monokai.css') }}">
+		{{ HTML::style( asset('packages/codemirror-3.19/lib/codemirror.css') ) }}
+		{{ HTML::style( asset('packages/codemirror-3.19/theme/monokai.css') ) }}
 
 		<!-- Google code prettify css -->
-		<link rel="stylesheet" href="{{ asset('packages/google-code-prettify/prettify.css') }}">
+		{{ HTML::style( asset('packages/google-code-prettify/prettify.css') ) }}
 
 		<!-- Chosen.js css -->
-		<link rel="stylesheet" href="{{ asset('packages/chosen_v1.0.0/chosen.min.css') }}">
+		{{ HTML::style( asset('packages/chosen_v1.0.0/chosen.min.css') ) }}
 
 		<!-- Custom styles for this template -->
-		<link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+		{{ HTML::style( asset('assets/css/styles.css') ) }}
 
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+			{{ HTML::script('//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}
+			{{ HTML::script('//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js') }}
 		<![endif]-->
 
 		@if ( App::environment() === 'production' )
@@ -92,26 +93,26 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script src="{{ asset('assets/js/vendors/jquery.min.js') }}"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		{{ HTML::script( asset('assets/js/vendors/jquery.min.js') ) }}
+		{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
 
 		<!-- Codemirror javascript -->
-		<script src="{{ asset('packages/codemirror-3.19/lib/codemirror.js') }}"></script>
-		<script src="{{ asset('packages/codemirror-3.19/mode/clike/clike.js') }}"></script>
-		<script src="{{ asset('packages/codemirror-3.19/mode/php/php.js') }}"></script>
+		{{ HTML::script( asset('packages/codemirror-3.19/lib/codemirror.js') ) }}
+		{{ HTML::script( asset('packages/codemirror-3.19/mode/clike/clike.js') ) }}
+		{{ HTML::script( asset('packages/codemirror-3.19/mode/php/php.js') ) }}
 
 		<!-- Google code prettify javascript -->
-		<script src="{{ asset('packages/google-code-prettify/prettify.js') }}"></script>
+		{{ HTML::script( asset('packages/google-code-prettify/prettify.js') ) }}
 
 		<!-- Chosen.js javascript -->
-		<script src="{{ asset('packages/chosen_v1.0.0/chosen.jquery.min.js') }}"></script>
+		{{ HTML::script( asset('packages/chosen_v1.0.0/chosen.jquery.min.js') ) }}
 
 		<!-- App specific javascript -->
-		<script src="{{ asset('assets/js/common.js') }}"></script>
-		<script src="{{ asset('assets/js/snippet.js') }}"></script>
+		{{ HTML::script( asset('assets/js/common.js') ) }}
+		{{ HTML::script( asset('assets/js/snippet.js') ) }}
 
 		<!--ShareThis Plugin-->
-		<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+		{{ HTML::script('//w.sharethis.com/button/buttons.js') }}
 		<script type="text/javascript">
 			stLight.options({
 				publisher: "b1eb8f86-ebb5-408b-9cb8-0a08b830b3c7",
