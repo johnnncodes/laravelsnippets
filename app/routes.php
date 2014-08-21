@@ -15,8 +15,9 @@
  * Website Routes
  */
 
-# Homepage
+# Pages
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
+Route::get('roadmap', ['as' => 'pages.roadmap', 'uses' => 'Website\PagesController@showRoadmap']);
 
 # Signup
 Route::get('signup', ['as' => 'auth.getSignup', 'uses' => 'AuthController@getSignup']);

@@ -7,6 +7,7 @@
 
 // Core
 @import "core/global";
+@import "core/band";
 
 // Partials
 @import "partials/nav-bar";
@@ -26,17 +27,6 @@
 .stButton .stFb, .stButton .stTwbutton, .stButton .stMainServices,
 .stButton .stButton_gradient {
 	height: 22px !important;
-}
-
-// Will implement a more elegant way of handling this at some point ^davidnknight
-#homepage,
-#login,
-#profiles,
-#snippets,
-#signup {
-	#content {
-		padding: 45px 0 25px;
-	}
 }
 
 // Will spend more time on buttons at some point ^davidnknight
