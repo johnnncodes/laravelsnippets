@@ -31,7 +31,7 @@ $env = $app->detectEnvironment(function()
         return $_SERVER["APPLICATION_ENVIRONMENT"];
     }
 
-    return "local";
+    return "production";
 });
 
 /*
