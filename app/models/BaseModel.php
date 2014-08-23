@@ -4,23 +4,15 @@ use Carbon\Carbon;
 
 class BaseModel extends Eloquent
 {
-    protected function getHumanTimestampAttribute($column)
-    {
-        if ($this->attributes[$column]) {
-            return Carbon::parse($this->attributes[$column])->diffForHumans();
-        }
-
-        return null;
-    }
-
+    
     public function getHumanCreatedAtAttribute()
     {
-        return $this->getHumanTimestampAttribute("created_at");
+        return $this->created_at->diffForHumans();
     }
 
     public function getHumanUpdatedAtAttribute()
     {
-        return $this->getHumanTimestampAttribute("updated_at");
+        return $this->udpated_at->diffForHumans();
     }
 
 }
