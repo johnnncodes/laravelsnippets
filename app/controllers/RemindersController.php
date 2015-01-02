@@ -1,12 +1,13 @@
 <?php
 
+
 class RemindersController extends Controller
 {
 
     /**
      * Display the password reminder view.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function getRemind()
     {
@@ -16,7 +17,7 @@ class RemindersController extends Controller
     /**
      * Handle a POST request to remind a user of their password.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function postRemind()
     {
@@ -33,11 +34,13 @@ class RemindersController extends Controller
      * Display the password reset view for the given token.
      *
      * @param  string $token
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function getReset($token = null)
     {
-        if (is_null($token)) App::abort(404);
+        if (is_null($token)) {
+            App::abort(404);
+        }
 
         return View::make('password.reset')->with('token', $token);
     }
@@ -45,12 +48,15 @@ class RemindersController extends Controller
     /**
      * Handle a POST request to reset a user's password.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function postReset()
     {
         $credentials = Input::only(
-            'email', 'password', 'password_confirmation', 'token'
+            'email',
+            'password',
+            'password_confirmation',
+            'token'
         );
 
         $response = Password::reset($credentials, function ($user, $password) {
@@ -69,5 +75,4 @@ class RemindersController extends Controller
                 return Redirect::route('auth.getLogin')->with('message', 'Password successfully updated. Now log in')->with('messageType', 'success');
         }
     }
-
 }

@@ -49,7 +49,7 @@ Route::get('tags/{slug}', ['as' => 'tag.getShow', 'uses' => 'TagController@getSh
  */
 Route::get('password/remind', ['as' => 'password.remind', 'uses' => 'RemindersController@getRemind']);
 Route::post('password/remind', ['before' => 'csrf', 'as' => 'password.remind', 'uses' => 'RemindersController@postRemind']);
-Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'RemindersController@getReset']);
+Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'RemindersController@getReset']);
 Route::post('password/reset/{token}', ['before' => 'csrf', 'as' => 'password.reset', 'uses' => 'RemindersController@postReset']);
 
 /**
@@ -63,17 +63,17 @@ Route::get('profiles/{slug}/snippets', ['as' => 'user.getSnippets', 'uses' => 'U
  * Member Routes
  */
 Route::group(
-	['prefix' => 'members', 'before' => ['auth']],
-	function () {
+    ['prefix' => 'members', 'before' => ['auth']],
+    function () {
 
-		# Dashboard
-		Route::get('dashboard', ['as' => 'member.user.dashboard', 'uses' => 'Member\UserController@dashboard']);
+        # Dashboard
+        Route::get('dashboard', ['as' => 'member.user.dashboard', 'uses' => 'Member\UserController@dashboard']);
 
-		# Snippets
-	    Route::get('snippets/{slug}', ['as' => 'member.snippet.getShow', 'uses' => 'Member\SnippetController@getShow']);
-	    Route::get('snippets/{slug}/edit', ['as' => 'member.snippet.getEdit', 'uses' => 'Member\SnippetController@getEdit']);
-	    Route::post('snippets/{slug}/update', ['before' => 'csrf', 'as' => 'member.snippet.postUpdate', 'uses' => 'Member\SnippetController@postUpdate']);
-	    Route::get('submit/snippet', ['as' => 'member.snippet.getCreate', 'uses' => 'Member\SnippetController@getCreate']);
-	    Route::post('submit/snippet', ['before' => 'csrf', 'as' => 'member.snippet.postStore', 'uses' => 'Member\SnippetController@postStore']);
+        # Snippets
+        Route::get('snippets/{slug}', ['as' => 'member.snippet.getShow', 'uses' => 'Member\SnippetController@getShow']);
+        Route::get('snippets/{slug}/edit', ['as' => 'member.snippet.getEdit', 'uses' => 'Member\SnippetController@getEdit']);
+        Route::post('snippets/{slug}/update', ['before' => 'csrf', 'as' => 'member.snippet.postUpdate', 'uses' => 'Member\SnippetController@postUpdate']);
+        Route::get('submit/snippet', ['as' => 'member.snippet.getCreate', 'uses' => 'Member\SnippetController@getCreate']);
+        Route::post('submit/snippet', ['before' => 'csrf', 'as' => 'member.snippet.postStore', 'uses' => 'Member\SnippetController@postStore']);
 
-});
+    });
