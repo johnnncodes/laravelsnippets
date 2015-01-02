@@ -1,0 +1,12 @@
+.band {
+	@include clearfix;
+	padding: 20px 0 0;
+
+	@include min-screen-width(tablet-portrait) {
+		padding: 45px 0 25px;
+	}
+
+	&.band-alt {
+		background-color: #FAFAFA;
+	}
+}

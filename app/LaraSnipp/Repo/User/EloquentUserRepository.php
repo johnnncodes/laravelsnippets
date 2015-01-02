@@ -23,7 +23,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
     /**
      * Get top snippets contributors
      *
-     * @param  int                                     $limit Results per page
+     * @param  int $limit Results per page
      * @return Illuminate\Database\Eloquent\Collection
      */
     public function getTopSnippetContributors($limit = 5)

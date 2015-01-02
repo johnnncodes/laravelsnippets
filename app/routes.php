@@ -11,65 +11,69 @@
 |
 */
 
-Route::get('/', array('uses' => 'HomeController@getIndex',
-    'as' => 'home'));
+/**
+ * Website Routes
+ */
 
-Route::get('signup', array('uses' => 'AuthController@getSignup',
-    'as' => 'auth.getSignup'));
-Route::post('signup', array('uses' => 'AuthController@postSignup',
-    'as' => 'auth.postSignup'));
+# Pages
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
+Route::get('roadmap', ['as' => 'pages.roadmap', 'uses' => 'Website\PagesController@showRoadmap']);
 
-Route::get('login', array('uses' => 'AuthController@getLogin',
-    'as' => 'auth.getLogin'));
-Route::post('login', array('uses' => 'AuthController@postLogin',
-    'as' => 'auth.postLogin'));
+# Signup
+Route::get('signup', ['as' => 'auth.getSignup', 'uses' => 'AuthController@getSignup']);
+Route::post('signup', ['before' => 'csrf', 'as' => 'auth.postSignup', 'uses' => 'AuthController@postSignup']);
 
-Route::get('logout', array('uses' => 'AuthController@getLogout',
-    'as' => 'auth.getLogout'));
+# Login
+Route::get('login', ['as' => 'auth.getLogin', 'uses' => 'AuthController@getLogin']);
+Route::post('login', ['before' => 'csrf', 'as' => 'auth.postLogin', 'uses' => 'AuthController@postLogin']);
 
-Route::get('auth/activate/{userSlug}/key/{activationKey}', array('uses' => 'AuthController@getActivateAccount',
-    'as' => 'auth.getActivateAccount'));
+# Logout
+Route::get('logout', ['as' => 'auth.getLogout', 'uses' => 'AuthController@getLogout']);
+Route::get('auth/activate/{userSlug}/key/{activationKey}', ['as' => 'auth.getActivateAccount', 'uses' => 'AuthController@getActivateAccount']);
 
-Route::get('snippets', array('uses' => 'SnippetController@getIndex',
-    'as' => 'snippet.getIndex'));
-Route::get('snippets/{slug}', array('uses' => 'SnippetController@getShow',
-    'as' => 'snippet.getShow'));
-Route::get('snippets/{slug}/star', array('uses' => 'SnippetController@starSnippet',
-    'as' => 'snippet.star'));
-Route::get('snippets/{slug}/unstar', array('uses' => 'SnippetController@unstarSnippet',
-    'as' => 'snippet.unStar'));
+/**
+ * Snippet Routes
+ */
+Route::get('snippets', ['as' => 'snippet.getIndex', 'uses' => 'SnippetController@getIndex']);
+Route::get('snippets/{slug}', ['as' => 'snippet.getShow', 'uses' => 'SnippetController@getShow']);
+Route::get('snippets/{slug}/star', ['as' => 'snippet.star', 'uses' => 'SnippetController@starSnippet']);
+Route::get('snippets/{slug}/unstar', ['as' => 'snippet.unStar', 'uses' => 'SnippetController@unstarSnippet']);
 
-Route::get('tags/{slug}', array('uses' => 'TagController@getShow',
-    'as' => 'tag.getShow'));
+/**
+ * Tag Routes
+ */
+Route::get('tags/{slug}', ['as' => 'tag.getShow', 'uses' => 'TagController@getShow']);
 
-// Password Resets
-Route::get('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@getRemind'));
-Route::post('password/remind', array('as' => 'password.remind', 'uses' => 'RemindersController@postRemind'));
-Route::get('password/reset', array('as' => 'password.reset', 'uses' => 'RemindersController@getReset'));
-Route::post('password/reset/{token}', array('as' => 'password.reset', 'uses' => 'RemindersController@postReset'));
+/**
+ * Password Reset Routes
+ */
+Route::get('password/remind', ['as' => 'password.remind', 'uses' => 'RemindersController@getRemind']);
+Route::post('password/remind', ['before' => 'csrf', 'as' => 'password.remind', 'uses' => 'RemindersController@postRemind']);
+Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'RemindersController@getReset']);
+Route::post('password/reset/{token}', ['before' => 'csrf', 'as' => 'password.reset', 'uses' => 'RemindersController@postReset']);
 
-// profile
-Route::get('profiles', array('uses' => 'UserController@getIndex',
-    'as' => 'user.getIndex'));
-Route::get('profiles/{slug}', array('uses' => 'UserController@getProfile',
-    'as' => 'user.getProfile'));
-Route::get('profiles/{slug}/snippets', array('uses' => 'UserController@getSnippets',
-    'as' => 'user.getSnippets'));
+/**
+ * Profile Routes
+ */
+Route::get('profiles', ['as' => 'user.getIndex', 'uses' => 'UserController@getIndex']);
+Route::get('profiles/{slug}', ['as' => 'user.getProfile', 'uses' => 'UserController@getProfile']);
+Route::get('profiles/{slug}/snippets', ['as' => 'user.getSnippets', 'uses' => 'UserController@getSnippets']);
 
-// members
-Route::group(array('prefix' => 'members', 'before' => array('auth')), function () {
-    Route::get('snippets/{slug}', array('uses' => 'Member\SnippetController@getShow',
-        'as' => 'member.snippet.getShow'));
-    Route::get('snippets/{slug}/edit', array('uses' => 'Member\SnippetController@getEdit',
-        'as' => 'member.snippet.getEdit'));
-    Route::post('snippets/{slug}/update', array('uses' => 'Member\SnippetController@postUpdate',
-        'as' => 'member.snippet.postUpdate'));
+/**
+ * Member Routes
+ */
+Route::group(
+	['prefix' => 'members', 'before' => ['auth']],
+	function () {
 
-    Route::get('submit/snippet', array('uses' => 'Member\SnippetController@getCreate',
-        'as' => 'member.snippet.getCreate'));
-    Route::post('submit/snippet', array('uses' => 'Member\SnippetController@postStore',
-        'as' => 'member.snippet.postStore'));
+		# Dashboard
+		Route::get('dashboard', ['as' => 'member.user.dashboard', 'uses' => 'Member\UserController@dashboard']);
 
-    Route::get('dashboard', array('uses' => 'Member\UserController@dashboard',
-        'as' => 'member.user.dashboard'));
+		# Snippets
+	    Route::get('snippets/{slug}', ['as' => 'member.snippet.getShow', 'uses' => 'Member\SnippetController@getShow']);
+	    Route::get('snippets/{slug}/edit', ['as' => 'member.snippet.getEdit', 'uses' => 'Member\SnippetController@getEdit']);
+	    Route::post('snippets/{slug}/update', ['before' => 'csrf', 'as' => 'member.snippet.postUpdate', 'uses' => 'Member\SnippetController@postUpdate']);
+	    Route::get('submit/snippet', ['as' => 'member.snippet.getCreate', 'uses' => 'Member\SnippetController@getCreate']);
+	    Route::post('submit/snippet', ['before' => 'csrf', 'as' => 'member.snippet.postStore', 'uses' => 'Member\SnippetController@postStore']);
+
 });
