@@ -53,7 +53,7 @@ class HomeController extends BaseController
         $mostViewedSnippets = $this->snippet->getMostViewed(10);
         $tags = $this->tag->all();
 
-        return View::make('home.index', compact('snippets', 'topSnippetContributors', 'mostViewedSnippets', 'tags'));
+        return View::make('website.pages.index', compact('snippets', 'topSnippetContributors', 'mostViewedSnippets', 'tags'));
     }
 
 }
