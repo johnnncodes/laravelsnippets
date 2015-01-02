@@ -41,7 +41,7 @@ class AuthController extends BaseController
     public function postSignup()
     {
         if ($this->userForm->create(Input::all())) {
-            return Redirect::route('auth.getSignup')
+            return Redirect::route('auth.getLogin')
                 ->with('message', 'Successfully registered. Please check your email and activate your account.')
                 ->with('messageType', "success");
         }
