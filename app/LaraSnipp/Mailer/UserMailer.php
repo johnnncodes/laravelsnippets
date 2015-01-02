@@ -1,4 +1,4 @@
-<?php namespace LaraSnipp\Mailers;
+<?php namespace LaraSnipp\Mailer;
 
 class UserMailer extends Mailer
 {

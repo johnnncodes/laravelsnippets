@@ -1,6 +1,6 @@
 <?php namespace LaraSnipp\Observer\User;
 
-use LaraSnipp\Mailers\UserMailer;
+use LaraSnipp\Mailer\UserMailer;
 
 class UserObserver
 {
