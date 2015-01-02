@@ -54,7 +54,7 @@ class SnippetForm
      */
     public function create(array $input)
     {
-        if (!$this->valid($input)) {
+        if (!$this->valid($input, 'creating')) {
             return false;
         }
 
@@ -84,9 +84,11 @@ class SnippetForm
     {
         $snippet = $this->snippet->bySlug($slug, $all = true);
 
-        if (!$snippet->isTheAuthor(Auth::user())) return App::abort(404);
+        if (!$snippet->isTheAuthor(Auth::user())) {
+            return App::abort(404);
+        }
 
-        if (!$this->valid($input)) {
+        if (!$this->valid($input, 'updating')) {
             return false;
         }
 
@@ -122,8 +124,8 @@ class SnippetForm
      * @param array $input
      * @return boolean
      */
-    protected function valid(array $input)
+    protected function valid(array $input, $mode)
     {
-        return $this->validator->with($input)->passes();
+        return $this->validator->with($input)->passes($mode);
     }
 }
