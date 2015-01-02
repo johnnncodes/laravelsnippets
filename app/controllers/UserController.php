@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Redirect;
 use LaraSnipp\Repo\Snippet\SnippetRepositoryInterface;
 use LaraSnipp\Repo\User\UserRepositoryInterface;
+use LaraSnipp\Service\Form\User\UserForm;
 
 class UserController extends BaseController
 {
@@ -18,11 +20,21 @@ class UserController extends BaseController
      * @var \LaraSnipp\Repo\Snippet\UserRepositoryInterface
      */
     protected $user;
+    /**
+     * @var UserForm
+     */
+    private $userForm;
 
-    public function __construct(UserRepositoryInterface $user, SnippetRepositoryInterface $snippet)
+    /**
+     * @param UserRepositoryInterface $user
+     * @param SnippetRepositoryInterface $snippet
+     * @param UserForm $userForm
+     */
+    public function __construct(UserRepositoryInterface $user, SnippetRepositoryInterface $snippet, UserForm $userForm)
     {
         $this->user = $user;
         $this->snippet = $snippet;
+        $this->userForm = $userForm;
     }
 
     /**
@@ -60,6 +72,8 @@ class UserController extends BaseController
     /**
      * Show listing of snippets of a user
      * GET /profiles/{slug}/snippets
+     * @param $slug
+     * @return
      */
     public function getSnippets($slug)
     {
@@ -73,5 +87,36 @@ class UserController extends BaseController
         $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
 
         return View::make('users.snippets', compact('snippets', 'user'));
+    }
+
+    /**
+     * Show user's settings page
+     * GET /profiles/{slug}/settings
+     * @param $slug
+     */
+    public function getSettings($slug)
+    {
+        $user = Auth::user();
+        return View::make('users.settings', compact('user'));
+    }
+
+    /**
+     * Updates user settings
+     * @param $slug
+     * @return mixed
+     */
+    public function putSettings($slug)
+    {
+        $user = $this->user->bySlug($slug);
+
+        if ($this->userForm->update($user, Input::all())) {
+            return Redirect::route('user.getSettings', $slug)
+                ->with('message', 'Successfully updated your settings.')
+                ->with('messageType', "success");
+        } else {
+            return Redirect::route('user.getSettings', $slug)
+                ->withInput()
+                ->withErrors($this->userForm->errors());
+        }
     }
 }

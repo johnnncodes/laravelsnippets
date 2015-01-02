@@ -57,6 +57,8 @@ Route::post('password/reset/{token}', ['before' => 'csrf', 'as' => 'password.res
  */
 Route::get('profiles', ['as' => 'user.getIndex', 'uses' => 'UserController@getIndex']);
 Route::get('profiles/{slug}', ['as' => 'user.getProfile', 'uses' => 'UserController@getProfile']);
+Route::get('profiles/{slug}/settings', ['as' => 'user.getSettings', 'uses' => 'UserController@getSettings']);
+Route::put('profiles/{slug}/settings', ['as' => 'user.putSettings', 'uses' => 'UserController@putSettings']);
 Route::get('profiles/{slug}/snippets', ['as' => 'user.getSnippets', 'uses' => 'UserController@getSnippets']);
 
 /**

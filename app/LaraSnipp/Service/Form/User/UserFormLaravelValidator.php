@@ -9,12 +9,24 @@ class UserFormLaravelValidator extends AbstractLaravelValidator
      *
      * @var Array
      */
-    protected $rules = array(
-        'username' => 'required|between:3,16|unique:users',
-        'password' => 'required|min:4|confirmed',
-        'password_confirmation' => 'required|min:4',
-        'email' => 'required|email|unique:users',
-        'first_name' => 'required',
-        'last_name' => 'required',
-    );
+    protected $rules = [
+        'creating' => [
+            'username' => 'required|between:3,16|unique:users',
+            'password' => 'required|min:4|confirmed',
+            'password_confirmation' => 'required|min:4',
+            'email' => 'required|email|unique:users',
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ],
+        'updating' => [
+            'password' => 'min:4|confirmed',
+            'password_confirmation' => 'required_with:password|min:4',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'twitter_url' => 'url',
+            'facebook_url' => 'url',
+            'github_url' => 'url',
+            'website_url' => 'url'
+        ]
+    ];
 }
