@@ -41,14 +41,14 @@ class AuthController extends BaseController
     public function postSignup()
     {
         if ($this->userForm->create(Input::all())) {
-            return Redirect::route('auth.getSignup')
+            return Redirect::route('auth.getLogin')
                 ->with('message', 'Successfully registered. Please check your email and activate your account.')
                 ->with('messageType', "success");
         }
 
         return Redirect::route('auth.getSignup')
-                ->withInput()
-                ->withErrors($this->userForm->errors());
+            ->withInput()
+            ->withErrors($this->userForm->errors());
     }
 
     /**
@@ -106,7 +106,8 @@ class AuthController extends BaseController
         }
 
         return Redirect::route('auth.getLogin')
-            ->with('message', 'Wrong username or password');
+            ->with('message', 'Wrong username or password')
+            ->withInput();
     }
 
     /**
@@ -119,5 +120,4 @@ class AuthController extends BaseController
 
         return Redirect::route('auth.getLogin');
     }
-
 }

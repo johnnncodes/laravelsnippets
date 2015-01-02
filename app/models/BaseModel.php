@@ -1,26 +1,25 @@
 <?php
 
-use Carbon\Carbon;
-
 class BaseModel extends Eloquent
 {
-    protected function getHumanTimestampAttribute($column)
-    {
-        if ($this->attributes[$column]) {
-            return Carbon::parse($this->attributes[$column])->diffForHumans();
-        }
 
-        return null;
-    }
-
+    /**
+     * Get human created at date
+     *
+     * @return mixed
+     */
     public function getHumanCreatedAtAttribute()
     {
-        return $this->getHumanTimestampAttribute("created_at");
+        return $this->created_at->diffForHumans();
     }
 
+    /**
+     * Get human updated at date
+     *
+     * @return mixed
+     */
     public function getHumanUpdatedAtAttribute()
     {
-        return $this->getHumanTimestampAttribute("updated_at");
+        return $this->updated_at->diffForHumans();
     }
-
 }

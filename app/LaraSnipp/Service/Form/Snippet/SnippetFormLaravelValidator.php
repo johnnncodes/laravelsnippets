@@ -9,10 +9,16 @@ class SnippetFormLaravelValidator extends AbstractLaravelValidator
      *
      * @var Array
      */
-    protected $rules = array(
-        'title' => 'required',
-        'body' => 'required',
-        'resource' => 'url',
-    );
-
+    protected $rules = [
+        'creating' => [
+            'title' => 'required',
+            'body' => 'required',
+            'resource' => 'url'
+        ],
+        'updating' => [
+            'title' => 'required',
+            'body' => 'required',
+            'resource' => 'url'
+        ]
+    ];
 }

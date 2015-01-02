@@ -1,9 +1,27 @@
 <?php namespace LaraSnipp\Observer\User;
 
-use Config;
+use LaraSnipp\Mailer\UserMailer;
 
 class UserObserver
 {
+    /**
+     * @var UserMailer
+     */
+    private $userMailer;
+
+    /**
+     * @param UserMailer $userMailer
+     */
+    public function __construct(UserMailer $userMailer)
+    {
+        $this->userMailer = $userMailer;
+    }
+
+    /**
+     * Assign a role to the user that's being created (member by default)
+     *
+     * @param $user
+     */
     public function creating($user)
     {
         // generate activation key for the user being created
@@ -14,23 +32,13 @@ class UserObserver
         $user->role()->associate($role);
     }
 
+    /**
+     * When the user was created, send the activation email
+     *
+     * @param $user
+     */
     public function created($user)
     {
-        $this->_sendActivationEmail($user);
+        $this->userMailer->sendActivationEmail($user);
     }
-
-    private function _sendActivationEmail($user)
-    {
-        // @NOTE: not sure, but maybe transfer this mail sending logic to a service?
-        $data = array(
-            'user' => $user,
-            'activationUrl' => route('auth.getActivateAccount', array($user->slug, $user->activation_key))
-        );
-
-        return \Mail::send('emails.auth.activate', $data, function ($message) use ($user) {
-            $message->from( Config::get('site.mail_from'), Config::get('site.name') );
-            $message->to($user->email, $user->full_name)->subject('Activate your account!');
-        });
-    }
-
 }

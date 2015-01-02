@@ -19,14 +19,14 @@ class FormServiceProvider extends ServiceProvider
 
         $app->bind('LaraSnipp\Service\Form\User\UserForm', function ($app) {
             return new UserForm(
-                new UserFormLaravelValidator( $app['validator'] ),
+                new UserFormLaravelValidator($app['validator']),
                 $app->make('LaraSnipp\Repo\User\UserRepositoryInterface')
             );
         });
 
         $app->bind('LaraSnipp\Service\Form\Snippet\SnippetForm', function ($app) {
             return new SnippetForm(
-                new SnippetFormLaravelValidator( $app['validator'] ),
+                new SnippetFormLaravelValidator($app['validator']),
                 $app->make('LaraSnipp\Repo\Snippet\SnippetRepositoryInterface'),
                 $app->make('LaraSnipp\Repo\Tag\TagRepositoryInterface')
             );

@@ -29,6 +29,11 @@ class SnippetForm
      */
     protected $snippet;
 
+    /**
+     * Tag Repository
+     *
+     * @var $tag typeof \LaraSnipp\Repo\Tag\TagRepositoryInterface
+     */
     protected $tag;
 
     public function __construct(
@@ -44,11 +49,12 @@ class SnippetForm
     /**
      * Create a new snippet
      *
+     * @param array $input
      * @return boolean
      */
     public function create(array $input)
     {
-        if ( ! $this->valid($input)) {
+        if (!$this->valid($input, 'creating')) {
             return false;
         }
 
@@ -58,7 +64,7 @@ class SnippetForm
 
         if (isset($input['tags']) && count($input['tags']) > 0) {
             foreach ($input['tags'] as $id) {
-                if ( ! in_array($id, $tagIds)) {
+                if (!in_array($id, $tagIds)) {
                     return App::abort(404);
                 }
             }
@@ -67,13 +73,22 @@ class SnippetForm
         return $this->snippet->create($input);
     }
 
+    /**
+     * Update the snippet
+     *
+     * @param $slug
+     * @param array $input
+     * @return bool|\LaraSnipp\Repo\Snippet\Illuminate\Database\Eloquent\Model
+     */
     public function update($slug, array $input)
     {
         $snippet = $this->snippet->bySlug($slug, $all = true);
 
-        if ( ! $snippet->isTheAuthor(Auth::user())) return App::abort(404);
+        if (!$snippet->isTheAuthor(Auth::user())) {
+            return App::abort(404);
+        }
 
-        if ( ! $this->valid($input) ) {
+        if (!$this->valid($input, 'updating')) {
             return false;
         }
 
@@ -83,13 +98,13 @@ class SnippetForm
 
         if (isset($input['tags']) && count($input['tags']) > 0) {
             foreach ($input['tags'] as $id) {
-                if ( ! in_array($id, $tagIds)) {
+                if (!in_array($id, $tagIds)) {
                     return App::abort(404);
                 }
             }
         }
 
-        if ( ! $this->snippet->update($snippet, $input)) return false;
+        if (!$this->snippet->update($snippet, $input)) return false;
         return $snippet;
     }
 
@@ -106,11 +121,11 @@ class SnippetForm
     /**
      * Test if form validator passes
      *
+     * @param array $input
      * @return boolean
      */
-    protected function valid(array $input)
+    protected function valid(array $input, $mode)
     {
-        return $this->validator->with($input)->passes();
+        return $this->validator->with($input)->passes($mode);
     }
-
 }

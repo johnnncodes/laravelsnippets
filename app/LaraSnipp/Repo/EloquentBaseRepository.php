@@ -16,6 +16,11 @@ abstract class EloquentBaseRepository
         $this->model = $model;
     }
 
+    /**
+     * Returns all records
+     *
+     * @return mixed
+     */
     public function all()
     {
         return $this->model->all();
@@ -31,7 +36,7 @@ abstract class EloquentBaseRepository
     {
         $model = $this->model->create($data);
 
-        if (! $model) {
+        if (!$model) {
             return false;
         }
 
@@ -49,11 +54,17 @@ abstract class EloquentBaseRepository
         return $this->model->whereSlug($slug)->first();
     }
 
+    /**
+     * Updates the model with the provided input
+     *
+     * @param $model
+     * @param array $input
+     * @return mixed
+     */
     public function update($model, array $input)
     {
         $model->fill($input);
 
         return $model->save();
     }
-
 }

@@ -10,10 +10,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class EloquentSnippetRepository extends EloquentBaseRepository implements SnippetRepositoryInterface
 {
+    /**
+     * Snippet Model
+     *
+     * @var $snippet typeof \Illuminate\Database\Eloquent\Model
+     */
     protected $snippet;
 
+    /**
+     * Tag repository
+     *
+     * @var $tag typeof \LaraSnipp\Repo\Tag\TagRepositoryInterface
+     */
     protected $tag;
 
+    /**
+     * User repository
+     *
+     * @var $user typeof \LaraSnipp\Repo\User\UserRepositoryInterface
+     */
     protected $user;
 
     public function __construct(
@@ -30,9 +45,9 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     /**
      * Get paginated snippets
      *
-     * @param  int      $page  Number of snippet per page
-     * @param  int      $limit Results per page
-     * @param  boolean  $all   Show published or all
+     * @param  int $page Number of snippet per page
+     * @param  int $limit Results per page
+     * @param  boolean $all Show published or all
      * @return StdClass Object with $items and $totalItems for pagination
      */
     public function byPage($page = 1, $limit = 10, $all = false)
@@ -45,13 +60,13 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
 
         $query = $this->snippet->orderBy('created_at', 'desc')->with('Starred');
 
-        if (! $all) {
+        if (!$all) {
             $query->where('approved', 1);
         }
 
-        $snippets = $query->skip($limit * ($page-1))
-                        ->take($limit)
-                        ->get();
+        $snippets = $query->skip($limit * ($page - 1))
+            ->take($limit)
+            ->get();
 
         $result->totalItems = $this->totalSnippets($all);
         $result->items = $snippets->all();
@@ -64,11 +79,12 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
      *
      * @todo I hate that this is public for the decorators.
      *       Perhaps interface it?
+     * @param bool $all
      * @return int Total snippets
      */
     protected function totalSnippets($all = false)
     {
-        if (! $all) {
+        if (!$all) {
             return $this->snippet->where('approved', 1)->count();
         }
 
@@ -78,11 +94,14 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     /**
      * Get snippets by their tag
      *
-     * @param string  URL slug of tag
-     * @param int Number of snippets per page
+     * @param $slug
+     * @param int $page
+     * @param int $limit
+     * @internal param \LaraSnipp\Repo\Snippet\URL $string slug of tag
+     * @internal param Number $int of snippets per page
      * @return StdClass Object with $items and $totalItems for pagination
      */
-    public function byTag($slug, $page=1, $limit=10)
+    public function byTag($slug, $page = 1, $limit = 10)
     {
         $tag = $this->tag->bySlug($slug);
 
@@ -93,16 +112,16 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
         $result->items = array();
         $result->tag = '';
 
-        if (! $tag) {
+        if (!$tag) {
             return $result;
         }
 
         $snippets = $tag->snippets()
-                        ->where('approved', 1)
-                        ->orderBy('created_at', 'desc')
-                        ->skip( $limit * ($page-1) )
-                        ->take($limit)
-                        ->get();
+            ->where('approved', 1)
+            ->orderBy('created_at', 'desc')
+            ->skip($limit * ($page - 1))
+            ->take($limit)
+            ->get();
 
         $result->totalItems = $this->totalByTag($slug);
         $result->items = $snippets->all();
@@ -118,21 +137,22 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
      *
      * @todo I hate that this is public for the decorators
      *       Perhaps interface it?
-     * @param  string $tag Tag slug
+     * @param $slug
+     * @internal param string $tag Tag slug
      * @return int    Total snippets per tag
      */
     protected function totalByTag($slug)
     {
         return $this->tag->bySlug($slug)
-                    ->snippets()
-                    ->where('approved', 1)
-                    ->count();
+            ->snippets()
+            ->where('approved', 1)
+            ->count();
     }
 
     /**
      * Get snippets ordered by their number of views/hits
      *
-     * @param  string                                   $limit Number of maximum snippets to return
+     * @param int|string $limit Number of maximum snippets to return
      * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getMostViewed($limit = 5)
@@ -176,12 +196,13 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     /**
      * Get snippets by their author
      *
-     * @param  string   $slug  Slug of author
-     * @param  int      $page  Page number
-     * @param  int      $limit Number of snippets per page
+     * @param  string $slug Slug of author
+     * @param  int $page Page number
+     * @param  int $limit Number of snippets per page
+     * @param bool $all
      * @return StdClass Object with $items and $totalItems for pagination
      */
-    public function byAuthor($slug, $page=1, $limit=10, $all = false)
+    public function byAuthor($slug, $page = 1, $limit = 10, $all = false)
     {
         $user = $this->user->bySlug($slug);
 
@@ -191,16 +212,16 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
         $result->totalItems = 0;
         $result->items = array();
 
-        if (! $user) {
+        if (!$user) {
             return $result;
         }
 
         $query = $user->snippets()
-                        ->orderBy('created_at', 'desc')
-                        ->skip( $limit * ($page-1) )
-                        ->take($limit);
+            ->orderBy('created_at', 'desc')
+            ->skip($limit * ($page - 1))
+            ->take($limit);
 
-        if (! $all) {
+        if (!$all) {
             $query->where('approved', 1);
         }
 
@@ -226,15 +247,15 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     protected function totalByAuthor($slug)
     {
         return $this->user->bySlug($slug)
-                    ->snippets()
-                    ->where('approved', 1)
-                    ->count();
+            ->snippets()
+            ->where('approved', 1)
+            ->count();
     }
 
     /**
      * Create a snippet
      *
-     * @param  array   $data Array of inputs
+     * @param  array $data Array of inputs
      * @return boolean
      */
     public function create(array $data)
@@ -256,7 +277,8 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
      * Update a snippet
      *
      * @param  Illuminate\Database\Eloquent\Model $snippet Snippet Model
-     * @param  array                              $data    Array of inputs
+     * @param array $input
+     * @internal param array $data Array of inputs
      * @return boolean
      */
     public function update($snippet, array $input)
@@ -279,19 +301,18 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     /**
      * Get snippets by their slug
      *
-     * @param  string                             $slug Slug of snippet
-     * @param  boolean                            $all  Wether to include not yet approved snippets
+     * @param  string $slug Slug of snippet
+     * @param  boolean $all Wether to include not yet approved snippets
      * @return Illuminate\Database\Eloquent\Model
      */
     public function bySlug($slug, $all = false)
     {
         $query = $this->model->whereSlug($slug);
 
-        if (! $all) {
+        if (!$all) {
             $query->where('approved', 1);
         }
 
         return $query->first();
     }
-
 }

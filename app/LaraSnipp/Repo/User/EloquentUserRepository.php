@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class EloquentUserRepository extends EloquentBaseRepository implements UserRepositoryInterface
 {
+    /**
+     * User Eloquent Model
+     *
+     * @var $user typeof \Illuminate\Database\Eloquent\Model
+     */
     protected $user;
 
     public function __construct(Model $user)
@@ -72,6 +77,7 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
      *
      * @todo I hate that this is public for the decorators.
      *       Perhaps interface it?
+     * @param bool $all
      * @return int Total users
      */
     protected function totalUsers($all = false)
@@ -82,5 +88,4 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
 
         return $this->user->count();
     }
-
 }

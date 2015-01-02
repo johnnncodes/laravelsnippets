@@ -22,7 +22,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         'password',
         'first_name',
         'last_name',
-        'email'
+        'email',
+        'twitter_url',
+        'github_url',
+        'facebook_url',
+        'website_url',
+        'about_me'
     );
 
     /**
@@ -40,7 +45,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public static $sluggable = array(
         'build_from' => 'full_name',
-        'save_to'    => 'slug',
+        'save_to' => 'slug',
     );
 
     /**
@@ -53,76 +58,85 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         return $this->hasMany('Snippet', 'author_id');
     }
 
+    /**
+     * A user has a role, like admin etc.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function role()
     {
         return $this->belongsTo('Role');
     }
 
+    /**
+     * The user has starred snippets
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function starred()
     {
         return $this->hasMany('Starred');
     }
 
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->getKey();
+    }
 
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
-	{
-		return $this->password;
-	}
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 
-	/**
-	 * Get the token value for the "remember me" session.
-	 *
-	 * @return string
-	 */
-	public function getRememberToken()
-	{
-		return $this->remember_token;
-	}
+    /**
+     * Get the token value for the "remember me" session.
+     *
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
 
-	/**
-	 * Set the token value for the "remember me" session.
-	 *
-	 * @param  string  $value
-	 * @return void
-	 */
-	public function setRememberToken($value)
-	{
-		$this->remember_token = $value;
-	}
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
 
-	/**
-	 * Get the column name for the "remember me" token.
-	 *
-	 * @return string
-	 */
-	public function getRememberTokenName()
-	{
-		return 'remember_token';
-	}
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
 
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		return $this->email;
-	}
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail()
+    {
+        return $this->email;
+    }
 
     /**
      * Full name eloquent accessor
@@ -134,9 +148,13 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
+    /**
+     * Returns the absolute url for the profile picture
+     * @return string
+     */
     public function getAbsPhotoUrlAttribute()
     {
-        if (! $this->photo_url) {
+        if (!$this->photo_url) {
 
             $hash = md5(trim(strtolower($this->attributes["email"])));
 
@@ -148,6 +166,10 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         return $assetsDir . $this->photo_url;
     }
 
+    /**
+     * Gets the number of snippets that a user has
+     * @return mixed
+     */
     public function getSnippetsCountAttribute()
     {
         return $this->snippets()->where('approved', 1)->count();
@@ -156,6 +178,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
     /**
      * Password eloquent mutator
      *
+     * @param $value
      * @return string
      */
     public function setPasswordAttribute($value)
@@ -176,6 +199,8 @@ class User extends BaseModel implements UserInterface, RemindableInterface
     /**
      * Activates a user
      *
+     * @param $key
+     * @throws RuntimeException
      * @return boolean
      */
     public function activate($key)
@@ -212,7 +237,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function hasStarred($snippet_id)
     {
-        return $this->starred()->whereSnippetId( $snippet_id )->count() ? true : false;
+        return $this->starred()->whereSnippetId($snippet_id)->count() ? true : false;
     }
 
     /**
@@ -223,11 +248,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function starSnippet($snippet_id)
     {
-        if ( $this->hasStarred( $snippet_id ) ) {
+        if ($this->hasStarred($snippet_id)) {
             return;
         }
 
-        $this->starred()->create( array( 'snippet_id' => $snippet_id ) );
+        $this->starred()->create(array('snippet_id' => $snippet_id));
     }
 
     /**
@@ -238,11 +263,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function unstarSnippet($snippet_id)
     {
-        if ( ! $this->hasStarred( $snippet_id ) ) {
+        if (!$this->hasStarred($snippet_id)) {
             return;
         }
 
-        $this->starred()->whereSnippetId( $snippet_id )->delete();
+        $this->starred()->whereSnippetId($snippet_id)->delete();
     }
 
 }

@@ -1,7 +1,14 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+
 class Snippet extends BaseModel
 {
+    /**
+     * The fields who are mass assignable
+     *
+     * @var $fillable typeof array
+     */
     protected $fillable = array(
         'title',
         'body',
@@ -10,7 +17,13 @@ class Snippet extends BaseModel
         'resource'
     );
 
-    protected $softDelete = true;
+    /**
+     * Soft deleting
+     *
+     * @var $dates typeof array
+     */
+    use SoftDeletingTrait;
+    protected $dates = ['deleted_at'];
 
     /**
      * Config for eloquent sluggable package
@@ -23,11 +36,21 @@ class Snippet extends BaseModel
         'save_to'    => 'slug',
     );
 
+    /**
+     * The snippet belongs to a user
+     *
+     * @return mixed
+     */
     public function author()
     {
         return $this->belongsTo('User');
     }
 
+    /**
+     * The snippet has many tags
+     *
+     * @return mixed
+     */
     public function tags()
     {
         return $this->belongsToMany('Tag');
@@ -132,6 +155,11 @@ class Snippet extends BaseModel
         return null;
     }
 
+    /**
+     * A snippet can be starred by users
+     *
+     * @return mixed
+     */
     public function starred()
     {
         return $this->hasMany('Starred');
