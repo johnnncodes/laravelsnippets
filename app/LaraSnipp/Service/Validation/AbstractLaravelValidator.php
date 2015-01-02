@@ -53,11 +53,16 @@ abstract class AbstractLaravelValidator implements ValidableInterface
     /**
      * Validation passes or fails
      *
-     * @return Boolean
+     * @param string $mode
+     * @return bool
      */
-    public function passes()
+    public function passes($mode = 'creating')
     {
-        $validator = $this->validator->make($this->data, $this->rules);
+        if ($mode === 'updating') {
+            $validator = $this->validator->make($this->data, $this->rules['updating']);
+        } else {
+            $validator = $this->validator->make($this->data, $this->rules['creating']);
+        }
 
         if ($validator->fails()) {
             $this->errors = $validator->messages();

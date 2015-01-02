@@ -22,7 +22,12 @@ class User extends BaseModel implements UserInterface, RemindableInterface
         'password',
         'first_name',
         'last_name',
-        'email'
+        'email',
+        'twitter_url',
+        'github_url',
+        'facebook_url',
+        'website_url',
+        'about_me'
     );
 
     /**
@@ -40,7 +45,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public static $sluggable = array(
         'build_from' => 'full_name',
-        'save_to'    => 'slug',
+        'save_to' => 'slug',
     );
 
     /**
@@ -105,7 +110,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
     /**
      * Set the token value for the "remember me" session.
      *
-     * @param  string  $value
+     * @param  string $value
      * @return void
      */
     public function setRememberToken($value)
@@ -149,7 +154,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function getAbsPhotoUrlAttribute()
     {
-        if (! $this->photo_url) {
+        if (!$this->photo_url) {
 
             $hash = md5(trim(strtolower($this->attributes["email"])));
 
@@ -232,7 +237,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function hasStarred($snippet_id)
     {
-        return $this->starred()->whereSnippetId( $snippet_id )->count() ? true : false;
+        return $this->starred()->whereSnippetId($snippet_id)->count() ? true : false;
     }
 
     /**
@@ -243,11 +248,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function starSnippet($snippet_id)
     {
-        if ( $this->hasStarred( $snippet_id ) ) {
+        if ($this->hasStarred($snippet_id)) {
             return;
         }
 
-        $this->starred()->create( array( 'snippet_id' => $snippet_id ) );
+        $this->starred()->create(array('snippet_id' => $snippet_id));
     }
 
     /**
@@ -258,11 +263,11 @@ class User extends BaseModel implements UserInterface, RemindableInterface
      */
     public function unstarSnippet($snippet_id)
     {
-        if ( ! $this->hasStarred( $snippet_id ) ) {
+        if (!$this->hasStarred($snippet_id)) {
             return;
         }
 
-        $this->starred()->whereSnippetId( $snippet_id )->delete();
+        $this->starred()->whereSnippetId($snippet_id)->delete();
     }
 
 }

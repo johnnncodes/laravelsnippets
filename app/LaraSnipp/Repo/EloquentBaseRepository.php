@@ -67,5 +67,4 @@ abstract class EloquentBaseRepository
 
         return $model->save();
     }
-
 }
