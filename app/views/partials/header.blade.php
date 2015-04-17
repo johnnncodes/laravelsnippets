@@ -8,15 +8,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/images/ls_brand_logo.png') }}"
-                                                                    height="40"
-                                                                    alt="{{ Config::get('site.name') }}"></a>
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <img src="{{ asset('assets/images/ls_brand_logo.png') }}"
+                     height="40"
+                     alt="{{ Config::get('site.name') }}"></a>
         </div>
 
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-right">
-
                 <li>
                     <a href="{{ route('snippet.getIndex') }}">SNIPPETS</a>
                 </li>
