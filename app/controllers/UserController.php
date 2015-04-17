@@ -46,7 +46,7 @@ class UserController extends BaseController
         $page = Input::get('page', 1);
 
         // Candidate for config item
-        $perPage = 10;
+        $perPage = 12;
 
         $pagiData = $this->user->byPage($page, $perPage);
         $users = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);

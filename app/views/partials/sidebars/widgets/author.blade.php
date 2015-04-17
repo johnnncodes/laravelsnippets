@@ -2,9 +2,6 @@
 
 	<h4><a href="{{ route('user.getProfile', $snippet->author->slug) }}">{{ e($snippet->author->full_name) }}</a></h4>
 	<img src="{{ $snippet->author->abs_photo_url }}" height="80" width="80" class="widget-author-avatar">
-	@if ( ! empty( $snippet->author->about_me ) )
-		<p class="widget-author-bio">{{ $snippet->author->about_me }}</p>
-	@endif
 
 	<hr>
 

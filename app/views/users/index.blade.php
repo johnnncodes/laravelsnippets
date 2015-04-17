@@ -2,56 +2,46 @@
 
 @section('content')
 
-	<div class="band">
-		<div class="user-profiles-wrapper">
+    <div class="band">
+        <div class="user-profiles-wrapper">
 
-			<h4 class="heading">Members:</h4>
+            <h1 class="heading">Members</h1>
 
-			@if ($users->count())
+            @if ($users->count())
 
-				<ul class="list-unstyled">
+                @foreach($users->chunk(4) as $usersChunked)
+                    <div class="row">
+                        @foreach($usersChunked as $user)
+                            <div class="col-lg-3 text-center">
+                                <div class="col-md-12">
+                                    <img src="{{ $user->abs_photo_url }}" class="widget-author-avatar" height="65"
+                                         width="65">
+                                </div>
 
-					@foreach ($users as $user)
+                                <div class="col-md-12">
+                                    <a href="{{ route('user.getProfile', $user->slug) }}">
+                                        <h4 class="name">{{ $user->full_name }}</h4>
+                                    </a>
 
-						<li class="profile">
-							<div class="row">
+                                    <a href="{{ route('user.getSnippets', $user->slug) }}">
+                                        <p>Submitted snippets: {{ $user->snippets_count }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
 
-								<div class="col-md-2">
-									<img src="{{ $user->abs_photo_url }}" class="profile-pic" height="120" width="120">
-								</div>
+                {{ $users->links() }}
 
-								<div class="col-md-10">
-									<a href="{{ route('user.getProfile', $user->slug) }}">
-										<h4 class="name">{{ $user->full_name }}</h4>
-									</a>
+            @else
 
-									@if($user->about_me)
-										<p>{{ Str::limit($user->about_me, 180) }}</p>
-									@endif
+                <h3>No site members yet.</h3>
 
-									<a href="{{ route('user.getSnippets', $user->slug) }}">
-										<p>Submitted snippets: {{ $user->snippets_count }}</p>
-									</a>
-
-								</div>
-
-							</div>
-						</li>
-
-					@endforeach
-
-				</ul>
-
-				{{ $users->links() }}
-
-			@else
-
-				<p>No site members yet.</p>
-
-			@endif
+            @endif
 
 
-		</div>
-	</div>
+        </div>
+    </div>
 
 @stop
