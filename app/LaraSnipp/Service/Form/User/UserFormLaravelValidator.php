@@ -19,8 +19,8 @@ class UserFormLaravelValidator extends AbstractLaravelValidator
             'last_name' => 'required'
         ],
         'updating' => [
-            'password' => 'min:4|confirmed',
-            'password_confirmation' => 'required_with:password|min:4',
+            'password' => 'min:8|confirmed',
+            'password_confirmation' => 'min:8',
             'first_name' => 'required',
             'last_name' => 'required',
             'twitter_url' => 'url',

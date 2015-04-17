@@ -107,9 +107,11 @@ class UserController extends BaseController
      */
     public function putSettings($slug)
     {
-        $user = $this->user->bySlug($slug);
+        $user = Auth::user();
 
-        if ($this->userForm->update($user, Input::all())) {
+        $result = $this->userForm->update($user, Input::all());
+
+        if ($result) {
             return Redirect::route('user.getSettings', $slug)
                 ->with('message', 'Successfully updated your settings.')
                 ->with('messageType', "success");
