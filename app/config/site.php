@@ -66,4 +66,6 @@ return array(
     'repo_url' => '//github.com/basco-johnkevin/laravelsnippets',
     'mail_from' => 'basco.johnkevin@gmail.com',
 
+    'snippetsPerPage' => 30
+
 );
