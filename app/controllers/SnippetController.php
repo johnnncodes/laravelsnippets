@@ -43,15 +43,14 @@ class SnippetController extends BaseController
      */
     public function getIndex()
     {
-        $page = Input::get('page', 1);
-
-        // Candidate for config item
-        $perPage = 30;
-
-        $pagiData = $this->snippet->byPage($page, $perPage);
-        $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+        $perPage = Config::get('site.snippetsPerPage');
+        if (Request::has('q') and Request::get('q') !== '')
+            $snippets = $this->snippet->byPage($perPage, false, e(Request::get('q')));
+        else
+            $snippets = $this->snippet->byPage($perPage);
 
         $tags = $this->tag->all();
+
         $topSnippetContributors = $this->user->getTopSnippetContributors();
 
         return View::make('snippets.index', compact('snippets', 'tags', 'topSnippetContributors'));
@@ -60,6 +59,8 @@ class SnippetController extends BaseController
     /**
      * Show an individual snippet
      * GET /snippets/{slug}
+     * @param $slug
+     * @return
      */
     public function getShow($slug)
     {
@@ -97,6 +98,8 @@ class SnippetController extends BaseController
     /**
      * Stars a snippet
      * GET /snippets/{slug}/star
+     * @param $slug
+     * @return
      */
     public function starSnippet($slug)
     {
@@ -123,6 +126,8 @@ class SnippetController extends BaseController
     /**
      * Unstars a snippet
      * GET /snippets/{slug}/unstar
+     * @param $slug
+     * @return
      */
     public function unstarSnippet($slug)
     {

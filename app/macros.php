@@ -176,6 +176,6 @@ HTML::macro('snippets', function ($snippets, $show_pagination = true) {
     include(app_path() . '/views/partials/snippets.php');
 
     if ($show_pagination) {
-        echo $snippets->links();
+        echo $snippets->appends(Input::except('page'))->links();
     }
 });

@@ -45,33 +45,20 @@ class EloquentSnippetRepository extends EloquentBaseRepository implements Snippe
     /**
      * Get paginated snippets
      *
-     * @param  int $page Number of snippet per page
-     * @param  int $limit Results per page
+     * @param int $perPage
      * @param  boolean $all Show published or all
+     * @param $q
      * @return StdClass Object with $items and $totalItems for pagination
      */
-    public function byPage($page = 1, $limit = 10, $all = false)
+    public function byPage($perPage = 30, $all = false, $q = null)
     {
-        $result = new \StdClass;
-        $result->page = $page;
-        $result->limit = $limit;
-        $result->totalItems = 0;
-        $result->items = array();
-
-        $query = $this->snippet->orderBy('created_at', 'desc')->with('Starred');
+        $query = $q ? $this->snippet->like('title', $q)->orderBy('created_at', 'desc')->with('Starred') : $this->snippet->orderBy('created_at', 'desc')->with('Starred');
 
         if (!$all) {
             $query->where('approved', 1);
         }
 
-        $snippets = $query->skip($limit * ($page - 1))
-            ->take($limit)
-            ->get();
-
-        $result->totalItems = $this->totalSnippets($all);
-        $result->items = $snippets->all();
-
-        return $result;
+        return $query->paginate($perPage);
     }
 
     /**

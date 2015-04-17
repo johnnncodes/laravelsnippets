@@ -42,13 +42,9 @@ class HomeController extends BaseController
      */
     public function getIndex()
     {
-        $page = Input::get('page', 1);
+        $perPage = Config::get('site.snippetsPerPage');
 
-        // Candidate for config item
-        $perPage = 10;
-
-        $pagiData = $this->snippet->byPage($page, $perPage);
-        $snippets = Paginator::make($pagiData->items, $pagiData->totalItems, $perPage);
+        $snippets = $this->snippet->byPage($perPage);
         $topSnippetContributors = $this->user->getTopSnippetContributors();
         $mostViewedSnippets = $this->snippet->getMostViewed(10);
         $tags = $this->tag->all();

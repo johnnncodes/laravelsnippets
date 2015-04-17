@@ -33,7 +33,7 @@ class Snippet extends BaseModel
      */
     public static $sluggable = array(
         'build_from' => 'title',
-        'save_to'    => 'slug',
+        'save_to' => 'slug',
     );
 
     /**
@@ -81,7 +81,7 @@ class Snippet extends BaseModel
     /**
      * Determine if the passed User is the Snippet author
      *
-     * @param  User    $user User instance
+     * @param  User $user User instance
      * @return boolean
      */
     public function isTheAuthor($user)
@@ -131,7 +131,7 @@ class Snippet extends BaseModel
      */
     public function getCreditsToLinkAttribute()
     {
-        $creditsTo     = $this->attributes["credits_to"];
+        $creditsTo = $this->attributes["credits_to"];
         $twitterHandle = str_replace("@", "", $creditsTo);
 
         $twitterLink = Cache::remember("credits_to_link_twitter_" . $creditsTo, 60, function () use ($twitterHandle) {
@@ -163,6 +163,12 @@ class Snippet extends BaseModel
     public function starred()
     {
         return $this->hasMany('Starred');
+    }
+
+
+    public function scopeLike($query, $field, $value)
+    {
+        return $query->where($field, 'LIKE', "%$value%");
     }
 
 }

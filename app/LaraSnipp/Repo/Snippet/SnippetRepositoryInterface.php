@@ -5,12 +5,12 @@ interface SnippetRepositoryInterface
     /**
      * Get paginated snippets
      *
-     * @param  int $page Number of articles per page
-     * @param  int $limit Results per page
+     * @param $perPage
      * @param  boolean $all Show published or all
+     * @param $q
      * @return StdClass Object with $items and $totalItems for pagination
      */
-    public function byPage($page = 1, $limit = 10, $all = false);
+    public function byPage($perPage = 30, $all = false, $q = null);
 
     /**
      * Get snippets by their tag
