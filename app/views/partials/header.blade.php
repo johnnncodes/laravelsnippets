@@ -32,7 +32,7 @@
                             <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             @if(Auth::user()->isAdmin())
-                                <li><a href="#">ADMIN</a></li>
+                                <li><a href="{{route('admin.index')}}">ADMIN</a></li>
                             @endif
                             <li><a href="{{ route('member.user.dashboard') }}">DASHBOARD</a></li>
                             <li><a href="{{route('user.getSettings', Auth::user()->slug)}}">SETTINGS</a></li>

@@ -79,3 +79,11 @@ Route::group(
         Route::post('submit/snippet', ['before' => 'csrf', 'as' => 'member.snippet.postStore', 'uses' => 'Member\SnippetController@postStore']);
 
     });
+
+/**
+ * Admin Routes
+ */
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', ['as' => 'admin.index', 'uses' => 'IndexController@getIndex']);
+});

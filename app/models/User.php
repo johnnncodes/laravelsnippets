@@ -59,7 +59,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
     }
 
     /**
-     * A user has a role, like admin etc.
+     * A user has a role, like administration etc.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function role()
@@ -220,7 +220,7 @@ class User extends BaseModel implements UserInterface, RemindableInterface
     }
 
     /**
-     * Checks if user is admin
+     * Checks if user is administration
      *
      * @return boolean
      */
