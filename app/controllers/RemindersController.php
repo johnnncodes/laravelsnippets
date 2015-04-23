@@ -68,8 +68,11 @@ class RemindersController extends Controller
         switch ($response) {
             case Password::INVALID_PASSWORD:
             case Password::INVALID_TOKEN:
+                return Redirect::route('password.remind')->with('message', "Your password remind request has expired or is invalid. Please request another one.")
+                    ->with('messageType', "warning");
             case Password::INVALID_USER:
-                return Redirect::route('password.reset')->with('error', 'Whoops something went terribily wrong! Please retry');
+                return Redirect::route('password.reset')->with('message', "Whoops something went terribily wrong! Please retry")
+                    ->with('messageType', "danger");
 
             case Password::PASSWORD_RESET:
                 return Redirect::route('auth.getLogin')->with('message', 'Password successfully updated. Now log in')->with('messageType', 'success');
