@@ -13,11 +13,11 @@
 
 ClassLoader::addDirectories(array(
 
-    app_path().'/commands',
-    app_path().'/controllers',
-    app_path().'/models',
-    app_path().'/database/seeds',
-    app_path().'/libraries',
+    app_path() . '/commands',
+    app_path() . '/controllers',
+    app_path() . '/models',
+    app_path() . '/database/seeds',
+    app_path() . '/libraries',
 
 ));
 
@@ -32,9 +32,9 @@ ClassLoader::addDirectories(array(
 |
 */
 
-$logFile = 'log-'.php_sapi_name().'.txt';
+$logFile = 'log-' . php_sapi_name() . '.txt';
 
-Log::useDailyFiles(storage_path().'/logs/'.$logFile);
+Log::useDailyFiles(storage_path() . '/logs/' . $logFile);
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +68,11 @@ App::down(function () {
     return Response::make("Be right back!", 503);
 });
 
+
+App::missing(function () {
+    return Redirect::route('404');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Require The Filters File
@@ -79,7 +84,7 @@ App::down(function () {
 |
 */
 
-require app_path().'/filters.php';
+require app_path() . '/filters.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -90,4 +95,4 @@ require app_path().'/filters.php';
 | a nice separate location to store our macros.
 |
 */
-require app_path().'/macros.php';
+require app_path() . '/macros.php';

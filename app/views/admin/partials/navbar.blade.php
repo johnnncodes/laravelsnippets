@@ -6,9 +6,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{route('home')}}"><span class="fa fa-chevron-left">&nbsp;</span>LaravelSnippets</a>
+        <a class="navbar-brand" href="{{route('home')}}">
+            <span class="fa fa-chevron-left">&nbsp;</span>
+            Back to LaravelSnippets
+        </a>
     </div>
-    <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
@@ -24,11 +26,8 @@
                 <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
-            <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
     </ul>
-    <!-- /.navbar-top-links -->
 
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
@@ -57,7 +56,6 @@
                             <a href="#">Unapproved</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Users<span class="fa arrow"></span></a>
@@ -69,42 +67,8 @@
                             <a href="#">Inactive</a>
                         </li>
                     </ul>
-                    <!-- /.nav-second-level -->
                 </li>
-                {{--<li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span
-                                class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-third-level -->
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>--}}
             </ul>
         </div>
-        <!-- /.sidebar-collapse -->
     </div>
-    <!-- /.navbar-static-side -->
 </nav>

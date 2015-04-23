@@ -15,6 +15,11 @@
  * Website Routes
  */
 
+# 404
+Route::get('/404', ['as' => '404', 'uses' => function() {
+    return View::make('website.pages.404');
+}]);
+
 # Pages
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
 Route::get('roadmap', ['as' => 'pages.roadmap', 'uses' => 'Website\PagesController@showRoadmap']);
@@ -83,7 +88,6 @@ Route::group(
 /**
  * Admin Routes
  */
-
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', ['as' => 'admin.index', 'uses' => 'IndexController@getIndex']);
 });
