@@ -23,7 +23,7 @@
 		<div class="col-md-9">
 
 			<a href="http://tutsbucket.com/kemh" target="_blank">
-			    <img src="{{ HTML::style( asset('assets/images/glee-help-desk-software.png') ) }}" alt="Glee Help Desk" style="max-height: 125px; display: block; margin: auto;">
+			    <img src="{{ asset('assets/images/glee-help-desk-software.png') }}" alt="Glee Help Desk" style="max-height: 125px; display: block; margin: auto;">
 			</a>
 
 			<div class="row">
