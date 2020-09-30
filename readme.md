@@ -40,7 +40,7 @@ just send a pull request.
 1. PHP 5.4
 2. Redis
 
-### Local Installation
+### Local Installation for every users (e.x-mac,window,linux e.t.c)
 See [wiki page](https://github.com/basco-johnkevin/laravelsnippets/wiki/Local-Installation)
 
 ### Running the tests
